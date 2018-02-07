@@ -83,18 +83,18 @@ If you want to make changes to the `framework`_, `q2cli`_, or any of the `offici
 .. code-block:: bash
    :linenos:
 
-    # Grab the package source from the relevant source repository
+    # Grab the package source from the relevant source repository.
     git clone https://github.com/qiime2/q2-taxa
     cd q2-taxa
 
     # Install any additional build-time dependencies needed for this project.
-    # Check ci/recipe/meta.yaml in any official QIIME 2 repos for build requirements.
+    # Check ci/recipe/meta.yaml in any official QIIME 2 repository for build requirements.
     conda install nodejs pytest flake8
 
-    # Install local source in "development mode," and build any package assets.
+    # Install local source in "development mode", and build any package assets.
     make dev
 
-    # Run package tests to ensure that everything is good to go.
+    # Run package tests to ensure that everything is okay.
     make test
 
 Congratulations! You should now have a working development environment - time to start hacking!
