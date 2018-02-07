@@ -18,3 +18,10 @@ help:
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+
+.PHONY: release_check
+release_check:
+	@if test -z "$(RELEASE)"; then echo "don't forget to define RELEASE=201X.Y when invoking!"; exit 2; fi
+
+deploy: release_check
+	aws s3 sync build/dirhtml/ s3://qiime2-dev-docs/$(RELEASE)/
