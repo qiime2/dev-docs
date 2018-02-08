@@ -1,0 +1,42 @@
+# sequencediagram.org
+participant User
+participant Interface
+participant Framework
+participant Plugin
+
+User->Interface:plugin action\n(file paths, parameters)
+activate Interface
+Interface->Framework:get plugin
+activate Framework
+Interface->Framework:get action
+deactivate Framework
+Interface->Framework:load artifacts\n(file paths)
+activate Framework
+Framework-->Interface:artifacts
+deactivate Framework
+Interface->Framework:call action\n(artifacts)
+activate Framework
+Framework->Framework:validate input\n(artifacts, parameters)
+Framework->Plugin:transform\n(artifacts)
+activate Plugin
+Plugin-->Framework:transformed input
+deactivate Plugin
+Framework->Plugin:execute action\n(transformed input, parameters)
+activate Plugin
+Plugin->Plugin:perform\nbioinformatics
+Plugin-->Framework:results
+deactivate Plugin
+Framework->Plugin:transform\n(results)
+activate Plugin
+Plugin-->Framework:transformed results
+deactivate Plugin
+Framework->Framework:write /data/\n(transformed results)
+Framework->Framework:write /provenance/\n(artifacts, parameters)
+Framework-->Interface:result artifacts
+deactivate Framework
+Interface->Framework:save\n(artifacts)
+activate Framework
+Framework-->Interface:artifact file paths
+deactivate Framework
+Interface-->User:artifact file paths
+deactivate Interface
