@@ -14,3 +14,4 @@ QIIME 2 Developer Documentation
    testing/index
    publishing/index
    internal/index
+   api-reference/index
