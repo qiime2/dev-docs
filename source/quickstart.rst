@@ -14,7 +14,6 @@ Install Prerequisites
 After installing Miniconda and opening a new terminal, make sure you're running the latest version of ``conda`` (and get a copy of ``wget``, while you're at it):
 
 .. code-block:: bash
-   :linenos:
 
    conda update conda
    conda install wget
@@ -31,7 +30,6 @@ macOS
 .....
 
 .. code-block:: bash
-   :linenos:
 
    wget https://raw.githubusercontent.com/qiime2/environment-files/master/latest/staging/qiime2-latest-py35-osx-conda.yml
    conda env create -n qiime2-dev --file qiime2-latest-py35-osx-conda.yml
@@ -41,7 +39,6 @@ Linux
 .....
 
 .. code-block:: bash
-   :linenos:
 
    wget https://raw.githubusercontent.com/qiime2/environment-files/master/latest/staging/qiime2-latest-py35-linux-conda.yml
    conda env create -n qiime2-dev --file qiime2-latest-py35-linux-conda.yml
@@ -51,7 +48,6 @@ Activate the ``conda`` environment
 ----------------------------------
 
 .. code-block:: bash
-   :linenos:
 
     source activate qiime2-dev
     # to deactivate:
@@ -81,7 +77,6 @@ Next steps
 If you want to make changes to the `framework`_, `q2cli`_, or any of the `official plugins`_, check out the steps involved in the following example (for the sake of this example, we will focus on developing ``q2-taxa``):
 
 .. code-block:: bash
-   :linenos:
 
     # Grab the package source from the relevant source repository.
     git clone https://github.com/qiime2/q2-taxa
