@@ -90,7 +90,7 @@ html_theme = 'alabaster'
 # documentation.
 #
 html_theme_options = {
-    'logo': 'q2docs.png',
+    'logo': 'q2dev.svg',
     'page_width': '1024px',
 }
 
