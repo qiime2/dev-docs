@@ -1,5 +1,7 @@
 Architecture Overview
 =====================
+.. contents::
+   :local:
 
 The goal of this document is to give the reader a high-level understanding of the components of QIIME 2, and how they are inter-related.
 
@@ -29,6 +31,8 @@ Only changes in the framework itself require coordination between the other two 
 This key constraint coupled with a set of semantically rich SDK objects allows *multiple* kinds of interfaces to be dynamically generated.
 This allows QIIME 2 to adapt its UI to both the audience and the task at hand.
 
+Detailed Component Diagram
+--------------------------
 A more complete version of the above figure is found below:
 
 .. figure:: img/complex_component_diagram.svg
@@ -52,6 +56,8 @@ Plugins are loaded by the framework's SDK via an entry-point (more on that later
 This in turn causes the plugin code to interact with the Plugin API, which constructs SDK objects.
 These SDK objects are then introspected and manipulated by any number of Interfaces.
 
+Following A Command Through QIIME 2
+-----------------------------------
 To get a better idea of where the responsibility of these components starts and ends, we can look at a sequence diagram describing the execution of an action by a user.
 
 .. figure:: img/action_call_sequence_diagram.svg
@@ -82,13 +88,14 @@ The Framework then writes that data into an archive (as `/data/`) and records wh
 This completed archive is now an artifact and is returned to the Interface.
 The Interface decides to save the artifact to a file and then returns that to the User.
 
+Summary
+-------
 In this example we see that the activation of each component is strictly nested.
 It forms a sort of "onion of responsibility" between the component layers.
 We also note that the Interface waits for the task to finish before becoming inactive; there are other modes of calling actions which are asynchronous and can be used instead.
 In either case, we see that each component is successively responsible for less tasks which become more specific as we move to the right.
 
 The end result is:
-
   - The Interface need only care about communicating with the User.
   - The Plugin need only care about manipulating data to some effect.
   - The Framework concerns itself with coordinating the overall effort and recording the data surrounding the action.

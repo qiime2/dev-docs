@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+div.sphinxsidebar ul li.toctree-l1 {
+  margin-bottom: 0.5em;
+}
+
+div.sphinxsidebar  ul li.toctree-l1  a {
+  display: block;
+}
+
+div.contents {
+  float: right;
+  padding-left: 0px;
+  margin-left: 10px;
+  max-width: 280px;
+}
+
+div.section div.section {
+  clear: both;
+}
+
+a.toc-backref {
+  text-decoration: none;
+  color: #3E4349;
+}

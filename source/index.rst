@@ -15,3 +15,4 @@ QIIME 2 Developer Documentation
    publishing/index
    internal/index
    api-reference/index
+   glossary

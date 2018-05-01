@@ -97,6 +97,10 @@ html_theme = 'alabaster'
 html_theme_options = {
     'logo': 'q2dev.svg',
     'page_width': '1024px',
+    'show_related': True,
+    'sidebar_width': '280px',
+    'font_family': "'Open Sans', sans-serif",
+    'head_font_family': "'Open Sans', sans-serif",
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
