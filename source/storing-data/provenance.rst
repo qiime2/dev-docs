@@ -1,4 +1,4 @@
-Provenance
-==========
+Decentralized Provenance Tracking
+=================================
 .. contents::
    :local:

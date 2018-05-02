@@ -17,7 +17,7 @@ specifics:
 - :doc:`formats`
 - :doc:`provenance`
 
-.. this isn't a toctree because it doesn't look right being in the global index
+.. this isn't a toctree because it would be repeated twice in the global index
 
 Otherwise, continue reading for a high-level summary of the topic.
 
