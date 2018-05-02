@@ -29,6 +29,8 @@ We can examine the first few lines of the ``Method`` registration for this funct
 
 So we see that the ``biom.Table`` object begins its life as a ``FeatureTable[Frequency]`` artifact, the ``skbio.TreeNode`` comes from a ``Phylogeny[Rooted]`` artifact, and the output ``skbio.DistanceMatrix`` must somehow be coerced to become a ``DistanceMatrix[phylogenetic]`` artifact. How do we possibly handle this? Before you hyperventilate, remember that the QIIME 2 framework does all conversion for you, `provided the appropriate ``transformers`` have been registered`.
 
+.. _registering-a-transformer:
+
 Registering a Transformer
 -------------------------
 To give you an idea how this works, let's take a look at how an example ``transformer`` is registered in ``q2-types``:
