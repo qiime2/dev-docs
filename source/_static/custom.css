@@ -3,23 +3,56 @@
 div.sphinxsidebar ul li.toctree-l1 {
   margin-bottom: 0.5em;
 }
-
 div.sphinxsidebar  ul li.toctree-l1  a {
   display: block;
 }
-
-div.contents {
-  float: right;
-  padding-left: 0px;
-  margin-left: 10px;
-  max-width: 280px;
+div.sphinxsidebar form {
+  display: inline-block;
+  width: 100%;
 }
 
-div.section div.section {
-  clear: both;
+div.contents {
+  padding: 5px 5px 5px 0;
 }
 
 a.toc-backref {
   text-decoration: none;
   color: #3E4349;
+}
+
+div.footer {
+  padding-right: 60px;
+}
+
+/* lists should be pretty, not ugly */
+ul, ol {
+  margin: 0 0 0 1.5em;
+}
+ul ul, ol ol {
+  margin-left: 1em;
+}
+ul > li, ol > li {
+  margin-bottom: 0.3em;
+}
+ul > li li, ol > li li {
+  margin-bottom: 0;
+}
+
+@media screen and (min-width: 875px) {
+  div.sphinxsidebarwrapper {
+    border-right: 1px solid #808080;
+    margin-right: -1px;
+  }
+  div.body {
+    border-left: 1px solid #808080;
+  }
+
+  div.contents {
+    float: right;
+    max-width: 280px;
+    margin-left: 10px;
+  }
+  div.section div.section {
+    clear: both;
+  }
 }

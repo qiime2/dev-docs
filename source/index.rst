@@ -2,7 +2,7 @@ QIIME 2 Developer Documentation
 ===============================
 
 .. toctree::
-   :maxdepth: 2
+   :titlesonly:
 
    quickstart
    architecture

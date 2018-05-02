@@ -97,7 +97,6 @@ html_theme = 'alabaster'
 html_theme_options = {
     'logo': 'q2dev.svg',
     'page_width': '1024px',
-    'show_related': True,
     'sidebar_width': '280px',
     'font_family': "'Open Sans', sans-serif",
     'head_font_family': "'Open Sans', sans-serif",
@@ -116,9 +115,10 @@ html_static_path = ['_static']
 html_sidebars = {
     '**': [
         'about.html',
+        'q2network.html',
         'navigation.html',
-        'relations.html',
         'searchbox.html',
+        'relations.html',
         'donate.html',
     ]
 }
