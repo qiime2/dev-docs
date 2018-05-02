@@ -1,7 +1,6 @@
 {% extends "!layout.html" %}
-<!-- Taken from: https://github.com/writethedocs/www/blob/master/docs/_templates/layout.html -->
-{%- block document %}
-<div class="admonition warning" style="margin: -30px 30px 30px 0;">
+{% block content %}
+<div class="admonition warning" style="margin: 0 auto; width: 1024px; box-sizing: border-box;">
   <p class="first admonition-title">Warning</p>
   <p class="last">
     These docs are a work in progress, and are not ready for public consumption
@@ -12,6 +11,11 @@
     This banner will be removed when the announcement is made.
   </p>
 </div>
+{{ super() }}
+{%- endblock %}
+
+<!-- Taken from: https://github.com/writethedocs/www/blob/master/docs/_templates/layout.html -->
+{%- block document %}
   <div class="documentwrapper">
   {%- if render_sidebar %}
     <div class="bodywrapper">

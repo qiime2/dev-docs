@@ -55,4 +55,15 @@ ul > li li, ol > li li {
   div.section div.section {
     clear: both;
   }
+
+  div.document {
+    display: flex;
+  }
+  div.sphinxsidebar {
+    display: flex;
+  }
+  div.sticky {
+    position: sticky;
+    top: 0px;
+  }
 }
