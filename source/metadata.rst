@@ -4,7 +4,7 @@ Using Metadata
 .. contents::
    :local:
 
-:class:`Metadata <qiime2.metadata.Metadata>` allows users to annotate QIIME 2 a
+:class:`Metadata <qiime2.metadata.Metadata>` allows users to annotate a QIIME 2
 :term:`Result` with study-specific values: age, elevation, body site, pH, etc.
 QIIME 2 offers a consistent API for developers to expose their :term:`Methods
 <Method>` and :term:`Visualizers <Visualizer>` to user-defined metadata. For
@@ -18,19 +18,21 @@ Actions may request an entire :class:`Metadata <qiime2.metadata.Metadata>`
 object to work on. At its core, :class:`Metadata <qiime2.metadata.Metadata>` is
 just a pandas |pd.Dataframe|_, but the :class:`Metadata
 <qiime2.metadata.Metadata>` object provides many convenience methods and
-properties, and unifies this code necessary for handling these data (or
+properties, and unifies the code necessary for handling these data (or
 metadata). Examples of :term:`Actions <Action>`  that consume and operate on
 :class:`Metadata <qiime2.metadata.Metadata>` include:
 
 - |longitudinal volatility|_
 - |metadata tabulate|_
 - |feature-table filter-features|_
+- And many more
 
-Plugins may work with that metadata directly, or they may
-choose to filter and regroup, it all depends on the intended outcome.
+Plugins may work with metadata directly, or they may choose to filter, regroup,
+partition, pivot, etc. - it all depends on the intended outcome relevant to the
+:term:`method <Method>` or :term:`visualizer <Visualizer>` in question.
 
 :class:`Metadata <qiime2.metadata.Metadata>` is subject to framework-level
-validations, normalization, and verification, we recommend `familiarizing
+validations, normalization, and verification. We recommend `familiarizing
 yourself`_ with this behavior before utilizing :class:`Metadata
 <qiime2.metadata.Metadata>` in your :term:`Action`. We think having this kind
 of behavior available via a centralized API helps ensure consistency for all
