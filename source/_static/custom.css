@@ -47,7 +47,7 @@ ul > li li, ol > li li {
 
   /* stop wasting page space */
   div.body {
-    padding-right: 0px;
+    padding: 0 20px 20px 20px;
   }
 
   /* floating page contents table */

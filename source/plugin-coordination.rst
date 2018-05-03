@@ -1,2 +1,2 @@
-Plugin Coordination (and Namespace Considerations)
-==================================================
+Coordinating With Other Plugins
+===============================
