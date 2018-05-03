@@ -16,3 +16,4 @@ QIIME 2 Developer Documentation
    internal/index
    api-reference/index
    glossary
+   getting-help
