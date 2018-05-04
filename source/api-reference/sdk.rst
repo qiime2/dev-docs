@@ -9,6 +9,5 @@ interfaces.
 
 .. automodule:: qiime2.sdk
    :members:
-   :exclude-members: Result
    :inherited-members:
    :undoc-members:

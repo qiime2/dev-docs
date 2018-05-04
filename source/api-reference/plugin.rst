@@ -25,3 +25,13 @@ Semantic Types (and related objects)
 .. autodata:: Choices
 .. autodata:: Visualization
 .. autodata:: SemanticType
+
+
+Record Containers
+-----------------
+
+.. autodata:: qiime2.plugin.plugin.TransformerRecord
+.. autodata:: qiime2.plugin.plugin.SemanticTypeRecord
+.. autodata:: qiime2.plugin.plugin.FormatRecord
+.. autodata:: qiime2.plugin.plugin.ViewRecord
+.. autodata:: qiime2.plugin.plugin.TypeFormatRecord

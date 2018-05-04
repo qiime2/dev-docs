@@ -12,3 +12,9 @@ Utilities
 .. automodule:: qiime2.util
    :members:
    :undoc-members:
+
+Testing
+-------
+
+.. autoclass:: qiime2.plugin.testing.TestPluginBase
+   :members:
