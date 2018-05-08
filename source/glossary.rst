@@ -18,6 +18,10 @@ it without the accompanying context provided by the rest of this documentation.
    Artifact
      A QIIME 2 :term:`Result` that countains data to operate on.
 
+   Deployment
+     An installation of QIIME 2 as well as zero-or-more :term:`interfaces
+     <Interface>` and :term:`plugins <Plugin>`.
+
    Directory Format
      A string that represents a particular layout of files and or directories
      as well as how their contents will be structured.
