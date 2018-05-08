@@ -12,7 +12,7 @@ Testing Plugins
 Testing a QIIME 2 :term:`plugin <Plugin>` is a snap with :class:`TestPluginBase
 <qiime2.plugin.testing.TestPluginBase>`!
 
-This test harness, and general testing strategies employed in QIIME 2 are best
+This test harness, and general testing strategies employed in QIIME 2, are best
 explained by example, and for that, links to actual test code are presented
 below.
 

@@ -22,9 +22,9 @@ properties, and unifies the code necessary for handling these data (or
 metadata). Examples of :term:`Actions <Action>`  that consume and operate on
 :class:`Metadata <qiime2.metadata.Metadata>` include:
 
-- |longitudinal volatility|_
-- |metadata tabulate|_
-- |feature-table filter-features|_
+- |longitudinal_volatility|_
+- |metadata_tabulate|_
+- |feature-table_filter-features|_
 - And many more
 
 Plugins may work with metadata directly, or they may choose to filter, regroup,
@@ -50,7 +50,7 @@ Metadata Columns
 Plugin :term:`Actions <Action>` may also request one or more
 :class:`MetadataColumn <qiime2.metadata.MetadataColumn>` to operate on, a good
 example of this is identifying which column of metadata contains barcodes, when
-using |demux emp-single|_ or |cutadapt demux-paired|_, for example. The
+using |demux_emp-single|_ or |cutadapt_demux-paired|_, for example. The
 exciting aspect of this is that there are `no longer hard-coded`_ column-naming
 requirements, allowing the user to select a naming convention appropriate to
 their study.
@@ -133,7 +133,7 @@ Normalizing TSV Files
 By :meth:`saving <qiime2.metadata.Metadata.save>` a materialized
 :class:`Metadata <qiime2.metadata.Metadata>` instance,
 visualizations that want to provide data exports can do so in a consistent
-manner (e.g. |longitudinal volatility|_, and the `relevant code`_).
+manner (e.g. |longitudinal_volatility|_, and the `relevant code`_).
 
 Advanced Filtering
 ..................
@@ -170,7 +170,7 @@ A visualizer for free!
 
 If your :term:`type <Type>` is viewable as ``Metadata`` (as in, the necessary
 transformers are registered), there is a general-purpose metadata visualization
-called |metadata tabulate|_, which renders an interactive table of the metadata
+called |metadata_tabulate|_, which renders an interactive table of the metadata
 in question. Cool!
 
 
@@ -178,15 +178,15 @@ in question. Cool!
 .. _`familiarizing yourself`: https://docs.qiime2.org/2018.4/tutorials/metadata/
 .. |pd.Dataframe| replace:: ``pd.Dataframe``
 .. _`pd.Dataframe`: https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html
-.. |longitudinal volatility| replace:: ``longitudinal volatility``
-.. _`longitudinal volatility`: https://docs.qiime2.org/2018.4/plugins/available/longitudinal/volatility/
-.. |metadata tabulate| replace:: ``metadata tabulate``
-.. _`metadata tabulate`: https://docs.qiime2.org/2018.4/plugins/available/metadata/tabulate/
-.. |feature-table filter-features| replace:: ``feature-table filter-features``
-.. _`feature-table filter-features`: https://docs.qiime2.org/2018.4/plugins/available/feature-table/filter-features/
-.. |demux emp-single| replace:: ``demux emp-single``
-.. _`demux emp-single`: https://docs.qiime2.org/2018.4/plugins/available/demux/emp-single/
-.. |cutadapt demux-paired| replace:: ``cutadapt demux-paired``
-.. _`cutadapt demux-paired`: https://docs.qiime2.org/2018.4/plugins/available/cutadapt/demux-paired/
+.. |longitudinal_volatility| replace:: ``longitudinal volatility``
+.. _`longitudinal_volatility`: https://docs.qiime2.org/2018.4/plugins/available/longitudinal/volatility/
+.. |metadata_tabulate| replace:: ``metadata tabulate``
+.. _`metadata_tabulate`: https://docs.qiime2.org/2018.4/plugins/available/metadata/tabulate/
+.. |feature-table_filter-features| replace:: ``feature-table filter-features``
+.. _`feature-table_filter-features`: https://docs.qiime2.org/2018.4/plugins/available/feature-table/filter-features/
+.. |demux_emp-single| replace:: ``demux emp-single``
+.. _`demux_emp-single`: https://docs.qiime2.org/2018.4/plugins/available/demux/emp-single/
+.. |cutadapt_demux-paired| replace:: ``cutadapt demux-paired``
+.. _`cutadapt_demux-paired`: https://docs.qiime2.org/2018.4/plugins/available/cutadapt/demux-paired/
 .. _`no longer hard-coded`: http://qiime.org/documentation/file_formats.html#mapping-file-overview
 .. _`relevant code`: https://github.com/qiime2/q2-longitudinal/blob/master/q2_longitudinal/_longitudinal.py#L244
