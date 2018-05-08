@@ -1,6 +1,6 @@
 Pipelines
 =========
-A ``Pipeline`` accepts some combination of QIIME 2 ``artifacts`` and parameters as input, and produces one or more QIIME 2 artifacts and/or ``visualizers`` as output. This is accomplished by stitching together one or more :doc:`methods <methods>` and/or :doc:`visualizers <visualizers>` into a single ``pipeline``.
+A ``Pipeline`` accepts some combination of QIIME 2 ``artifacts`` and parameters as input, and produces one or more QIIME 2 artifacts and/or ``visualizations`` as output. This is accomplished by stitching together one or more :doc:`methods <methods>` and/or :doc:`visualizers <visualizers>` into a single ``pipeline``.
 
 Create a function to register as a Pipeline
 -------------------------------------------
