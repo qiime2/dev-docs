@@ -11,11 +11,11 @@ An Analogy
 Suppose we were interested in modeling a system in which there were *hands*,
 *utensils* and *tasks*. We are trying to determine which *utensils* can be used
 to complete which *tasks*. Here *utensils* are like QIIME 2 :term:`artifacts<Artifact>` and *tasks* are QIIME 2 :term:`actions<Action>`.
-Imagine then, that this, hand unlike yours or mine, is not intelligent and will grasp anything to carry out its work without further consideration.
+Imagine then, that this hand (unlike yours or mine) is not intelligent and will grasp anything to carry out its work without further consideration.
 The *hand* then, represents the computer.
 
 To make this example more concrete, let's suppose we wanted to write a note.
-We provide to the hand, a fork and ask it to return to us, a note.
+We provide to the hand a fork, and ask it to return to us a note.
 Accepting the fork, the hand blithely tears the paper into shreds and hands you what remains, considering its mission to be complete.
 
 This is not ideal.
