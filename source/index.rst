@@ -13,6 +13,7 @@ QIIME 2 Developer Documentation
    plugin-coordination
    testing/index
    publishing/index
+   tutorials/index
    internal/index
    api-reference/index
    glossary
