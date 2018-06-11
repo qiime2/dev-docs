@@ -233,4 +233,6 @@ check out the `original version of this tutorial <https://cduvallet.github.io/po
 Contributors
 ~~~~~~~~~~~~
 
+*The original version of this post was adapted from* `https://cduvallet.github.io/posts/2018/03/qiime2-plugin <https://cduvallet.github.io/posts/2018/03/qiime2-plugin>`__ *with permission.*
+
 - Claire Duvallet (github: `cduvallet <https://github.com/cduvallet/>`__), June 2018

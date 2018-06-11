@@ -432,4 +432,6 @@ QIIME 2 plugin.
 Contributors
 ============
 
+*The original version of this post was adapted from* `https://cduvallet.github.io/posts/2018/06/qiime2-plugin-conda <https://cduvallet.github.io/posts/2018/06/qiime2-plugin-conda>`__ *with permission.*
+
 - Claire Duvallet (github: `cduvallet <https://github.com/cduvallet/>`__), June 2018
