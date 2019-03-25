@@ -41,14 +41,14 @@ strict as the above, and provide little *expressive power*, others provide a
 great deal (becoming Turing-complete in the process) at the cost of complexity.
 
 Ultimately it is important to remember what the purpose is.
-A type system should abstract away details that the computer *needs* but which impededes a person's comprehension of a system.
+A type system should abstract away details that the computer *needs* but which impede a person's comprehension of a system.
 A good type system should be a compromise between the fuzzy (and indistinct) world of language that people understand, and robust formal systems that computers can use.
 
 Defining a Type
 ---------------
 In QIIME 2 there are 3 *kinds* of types, all of which use the same underlying grammar.
 Only one of these kinds can be extended, the :term:`Semantic Type`.
-The other two :term:`Primitive Type`, and :term:`Visualization` are built into the framework.
+The other two, :term:`Primitive Type` and :term:`Visualization`, are built into the framework.
 
 Semantic types are the only kind that can be extended, so let's start there with our example from before.
 
@@ -113,8 +113,8 @@ Before explaining what the new parameters are, let's use these and circle back:
    Dining[Spoon]
    Dining[Fork]
 
-Once again, since we don't have that many types, this may look a little silly,
-but now we can talk about dining and writing utensils as a broad group.
+Since we don't have many types, this may look a little silly,
+but now we can talk about dining and writing utensils as broad groups.
 What happens if we try to mix these? Let's make some *dining chalk* (gross!):
 
 .. testcode:: utensils
@@ -181,7 +181,7 @@ A *seperate plugin* could then define something like this:
 Breaking this down, it is similar to some of the earlier invocations of the
 :func:`SemanticType<qiime2.plugin.SemanticType>` factory, but there's a new argument for
 ``variant_of`` which seems to be providing a list of *fields* from other *composite types*.
-This means a plugin can extend existing types as they need. In this case, we've
+This means a plugin can extend existing types as needed. In this case, we've
 suggested that in addition to forks and spoons, there are knives.
 
 We can also create new categories and types that belong to more than one category.
@@ -201,7 +201,7 @@ knife's story:
 This creates a new ``Kitchen`` category, and adds ``Knife`` as a member.
 It also adds ``Spatula`` to ``Kitchen`` and adds ``PastryBag`` to both ``Kitchen`` *and* ``Writing``.
 In case you don't know what a pastry bag is (like me), it's how you would write "Happy Birthday" on a cake.
-Just as not all knives are the same, not all pastry bags are well suited to writing (some are better for making decorative frosting-flowers with).
+Just as not all knives are the same, not all pastry bags are well suited to writing (some are better for making decorative frosting-flowers).
 
 .. testcode:: utensils
 
@@ -231,7 +231,7 @@ There are a few basic types:
 - :data:`Float<qiime2.plugin.Float>`
 - :data:`Str<qiime2.plugin.Str>`
 
-These work essentially as you would expect, an ``Int`` holds an integer, a ``Str`` hold a unicode string.
+These work essentially as you would expect, an ``Int`` holds an integer, a ``Str`` holds a unicode string.
 They are capitalized to make differentiating them from their Python counterparts (``int`` and ``str``) simpler.
 
 There are a few collection types:
@@ -239,7 +239,7 @@ There are a few collection types:
 - :data:`List[{elements}]<qiime2.plugin.List>`
 - :data:`Set[{elements}]<qiime2.plugin.Set>`
 
-These allow you to provide, to their ``{elements}`` field, any of the above basic types.
+Each of these allows you to provide one of the above basic types to their ``{elements}`` field.
 
 There are also some metadata types:
 
@@ -292,7 +292,7 @@ Let's do that now:
    # Not true:
    assert not  [1, 2, 3] in List[Str]
 
-While these are all useful construct, in the real world, user input is often constrained to just a few
+While these are all useful constructs, real-world user input must often be constrained to just a few
 valid strings, or a real number bounded from zero to one. To express these ideas we need a little bit more.
 
 Refining a Type
@@ -300,7 +300,7 @@ Refining a Type
 A *refinement type* is a type that possesses a *predicate* which further constrains the domain of a type.
 Thats a formal definition anyway. The important piece is the *predicate*, which is a boolean "function" describing whether a given instance is *in* the domain, or *out* of the domain. This means we can *refine* the type to suite our needs.
 
-Now suppose we were a graphical interface, a common UI element is a dropdown list containing
+Suppose we were a graphical interface. A common UI element is a dropdown list containing
 predetermined choices. We can express that with a primitive type!
 
 Choices
@@ -337,12 +337,12 @@ can be selected at most once, but multiple different choices are allowed:
    assert not  'banana' in checkboxes
 
 We might read that as "A set of strings modulo the choices of banana, apple, and pear".
-It is a mouthful, but we've just described an entire UI element in about a single line.
+It is a mouthful, but we've just described an entire UI element in a single line.
 
 Additionally, this is *abstract*, we never actually asked for a checkbox. So the interface can
 make its own decision about how best to represent this type in its UI. For example a
 command line interface cannot show checkboxes, but it might have an interactive dialog, or
-it may just accept multiple arguments for the parameter. A programmatic interface may simple
+it may just accept multiple arguments for the parameter. A programmatic interface may simply
 accept a set object instead. It is up to the interface to make the best choice it can.
 The plugin developer does not need to worry about the representation.
 
@@ -415,13 +415,12 @@ Thinking back to our example involving utensiles, there was a type named:
 
    Kitchen[Knife]
 
-Suppose we were a plugin that specialized in cutting things, having actions such as filleting fish, paring fruit, etc. To other plugins, it is possible that the distinction between different kinds of cutlery is uninteresting. However to us, *cutting things is what we do*. We wouldn't fillet a fish without a fillet knife, however
-the current nomenclature lacks that granularity.
+Suppose we were a plugin that specialized in cutting things, with actions such as filleting fish, paring fruit, etc. To other plugins, the distinction between different kinds of cutlery might be uninteresting. To us, however, *cutting things is what we do*. We wouldn't fillet a fish without a fillet knife. The nomenclature discussed so far lacks that granularity.
 
-In a perfect world, we would extol the virtues of being specific about cutlery, suggesting other adopt a new
+In a perfect world, we would extol the virtues of being specific about cutlery, suggesting others adopt a new
 category ``Cutlery[{knife}]`` to help better model the world of things-hands-can-use.
-However building concensus can be slow, and you are still interested in inter-operating with other plugins
-(even if they don't see why anyone would need more than one kind of knife).
+Building consensus can be slow, though, and you are still interested in inter-operating with other plugins
+(even if they don't understand why anyone would need more than one kind of knife).
 
 To fix this, you can add a property:
 
@@ -444,12 +443,11 @@ To illustrate how these are used, we need to talk more about *subtyping*.
 
 Semantic Subtyping
 ------------------
-A subtype is some type that is *substitutable* for another. Another way to think
-about it is the domain of the subtype, exists *entirely within* the domain of the supertype.
+A subtype is some type that is *substitutable* for another. Here's another way to think
+about it: the domain of the subtype exists *entirely within* the domain of the supertype.
 Anywhere you could use a supertype, a subtype will suffice.
 
-There are two ways to create this relation, one being a semantic property (described above)
-and the other with a *union operator*: ``|``. In order to use a subtyping relation, we also need
+There are two ways to create this relation: with a semantic property (described above), or with a *union operator*: ``|``. In order to use a subtyping relation, we also need
 an operator to test the relation, for that we can use ``<=`` and ``>=`` (which matches the Python ``set`` API).
 
 Let's try it out:
@@ -489,7 +487,7 @@ We can also evaluate more sophisticated expressions:
    assert      Dining[Knife] <= Kitchen[Knife] | Dining[Knife]
    # Union types also have subtyping relations:
    assert      Writing[Pencil] | Writing[Pen] <= Writing[Pencil] | Writing[Pen] | Writing[Chalk]
-   # or more concicely:
+   # or more concisely:
    assert      Writing[Pencil | Pen] <= Writing[Pencil | Pen | Chalk]
 
 In QIIME 2, subtyping and equality are *extensional*, meaning that the order and form do not matter, only the meaning.
@@ -517,13 +515,13 @@ How should these relate to a plain ``Kitchen[Knife]``? Well, because we've added
    assert  sharp_fillet <= Kitchen[Knife]
    assert  dull_paring  <= Kitchen[Knife]
 
-Additionally, the combination is still a smaller domain the the domain of all kitchen knives:
+Additionally, the combination is still a smaller domain than the domain of all kitchen knives:
 
 .. testcode:: utensils
 
    assert  sharp_fillet | dull_paring <= Kitchen[Knife]
 
-However what is most important is an action that needs something specific, can avoid recieving an over-general type. For example, consider this action::
+What is most important is that an action that needs something specific can avoid receiving an over-general type. For example, consider this action::
 
   sharpen knife : Kitchen[Knife % Properties(exclude=['sharp'])
       -> Kitchen[Knife % Properties(include=['sharp'])
@@ -536,19 +534,19 @@ We can see how the subtyping relation allows the action to enforce this:
    assert      dull_paring  <= Kitchen[Knife % Properties(exclude=['sharp'])]
    assert not  sharp_fillet <= Kitchen[Knife % Properties(exclude=['sharp'])]
 
-However, a consequence of this, is that an unadorned type like ``Kitchen[Knife]`` is not known to be either sharp or dull (remember it is actually supertype of both of these).
+One consequence of this is that an unadorned type like ``Kitchen[Knife]`` is not known to be either sharp or dull (remember it is actually supertype of both of these).
 
 .. testcode:: utensils
 
    # Can't substitute any-old knife for a dull one, some of them are sharp.
    assert not  Kitchen[Knife] <= Kitchen[Knife % Properties(exclude=['sharp'])]
 
-Of course, as a matter of practice, it would probably be easier for everyone if "sharpen knife" were to just re-sharpen the already-sharp knife.
+As a matter of practice, it would probably be easier for everyone if "sharpen knife" were to just re-sharpen the already-sharp knife.
 
 Intersections
 `````````````
 There is another kind of type known as the intersection type. Currently QIIME 2 implements this only in a very limited way.
-The idea is that you might have an instance that is simultanously many different types. For example a *spork* is both a fork and a spoon (and good at neither).
+The idea is that you might have an instance that is simultanously many different types. For example, a *spork* is both a fork and a spoon (and good at neither).
 
 Nonetheless, someday you might write something like this:
 
@@ -561,7 +559,7 @@ Nonetheless, someday you might write something like this:
    assert  Spork <= Spoon
 
 As you can see, the relationship is inverted from a union. Why bring this up, if the above isn't implemented?
-Well this syntax would be a convenient way to describe *compound artifacts* where a lot of data is bundled up nicely in a single zip file, but it is also how semantic properties work.
+First, this syntax would be a convenient way to describe *compound artifacts*, where a lot of data is bundled up nicely in a single zip file. Second, this is how semantic properties work.
 
 When you are dealing with multiple semantic properties, each property is *intersected* with the others, meaning that an artifact that has multiple properties associated with it is considered to have each one. This means these expressions are the same:
 
