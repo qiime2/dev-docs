@@ -313,7 +313,7 @@ Let's see an example of this, using the :data:`Choices<qiime2.plugin.Choices>` p
    dropdown = Str % Choices({'banana', 'apple', 'pear'})
 
    assert      'banana' in dropdown
-   assert not  'orange' in dropdown
+   assert not  'grape' in dropdown
    assert not  0.5 in dropdown
 
 
@@ -332,7 +332,7 @@ can be selected at most once, but multiple different choices are allowed:
 
    assert      {'banana'} in checkboxes
    assert      {'apple', 'banana'} in checkboxes
-   assert not  {'banana', 'orange'} in checkboxes
+   assert not  {'banana', 'grape'} in checkboxes
    assert not  {1, 2, 3} in checkboxes
    assert not  'banana' in checkboxes
 
