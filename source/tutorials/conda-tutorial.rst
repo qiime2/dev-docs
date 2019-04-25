@@ -26,11 +26,9 @@ Quickstart
 
         conda-build pyinstrument/
            -c https://conda.anaconda.org/qiime2/label/r2019.1
-           -c https://conda.anaconda.org/qiime2
            -c https://conda.anaconda.org/conda-forge
-           -c defaults
            -c https://conda.anaconda.org/bioconda
-           -c https://conda.anaconda.org/biocore
+           -c defaults
            --override-channels
            --python 3.6
 
@@ -225,15 +223,13 @@ To build a qiime2 plugin, the command you have to run is actually:
 
 ::
 
-     conda-build pyinstrument/ \
-      -c https://conda.anaconda.org/qiime2/label/r2019.1 \
-      -c https://conda.anaconda.org/qiime2 \
-      -c https://conda.anaconda.org/conda-forge \
-      -c defaults \
-      -c https://conda.anaconda.org/bioconda \
-      -c https://conda.anaconda.org/biocore \
-      --override-channels \
-      --python 3.6
+    conda-build pyinstrument/
+       -c https://conda.anaconda.org/qiime2/label/r2019.1
+       -c https://conda.anaconda.org/conda-forge
+       -c https://conda.anaconda.org/bioconda
+       -c defaults
+       --override-channels
+       --python 3.6
 
 Install your package
 ~~~~~~~~~~~~~~~~~~~~
