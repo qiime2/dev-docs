@@ -360,7 +360,7 @@ documentation <https://conda.io/docs/user-guide/tutorials/build-pkgs-skeleton.ht
 
 .. code:: bash
 
-    anaconda upload /Users/claire/anaconda/envs/qiime2-2019.1/conda-bld/noarch/q2_perc_norm-2019.4-py36_0.tar.bz2
+    anaconda upload /Users/claire/anaconda/envs/qiime2-2019.1/conda-bld/noarch/q2_perc_norm-v2-py36_0.tar.bz2
 
 
 Install the package from conda
