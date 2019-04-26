@@ -24,7 +24,7 @@ Quickstart
 
     .. code-block:: bash
 
-        conda-build pyinstrument/
+        conda-build recipe/
            -c https://conda.anaconda.org/qiime2/label/r2019.1
            -c https://conda.anaconda.org/conda-forge
            -c https://conda.anaconda.org/bioconda
@@ -211,9 +211,9 @@ what happens if you have something more complicated that you need to do.
 Build your package
 ------------------
 
-Go to your repo's root directory, and run ``conda-build pyinstrument/``.
+Go to your repo's root directory, and run ``conda-build recipe/``.
 This assumes you put your ``meta.yaml`` and build files in a folder
-called ``pyinstrument``.
+called ``recipe``.
 
 If you're working on a qiime plugin, that probably won't work, because
 you need to tell conda to look for dependencies in lots of different channels. Thankfully, the qiime2 `development
@@ -223,7 +223,7 @@ To build a qiime2 plugin, the command you have to run is actually:
 
 ::
 
-    conda-build pyinstrument/
+    conda-build recipe/
        -c https://conda.anaconda.org/qiime2/label/r2019.1
        -c https://conda.anaconda.org/conda-forge
        -c https://conda.anaconda.org/bioconda
@@ -240,7 +240,7 @@ says you can now install your package with the ``--use-local`` flag:
 
 ::
 
-    conda install --use-local pyinstrument/
+    conda install --use-local recipe/
 
 However, this didn't work for me (it says that the package isn't found).
 Rather than troubleshoot this, I found out that you can also install a
