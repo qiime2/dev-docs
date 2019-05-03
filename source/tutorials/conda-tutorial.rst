@@ -24,15 +24,13 @@ Quickstart
 
     .. code-block:: bash
 
-        conda-build pyinstrument/
-           -c https://conda.anaconda.org/qiime2/label/r2018.4
-           -c https://conda.anaconda.org/qiime2
+        conda-build recipe/
+           -c https://conda.anaconda.org/qiime2/label/r2019.1
            -c https://conda.anaconda.org/conda-forge
-           -c defaults
            -c https://conda.anaconda.org/bioconda
-           -c https://conda.anaconda.org/biocore
+           -c defaults
            --override-channels
-           --python 3.5
+           --python 3.6
 
 4. Install your package locally.
 
@@ -213,9 +211,9 @@ what happens if you have something more complicated that you need to do.
 Build your package
 ------------------
 
-Go to your repo's root directory, and run ``conda-build pyinstrument/``.
+Go to your repo's root directory, and run ``conda-build recipe/``.
 This assumes you put your ``meta.yaml`` and build files in a folder
-called ``pyinstrument``.
+called ``recipe``.
 
 If you're working on a qiime plugin, that probably won't work, because
 you need to tell conda to look for dependencies in lots of different channels. Thankfully, the qiime2 `development
@@ -225,15 +223,13 @@ To build a qiime2 plugin, the command you have to run is actually:
 
 ::
 
-     conda-build pyinstrument/ \
-      -c https://conda.anaconda.org/qiime2/label/r2018.4 \
-      -c https://conda.anaconda.org/qiime2 \
-      -c https://conda.anaconda.org/conda-forge \
-      -c defaults \
-      -c https://conda.anaconda.org/bioconda \
-      -c https://conda.anaconda.org/biocore \
-      --override-channels \
-      --python 3.5
+    conda-build recipe/
+       -c https://conda.anaconda.org/qiime2/label/r2019.1
+       -c https://conda.anaconda.org/conda-forge
+       -c https://conda.anaconda.org/bioconda
+       -c defaults
+       --override-channels
+       --python 3.6
 
 Install your package
 ~~~~~~~~~~~~~~~~~~~~
@@ -244,7 +240,7 @@ says you can now install your package with the ``--use-local`` flag:
 
 ::
 
-    conda install --use-local pyinstrument/
+    conda install --use-local recipe/
 
 However, this didn't work for me (it says that the package isn't found).
 Rather than troubleshoot this, I found out that you can also install a
@@ -360,7 +356,8 @@ documentation <https://conda.io/docs/user-guide/tutorials/build-pkgs-skeleton.ht
 
 .. code:: bash
 
-    anaconda upload /Users/claire/anaconda/conda-bld/noarch/q2_perc_norm-2018.4.0-py35_0.tar.bz2
+    anaconda upload /Users/claire/anaconda/envs/qiime2-2019.1/conda-bld/noarch/q2_perc_norm-v2-py36_0.tar.bz2
+
 
 Install the package from conda
 ==============================
@@ -381,7 +378,7 @@ qiime2.
 
 .. code:: bash
 
-    source activate qiime2-2018.4
+    source activate qiime2-2019.1
     conda install -c cduvallet q2_perc_norm
 
 Another "gotcha!" that got me is that if you want to see which packages
