@@ -20,7 +20,6 @@ Semantic Types (and related objects)
 .. autodata:: Str
 .. autodata:: List
 .. autodata:: Set
-.. autodata:: Color
 .. autodata:: Metadata
 .. autodata:: MetadataColumn
 .. autodata:: Categorical
