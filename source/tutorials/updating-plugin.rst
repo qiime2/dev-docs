@@ -6,7 +6,7 @@ This tutorial is for when the QIIME 2 developers have made some changes in the n
 I recently went through this process with the 2019.1 update, which switched to Python 3.6, so I'll be providing some examples specifically for that use case.
 
 Overview
-~~~~~~~~~~~~~~
+~~~~~~~~
 
 0. Make whatever changes to your plugin's codebase that you need to.
 1. Update your plugin version everywhere that it's needed (including ``meta.yaml``, ``__init__.py``, your ``README``, ``setup.py``, and anywhere else that you have it).
@@ -26,7 +26,7 @@ If you're like me and have manually hard-coded the version number in multiple pl
 
 Also remember to document this new version (and what's new or different about it) in your main project documentation, like the repo's main ``README.md``.
 
-Finally, don't forget to update any links to the QIIME 2 docs in your documentation too. For example, a link to `https://docs.qiime2.org/2018.2/install/ <https://docs.qiime2.org/2018.2/install/>`__ should be changed to `https://docs.qiime2.org/2019.1/install/ <https://docs.qiime2.org/2019.1/install/>`__`.
+Finally, don't forget to update any links to the QIIME 2 docs in your documentation too. For example, a link to `https://docs.qiime2.org/2018.2/install/ <https://docs.qiime2.org/2018.2/install/>`__ should be changed to `https://docs.qiime2.org/2019.1/install/ <https://docs.qiime2.org/2019.1/install/>`__.
 
 Build with conda-build
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -58,7 +58,6 @@ Finally, you can upload your package to anaconda.org:
 
 A few notes:
 
-- This command may not work if you are still in the QIIME 2 environment. If you get a "command not found" error, go back to your base conda environment and try from there.
 - If you made changes to the package's metadata without changing the version, those metadata changes may not show up on anaconda.org. Keep an eye on this `issue <https://github.com/conda-forge/conda-forge.github.io/issues/126>`__ for updates on that.
 - You may want to test the ``conda install`` in a new and clean environment just to make sure it works.
 
