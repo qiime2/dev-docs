@@ -24,7 +24,7 @@ This should download sphinx (plus a few other dependencies). Note that you might
 To build the documentation and preview your changes, run
 
 ```
-make html
+make dirhtml
 ```
 
 from the main repo. The output files will show up in the `build` folder. Open these html files to explore the documentation locally.
