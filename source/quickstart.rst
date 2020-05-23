@@ -49,9 +49,9 @@ Activate the ``conda`` environment
 
 .. code-block:: bash
 
-    source activate qiime2-dev
+    conda activate qiime2-dev
     # to deactivate:
-    # source deactivate
+    # conda deactivate
     qiime info
 
 The output from ``qiime info`` should indicate that you have development versions of the QIIME 2 packages installed (the displayed versions will differ):

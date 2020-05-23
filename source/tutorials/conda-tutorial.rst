@@ -280,7 +280,7 @@ https://dev.qiime2.org/latest/quickstart/)
 
     wget https://raw.githubusercontent.com/qiime2/environment-files/master/latest/staging/qiime2-latest-py35-osx-conda.yml
     conda env create -n qiime2-dev-condatest --file qiime2-latest-py35-osx-conda.yml
-    source activate qiime2-dev-condatest
+    conda activate qiime2-dev-condatest
 
 Then, you can just type in ``qiime`` to your command line and see if (1)
 you get no errors and (2) your plugin shows up in the list of available
@@ -378,7 +378,7 @@ qiime2.
 
 .. code:: bash
 
-    source activate qiime2-2019.1
+    conda activate qiime2-2019.1
     conda install -c cduvallet q2_perc_norm
 
 Another "gotcha!" that got me is that if you want to see which packages
