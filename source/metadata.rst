@@ -48,7 +48,7 @@ Metadata Columns
 ----------------
 
 Plugin :term:`Actions <Action>` may also request one or more
-:class:`MetadataColumn <qiime2.metadata.MetadataColumn>` to operate on, a good
+:class:`MetadataColumn <qiime2.metadata.MetadataColumn>` objects to operate on. A good
 example of this is identifying which column of metadata contains barcodes, when
 using |demux_emp-single|_ or |cutadapt_demux-paired|_, for example. The
 exciting aspect of this is that there are `no longer hard-coded`_ column-naming

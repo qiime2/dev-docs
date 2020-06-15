@@ -36,9 +36,10 @@ Instead of helping us, the type annotation above seems to be in the way.
 
 Finding a way to fix this mismatch while still constraining inputs is the
 fundamental goal of a type system and is where a lot of complexity arises.
-There is also a lot of freedom in implementation, some type systems are as
-strict as the above, and provide little *expressive power*, others provide a
-great deal (becoming Turing-complete in the process) at the cost of complexity.
+There is also a lot of freedom in implementation; some type systems are as
+strict as the above and provide little *expressive power*, while others provide a
+great deal of expressive power (becoming Turing-complete in the process) at
+the cost of complexity.
 
 Ultimately it is important to remember what the purpose is.
 A type system should abstract away details that the computer *needs* but which impede a person's comprehension of a system.
@@ -155,7 +156,7 @@ We see:
 
    Dining[{utensil}]
 
-This ``{utensil}`` is the *field name*, because ``field_names`` is a list, we
+``{utensil}`` is the *field name* and because ``field_names`` is a list, we
 could have more than one, letting us get combinatorical, but that usually
 isn't necessary.
 
@@ -405,7 +406,7 @@ can nest these kinds of expressions inside of :data:`Set<qiime2.plugin.Int>` and
 
 Semantic Properties
 ```````````````````
-Leaving behind the primitive types and returning the the semantic types, there is a final
+Leaving behind the primitive types and returning to the semantic types, there is a final
 trick we can use to constrain the semantics of a type. It is to use the :func:`Properties<qiime2.plugin.Properties>` predicate. This predicate can only be attached to semantic types, so we usually call them
 semantic properties of the type.
 
