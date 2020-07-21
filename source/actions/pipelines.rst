@@ -8,7 +8,7 @@ Defining a function that can be registered as a ``Pipeline`` is very similar to 
 
 First, ``pipelines`` do not use function annotations and instead receive ``Artifact`` objects as input and return ``Artifact`` and/or ``Visualization`` objects as output.
 
-Second, ``Pipelines`` must have ``ctx`` as their first parameter, it provides the following API:
+Second, ``Pipelines`` must have ``ctx`` as their first parameter. It provides the following API:
 
 * ``ctx.get_action(plugin: str, action: str)`` this returns a “sub-action” that can be called like a normal Artifact API call.
 
