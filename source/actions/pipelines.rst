@@ -8,8 +8,10 @@ Defining a function that can be registered as a ``Pipeline`` is very similar to 
 
 First, ``pipelines`` do not use function annotations and instead receive ``Artifact`` objects as input and return ``Artifact`` and/or ``Visualization`` objects as output.
 
-Second, ``Pipelines`` must have ``ctx`` as their first parameter, it provides the following API:
+Second, ``Pipelines`` must have ``ctx`` as their first parameter. It provides the following API:
+
 * ``ctx.get_action(plugin: str, action: str)`` this returns a “sub-action” that can be called like a normal Artifact API call.
+
 * ``ctx.make_artifact(type, view, view_type=None)`` this has the same behavior as Artifact.import_data. It is wrapped by ctx for pipeline book-keeping.
 
 Let's take a look at ``q2_diversity.core_metrics`` for a salient example of a function that we can register as a ``pipeline``:
@@ -56,7 +58,7 @@ First, we register a `Pipeline` by calling ``plugin.pipelines.register_function`
 
 Second,``visualizations`` produced as an output are listed in ``outputs`` as a ``tuple`` with ``Visualization`` as the second value. E.g., ``('jaccard_emperor', Visualization)``. A description of this output should be included in ``output_descriptions``
 
-Citations do not need to be added for the pipeline unless if unique citations are required for the pipeline that are not appropriate for the underlying ``methods`` and ``visualizers`` that it calls. Citations for these underlying actions are automatically logged in citation provenance for this pipeline.
+Citations do not need to be added for the pipeline unless unique citations are required for the pipeline that are not appropriate for the underlying ``methods`` and ``visualizers`` that it calls. Citations for these underlying actions are automatically logged in citation provenance for this pipeline.
 
 As an example for registering a ``pipeline``, we can look at ``q2_diversity.core_metrics``:
 
