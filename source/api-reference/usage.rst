@@ -9,7 +9,7 @@ interfaces, lessening the burden of maintaining up-to-date documentation.
 
 ----
 
-.. automodule:: qiime2.sdk.usage
+.. automodule:: qiime2.plugin.usage
    :members:
    :inherited-members:
    :undoc-members:
