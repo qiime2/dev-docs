@@ -3,7 +3,7 @@ Semantic and Primitive Types
 .. contents::
    :local:
 
-QIIME 2 uses a combination of types and formats to represent: what data *means* and how to *use* it, repsectively.
+QIIME 2 uses a combination of types and formats to represent: what data *means* and how to *use* it, respectively.
 This document will attempt to motivate why typing may be useful and outline how QIIME 2 implements types and what they can be used for.
 
 An Analogy

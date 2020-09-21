@@ -26,7 +26,7 @@ Validation
 Both types of ``FileFormat`` support validation hooks --- this is (typically) a
 small bit of code that is run when initially loading a file from an
 :term:`archive` - it allows the framework to ensure that the the data contained
-within the :term:`archive` at least *looks* like it's declared :term:`type`.
+within the :term:`archive` at least *looks* like its declared :term:`type`.
 This works very well for on-the-fly loading and saving, and goes a long way to
 preventing corrupt or invalid data from persisting. The one "gotcha" here is
 that in order to keep things quick, we typically recommend that "minimal"
