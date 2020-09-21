@@ -161,12 +161,24 @@ directory formats in QIIME 2:
    formats
 
 
-Provenance
-----------
-TODO:
+Provenance Metadata
+-------------------
 
+Inside of each Artifact, QIIME 2 stores metadata about how that artifact was 
+generated. We call this "provenance". Notably, each Artifact contains
+provenance information about *every prior QIIME 2 :term:`actions<Action>`* involved
+in its creation, from `import` to the most recent step in the analysis.
+
+This provenance information includes type and format information, system and
+environment details, the Actions performed and all parameters passed to them,
+and all registered citations.
+
+Learn More About Provenance
+```````````````````````````
 .. toctree::
    :maxdepth: 2
 
    provenance
 
+For a detailed discussion of the file structure which holds provenance metadata,
+see :ref:`provenance-structure`.

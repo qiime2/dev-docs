@@ -46,6 +46,7 @@ If the archive is an :term:`artifact`,
 then the payload is determined by the :term:`directory format`.
 Additional information about directory formats can be found here: :doc:`formats`.
 
+.. _provenance-structure:
 
 Provenance Goes In /provenance/
 -------------------------------
