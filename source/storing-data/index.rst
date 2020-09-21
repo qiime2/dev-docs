@@ -74,7 +74,7 @@ This is exactly what QIIME 2 does.
 ZIP files additionally have the advantage of being incredibly well supported
 by a *wide* array of software.
 Some software manipulates ZIP files directly
-(often built into an opertating system's graphical interface)
+(often built into an operating system's graphical interface)
 and others use ZIP files as a backing structure
 (such as ``.docx`` and ``.epub``).
 Because it is so widely used, maintaining the long-term accessibility of data is much more likely.
