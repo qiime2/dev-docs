@@ -1,15 +1,13 @@
-Usage
-=====
+Usage API
+=========
 
-The Usage API provides an an interface-agnostic way for QIIME 2 plugin
-developers to define examples of how to use their plugin actions . This
+The Usage API provides an interface-agnostic way for QIIME 2 plugin
+developers to define examples of how to use their plugin’s actions. This
 enables the programmatic generation of examples for all QIIME 2 interfaces,
-thus eliminating the need to hand-write different examples for different
-interfaces, lessening the burden of maintaining up-to-date documentation.
+eliminating the need to maintain specific examples for multiple interfaces.
 
 ----
 
-.. automodule:: qiime2.plugin.usage
+.. automodule:: qiime2.sdk.usage
    :members:
-   :inherited-members:
-   :undoc-members:
+   :exclude-members: DiagnosticUsage, ExecutionUsage, Scope, ScopeRecord
