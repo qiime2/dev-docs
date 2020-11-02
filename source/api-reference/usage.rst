@@ -10,4 +10,5 @@ eliminating the need to maintain specific examples for multiple interfaces.
 
 .. automodule:: qiime2.sdk.usage
    :members:
+   :undoc-members:
    :exclude-members: DiagnosticUsage, ExecutionUsage, Scope, ScopeRecord
