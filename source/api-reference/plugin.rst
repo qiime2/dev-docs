@@ -6,7 +6,7 @@ Plugin Definition and Registration
 
 .. automodule:: qiime2.plugin
    :members:
-   :exclude-members: TextFileFormat, BinaryFileFormat, DirectoryFormat
+   :exclude-members: TextFileFormat, BinaryFileFormat, DirectoryFormat, UsageAction, UsageInputs, UsageOutputNames
    :undoc-members:
    :inherited-members:
 
