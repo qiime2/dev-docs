@@ -8,6 +8,5 @@ eliminating the need to maintain specific examples for multiple interfaces.
 
 ----
 
-.. automodule:: qiime2.sdk.usage
+.. autoclass:: qiime2.sdk.usage.Usage
    :members:
-   :exclude-members: DiagnosticUsage, ExecutionUsage, Scope, ScopeRecord
