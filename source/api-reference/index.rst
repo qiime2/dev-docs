@@ -8,3 +8,4 @@ API Reference
    metadata
    sdk
    misc
+   usage
