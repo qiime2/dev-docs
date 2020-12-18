@@ -42,7 +42,7 @@ to be developed and reused to advance the state of the art.
 Accessibility and Transferability
 ---------------------------------
 QIIME 2 stores all data as a directory structure inside of a ZIP file.
-There is a :term:`payload` directory named ``/data/`` where data is stored in
+There is a :term:`payload<Payload>` directory named ``/data/`` where data is stored in
 a common format. This permits additional *metadata* to be stored alongside the
 data (in non-``/data/`` directories or files).
 
@@ -65,7 +65,7 @@ Alternatively a new format could be invented with new rules
 (though this would make interoperability difficult).
 
 For these reasons, QIIME 2 stores data as a directory structure.
-In particular data such as FASTA or newick will be considered the :term:`Payload <payload>` which is to be delivered to a tool.
+In particular data such as FASTA or newick will be considered the :term:`payload <Payload>` which is to be delivered to a tool.
 
 There is a flaw to using directory structures as a way of storing data.
 Moving directory structures is inconvenient as they do not exist as a single file.
@@ -93,12 +93,12 @@ structure and ZIP file:
 Input Validation (Type Checking)
 --------------------------------
 QIIME 2 stores a file named ``metadata.yaml`` alongside the ``/data/``
-directory. This file contains the :term:`type` of the data, which QIIME 2 can
-use to validate that a given ZIP file is valid input for a given :term:`action`.
+directory. This file contains the :term:`type<Type>` of the data, which QIIME 2 can
+use to validate that a given ZIP file is valid input for a given :term:`action<Action>`.
 
 Why Types and Other Metadata are Stored
 ```````````````````````````````````````
-Now that there is a way to store a :term:`payload`
+Now that there is a way to store a :term:`payload<Payload>`
 and a way to move it around,
 there needs to be a way to *describe* it
 so that the computer can determine if a given payload is valid.
@@ -107,7 +107,7 @@ more complete and rich user interface.
 
 To accomplish this, we need data about the data, or *metadata*
 (in the general sense, this should not be confused with QIIME 2's sample/feature metadata).
-If the :term:`payload` is placed in a *subdirectory*
+If the :term:`payload<Payload>` is placed in a *subdirectory*
 then we can store additional files which can contain this *metadata*
 without needed to worry about filename conflicts with the payload itself.
 Now QIIME 2 is able to record a type and anything else that may enable the
@@ -137,16 +137,16 @@ Different tools expect different file formats or in-memory data structures.
 Many of these are *semantically* substitutable, in other words, they can carry
 the same information (in different ways). Another way to state this is
 that these different formats and data-structures each represent a different
-:term:`view` of the same data.
+:term:`view<View>` of the same data.
 
-If we combine this idea with a :term:`semantic type` we are able to use the
+If we combine this idea with a :term:`semantic type<Semantic Type>` we are able to use the
 abstraction of the type to ignore the view when reasoning about composition of
-:term:`actions<Action>`. While the :term:`semantic type` may be
+:term:`actions<Action>`. While the :term:`semantic type<Semantic Type>` may be
 adequate for describing what data is used for, it does not provide a means to
-structure it (on-disk or in-memory). For this we use a :term:`view`.
+structure it (on-disk or in-memory). For this we use a :term:`view<View>`.
 In particular, when storing data for later use (or sharing) it is necessary to
 save it to disk in some way (in particular, we need to store it in ``/data/``).
-We use a :term:`directory format` to accomplish this purpose. It has a name
+We use a :term:`directory format<Directory Format>` to accomplish this purpose. It has a name
 which is recorded in ``metadata.yaml`` and defines how ``/data/`` is to be
 structured.
 
