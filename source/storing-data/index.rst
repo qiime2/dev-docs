@@ -3,11 +3,11 @@ How Data is Stored
 .. contents::
    :local:
 
-In any software project, data needs to be stored (or persisted). The way that
-this is accomplished can impact every facet of a software's design. In order
-to better demonstrate *why* certain aspects of QIIME 2 exist as they are we
-will highlight what goals or constraints QIIME 2 has, and then demonstrate
-how QIIME 2 achieves each goal.
+In any software project, data needs to be stored (or persisted).
+The way that this is accomplished can impact every facet of a software's design.
+In order to better demonstrate *why* certain aspects of QIIME 2 exist as they are
+we will highlight what goals or constraints QIIME 2 has, and then demonstrate how
+QIIME 2 achieves each goal.
 
 If you are diving straight into the details, the following pages document the
 specifics:
@@ -64,19 +64,20 @@ the data that a tool needs is sometimes a *directory* of formats.
 Alternatively a new format could be invented with new rules
 (though this would make interoperability difficult).
 
-For these reasons, QIIME 2 stores data as a directory structure. In
-particular data such as FASTA or newick will be considered the :term:`Payload
-<payload>` which is to be delivered to a tool.
+For these reasons, QIIME 2 stores data as a directory structure.
+In particular data such as FASTA or newick will be considered the :term:`Payload <payload>` which is to be delivered to a tool.
 
 There is a flaw to using directory structures as a way of storing data.
-Moving directory structures is inconvenient as they do not exist as a single
-file. A common way to fix this is to zip a file and extract it at the
-destination. This is exactly what QIIME 2 does. ZIP files additionally have
-the advantage of being incredibly well supported by a *wide* array of
-software. Some software manipulates ZIP files directly (often built into an
-operating system's graphical interface) and others use ZIP files as a backing
-structure (such as ``.docx`` and ``.epub``). Because it is so widely used,
-maintaining the long-term accessibility of data is much more likely.
+Moving directory structures is inconvenient as they do not exist as a single file.
+A common way to fix this is to zip a file and extract it at the destination.
+This is exactly what QIIME 2 does.
+ZIP files additionally have the advantage of being incredibly well supported
+by a *wide* array of software.
+Some software manipulates ZIP files directly
+(often built into an operating system's graphical interface)
+and others use ZIP files as a backing structure
+(such as ``.docx`` and ``.epub``).
+Because it is so widely used, maintaining the long-term accessibility of data is much more likely.
 
 Learn More About the Archive Structure
 ``````````````````````````````````````
@@ -97,19 +98,20 @@ use to validate that a given ZIP file is valid input for a given :term:`action`.
 
 Why Types and Other Metadata are Stored
 ```````````````````````````````````````
-Now that there is a way to store a :term:`payload` and a way to move it
-around, there needs to be a way to *describe* it so that the computer can
-determine if a given payload is valid. This prevents user errors and allows
-:term:`interfaces<Interface>` to provide a more complete and rich user
-interface.
+Now that there is a way to store a :term:`payload`
+and a way to move it around,
+there needs to be a way to *describe* it
+so that the computer can determine if a given payload is valid.
+This prevents user errors and allows :term:`interfaces<Interface>` to provide a
+more complete and rich user interface.
 
-To accomplish this, we need data about the data, or *metadata* (in the
-general sense, this should not be confused with QIIME 2's sample/feature
-metadata). If the :term:`payload` is placed in a *subdirectory* then we can
-store additional files which can contain this *metadata* without needed to
-worry about filename conflicts with the payload itself. Now QIIME 2 is able
-to record a type and anything else that may enable the computer (or user) to
-make a more informed decision about the use of a given piece of data.
+To accomplish this, we need data about the data, or *metadata*
+(in the general sense, this should not be confused with QIIME 2's sample/feature metadata).
+If the :term:`payload` is placed in a *subdirectory*
+then we can store additional files which can contain this *metadata*
+without needed to worry about filename conflicts with the payload itself.
+Now QIIME 2 is able to record a type and anything else that may enable the
+computer (or user) to make a more informed decision about the use of a given piece of data.
 
 Learn More About Type Checking
 ``````````````````````````````
@@ -127,8 +129,7 @@ Interoperability and Extension
 QIIME 2 stores a string called a :term:`Directory Format` in ``metadata.yaml``
 which instructs the computer what the specific layout of ``/data/`` is.
 Once this is known, it is possible to convert that data into other formats.
-:term:`plugins<Plugin>` can define new formats and request data in specific
-:term:`views<View>`.
+:term:`plugins<Plugin>` can define new formats and request data in specific :term:`views<View>`.
 
 Why Directory Formats are Needed
 ````````````````````````````````
@@ -165,9 +166,8 @@ Provenance Metadata
 
 Inside of each Artifact, QIIME 2 stores metadata about how that artifact was 
 generated. We call this "provenance". Notably, each Artifact contains
-provenance information about *every prior QIIME 2 :term:`actions<Action>`*
-involved in its creation, from `import` to the most recent step in the
-analysis.
+provenance information about *every prior QIIME 2 :term:`actions<Action>`* involved
+in its creation, from `import` to the most recent step in the analysis.
 
 This provenance information includes type and format information, system and
 environment details, the Actions performed and all parameters passed to them,
