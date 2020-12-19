@@ -41,6 +41,17 @@ unique history.
 
 What Provenance Data is Captured?
 ---------------------------------
+
+.. figure:: ../img/prov_unit_whole.svg
+   :alt: A file tree diagram of all provenance files associated with one Action
+.. figure:: ../img/prov_unit.svg
+   :alt: Simplified representation of the provenance files associated with one Action
+.. figure:: ../img/prov_whole_archive.svg
+   :alt: Simplified representation of all files within one Archive, emphasizing how an Archive holds provenance for an arbitrary number of Actions
+
+TODO: indicate that prov_unit = prov_unit_whole
+TODO: Use boxes to focus reader on the fact that `provenance/ holds exactly the same stuff as each UUID dir, plus `artifacts/`
+
 - `action.yaml` - a yaml description of the action
 - Action-relevant metadata
 - `/artifacts/` - UUID-labeled subdirectories, containing the above documents for every Artifact involved in the analysis to this point. NOTE: `/data/` is not captured here; Artifacts would rapidly grow to unusable size if it were.
