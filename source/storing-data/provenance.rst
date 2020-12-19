@@ -51,6 +51,8 @@ What Provenance Data is Captured?
 
 TODO: indicate that prov_unit = prov_unit_whole
 TODO: Use boxes to focus reader on the fact that `provenance/ holds exactly the same stuff as each UUID dir, plus `artifacts/`
+TODO: Screencap or mockup of `action.yaml`, possibly from q2view or just a code block in the RST, with high-level information on what it contains...
+... and information on how to find examples in the wild. 
 
 - `action.yaml` - a yaml description of the action
 - Action-relevant metadata
