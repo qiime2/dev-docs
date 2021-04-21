@@ -31,18 +31,18 @@ macOS
 
 .. code-block:: bash
 
-   wget https://raw.githubusercontent.com/qiime2/environment-files/master/latest/staging/qiime2-latest-py36-osx-conda.yml
-   conda env create -n qiime2-dev --file qiime2-latest-py36-osx-conda.yml
-   rm qiime2-latest-py36-osx-conda.yml
+   wget https://raw.githubusercontent.com/qiime2/environment-files/master/latest/staging/qiime2-latest-py38-osx-conda.yml
+   conda env create -n qiime2-dev --file qiime2-latest-py38-osx-conda.yml
+   rm qiime2-latest-py38-osx-conda.yml
 
 Linux
 .....
 
 .. code-block:: bash
 
-   wget https://raw.githubusercontent.com/qiime2/environment-files/master/latest/staging/qiime2-latest-py36-linux-conda.yml
-   conda env create -n qiime2-dev --file qiime2-latest-py36-linux-conda.yml
-   rm qiime2-latest-py36-linux-conda.yml
+   wget https://raw.githubusercontent.com/qiime2/environment-files/master/latest/staging/qiime2-latest-py38-linux-conda.yml
+   conda env create -n qiime2-dev --file qiime2-latest-py38-linux-conda.yml
+   rm qiime2-latest-py38-linux-conda.yml
 
 Activate the ``conda`` environment
 ----------------------------------
