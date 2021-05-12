@@ -90,6 +90,12 @@ it without the accompanying context provided by the rest of this documentation.
    Result
      A generic term for either a :term:`Visualization` or an :term:`Artifact`.
 
+   Provenance
+     Data describing how an analysis was performed,
+     captured automatically whenever users perform a QIIME 2 :term:`Action`.
+     Provenance information describes the host system, the computing environment,
+     Actions performed, parameters passed, primary sources cited, and more.
+
    Semantic Type
      A :term:`type` that is used to classify :term:`artifacts<Artifact>` and
      how they can be used. These types may be extended by
