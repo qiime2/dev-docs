@@ -89,6 +89,8 @@ or download and open the archive to peruse the YAML file itself.
 
 The execution block
 ```````````````````
+High-level information about this action and its run time.
+
 .. code-block:: YAML
 
    execution:
@@ -101,11 +103,12 @@ The execution block
 Datetimes are formatted <YYYY-MM-DD><'T'><24-hour time><time zone offset>
 
 The `uuid` field captured here is the UUID *of this Action*, and *not of the Result it produced*.
-Though this may seem complex, maintaining separate Result and Action IDs
-allows us to manage the common case where one Action produces multiple Results.
+Maintaining separate Result and Action IDs allows us to manage the common case where one Action produces multiple Results.
 
 The action block
 ````````````````
+Details about the action, including action and plugin names, inputs and parameters
+
 .. code-block:: YAML
 
    action:
@@ -122,6 +125,7 @@ The action block
       output-name: unweighted_unifrac_emperor
       alias-of: 2adb9f00-a692-411d-8dd3-a6d07fc80a01
 
+The type field describes the *type of action*: a :term:`Method`, :term:`Visualizer`, or :term:`Pipeline`.
 
 The environment block
 `````````````````````
