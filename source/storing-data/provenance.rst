@@ -14,7 +14,7 @@ The notion of a QIIME 2 :term:`Result` is central here. Whenever an
 captures relevant metadata about the action and environment and stores it in
 the Action's Result. When/if that Result is saved as an :term:`Archive`, the
 captured provenance data is stored within the Archive as well. (Saving as an archive 
-happens automatically with `q2cli`, and manually with the Artifact API.) For
+happens automatically with ``q2cli``, and manually with the Artifact API.) For
 reference, :ref:`provenance-structure` contains a detailed discussion of the
 file structure which holds provenance metadata.
 
@@ -43,39 +43,39 @@ What Provenance Data is Captured?
 ---------------------------------
 
 In order to focus on provenance data, we will consider a simple QIIME 2
-Archive (`.qza`) structure, with limited non-provenance content. Below the
+Archive (``.qza``) structure, with limited non-provenance content. Below the
 outer :term:`UUID` directory, this :term:`Artifact` holds the data it
-produced in a `data` directory (:ref:`data-goes-in-data`), and a few "clerical"
+produced in a ``data`` directory (:ref:`data-goes-in-data`), and a few "clerical"
 files treated at greater length in :doc:`/storing-data/archive`.
 
 .. figure:: ../img/prov_whole_archive.svg
    :alt: Simplified representation of all files within one Archive, emphasizing how an Archive holds provenance for an arbitrary number of Actions
 
-All that's left to discuss is the `provenance/` directory. In the diagram
+All that's left to discuss is the ``provenance/`` directory. In the diagram
 above, we use a wiggly blue "multiple-files" icon to represent the collection of
 provenance data associated with one single QIIME 2 action. When this icon appears
-directly within `provenance/` the files describe the "current" :term:`Result`.
-All remaining icons appear within the `artifacts/` subdirectory. These file
-collections describe all 'parent' Results used in the creation of the current Result,
+directly within ``provenance/`` the files describe the "current" :term:`Result`.
+All remaining icons appear within the ``artifacts/`` subdirectory. These file
+collections describe all "parent" Results used in the creation of the current Result,
 and are housed in directories named with their respective UUIDs.
 
 .. figure:: ../img/prov_abbreviation.svg
    :alt: A legend indicating how we abbreviate one action's provenance records with single "multiple-files" icon.
 
-With the exception of the current Result (whose provenance lives in `provenance/`,
+With the exception of the current Result (whose provenance lives in ``provenance/``,
 every Action is captured in a directory titled with the Action's :term:`UUID`. 
 That directory contains:
 
-- `VERSION`: :ref:`identifying-an-archive`
-- `metadata.yaml`: :ref:`metadata-yaml`
-- `citations.bib`: all bibtex-formatted citations registered to the Action
-- `action/action.yaml`: a YAML description of the Action and its environmnet. The good stuff!
-- [optional] `action/metadata.tsv` or other data files: data captured to provide additional Action context
+- ``VERSION``: :ref:`identifying-an-archive`
+- ``metadata.yaml``: :ref:`metadata-yaml`
+- ``citations.bib``: all bibtex-formatted citations registered to the Action
+- ``action/action.yaml``: a YAML description of the Action and its environmnet. The good stuff!
+- [optional] ``action/metadata.tsv`` or other data files: data captured to provide additional Action context
 
-The `action.yaml` file
-``````````````````````
+The ``action.yaml`` file
+````````````````````````
 
-Here, we'll do a deep dive into the contents of a sample visualization's `action.yaml`.
+Here, we'll do a deep dive into the contents of a sample visualization's ``action.yaml``.
 These files are broken into three top-level sections, in this order:
 
 - execution: the Action ID and runtime of the Action that created this Result
@@ -102,7 +102,7 @@ High-level information about this action and its run time.
 
 Datetimes are formatted <YYYY-MM-DD><'T'><24-hour time><time zone offset>
 
-The `uuid` field captured here is the UUID *of this Action*, and *not of the Result it produced*.
+The ``uuid`` field captured here is the UUID *of this Action*, and *not of the Result it produced*.
 Maintaining separate Result and Action IDs allows us to manage the common case where one Action produces multiple Results.
 
 The action block
