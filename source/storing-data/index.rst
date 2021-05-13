@@ -16,7 +16,6 @@ specifics:
 - :doc:`types`
 - :doc:`formats`
 - :doc:`provenance`
-- :doc:`archive-versions`
 
 .. this isn't a toctree because it would be repeated twice in the global index
 
@@ -89,7 +88,6 @@ structure and ZIP file:
    :maxdepth: 2
 
    archive
-   archive-versions
 
 
 Input Validation (Type Checking)
