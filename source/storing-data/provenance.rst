@@ -42,7 +42,7 @@ unique history.
 What Provenance Data is Captured?
 ---------------------------------
 
-In order to focus on provenance data, we will consider a simple QIIME 2
+In order to focus on provenance data, we will consider a relatively simple QIIME 2
 Archive (``.qza``) structure, with limited non-provenance content. Below the
 outer :term:`UUID` directory, this :term:`Artifact` holds the data it
 produced in a ``data`` directory (:ref:`data-goes-in-data`), and a few "clerical"
@@ -100,10 +100,27 @@ High-level information about this action and its run time.
           end: 2021-04-21T14:42:21.080381-07:00
           duration: 4 seconds, and 610383 microseconds
 
-Datetimes are formatted <YYYY-MM-DD><'T'><24-hour time><time zone offset>
+- Datetimes are formatted <YYYY-MM-DD><'T'><24-hour time><time zone offset>
+- The ``uuid`` field captured here is a UUID V4 *representing this Action*, and *not the Result it produced*.
 
-The ``uuid`` field captured here is the UUID *of this Action*, and *not of the Result it produced*.
-Maintaining separate Result and Action IDs allows us to manage the common case where one Action produces multiple Results.
+.. admonition:: Maintainer Note
+   :class: maintainer-note
+
+   Maintaining separate Result and Action IDs (the ``uuid``s in ``metadata.yaml`` and ``action.yaml`` respectively) may seem unnecessarily complex,
+   but it allows us to manage the common case where one Action produces multiple Results.
+
+   An added layer of complexity:
+   for Pipelines, the ``uuid`` in the execution block above is actually an alias UUID shared by all Pipeline Actions.
+   The ``alias-of`` UUID shown in the action block below describes the specific Action in that case.
+   This allows tools like ``q2view`` to nest all actions run by a single command within a single block.
+
+   For example:
+
+   The ``unweighted_unifrac_emperor.qza`` described here will have have three different IDs:
+
+   - The Result UUID, in ``metadata.yaml`` is unique to this Result
+   - The Action UUID, in ``action.yaml`` ``execution`` is unique to this Pipeline's current execution, and present in all pipeline Actions that occurred during this execution. (i.e. all Results from one run of ``core-metrics-phylogenetic`` share this ID)
+   - The ``alias-of`` UUID, in ``action.yaml`` ``action`` is unique to the specific Action, run by this Pipeline, which generated this Result
 
 The action block
 ````````````````
@@ -125,10 +142,26 @@ Details about the action, including action and plugin names, inputs and paramete
       output-name: unweighted_unifrac_emperor
       alias-of: 2adb9f00-a692-411d-8dd3-a6d07fc80a01
 
-The type field describes the *type of action*: a :term:`Method`, :term:`Visualizer`, or :term:`Pipeline`.
+- The type field describes the *type of the Action*: a :term:`Method`, :term:`Visualizer`, or :term:`Pipeline`.
+- The plugin field describes the plugin which registered the Action, details about which can be found in ``action.yaml``'s ``environment:plugins`` section. ``!ref`` is a custom YAML tag defined `here <https://github.com/qiime2/qiime2/blob/6d8932eda130d4a9356f977fece2e252c135d0b9/qiime2/core/archive/provenance.py#L84>`_, Generally, these custom tags provide a way to express a structure not easily described by basic YAML.
+- Inputs lists the registered names of all :term:`inputs<Input>` to the Action, as well as the UUIDs of the passed inputs. Note the distinction between inputs and parameters.
+- Parameters lists registered parameter names, and the user-passed (or selected default) values.
+- ``output-name`` is the user-passed name of the file written by this Action.
+- ``alias-of``: an optional field, present if the Action was run as part of a QIIME 2 :term:`Pipeline`, representing the _actual_ Action UUID rather than the Pipeline Alias. See maintainer note above for details.
+
 
 The environment block
 `````````````````````
+A non-comprehensive description of the computing environment in which this Action was run.
+It is not uncommon for QIIME 2 analyses to be run through multiple user interfaces, on multiple systems.
+For this reason, per-Action logging of system characteristics is useful.
+
+- ``platform``: the operating system and version used to run the Action. For VMs, this is the client OS.
+- ``python``: python version details, as captured by ``sys.version``
+- ``framework``: details about the QIIME 2 version used to performt this Action
+- ``plugin``: the QIIME 2 plugin, its version, and registered source web site
+- ``python-packages``: package names and version numbers for all packages in the ``WorkingSet`` of the active Python distribution, as collected by `pkg_resources <https://setuptools.readthedocs.io/en/latest/pkg_resources.html#workingset-objects>`_.
+
 .. code-block:: YAML
 
    environment:
