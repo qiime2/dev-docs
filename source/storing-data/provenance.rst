@@ -160,7 +160,14 @@ For this reason, per-Action logging of system characteristics is useful.
 - ``python``: python version details, as captured by ``sys.version``
 - ``framework``: details about the QIIME 2 version used to performt this Action
 - ``plugin``: the QIIME 2 plugin, its version, and registered source web site
-- ``python-packages``: package names and version numbers for all packages in the ``WorkingSet`` of the active Python distribution, as collected by `pkg_resources <https://setuptools.readthedocs.io/en/latest/pkg_resources.html#workingset-objects>`_.
+- ``python-packages``: package names and version numbers for all packages in the global ``working_set`` of the active Python distribution, as collected by `pkg_resources <https://setuptools.readthedocs.io/en/latest/pkg_resources.html#workingset-objects>`_.
+
+.. admonition:: Maintainer Note
+   :class: maintainer-note
+
+   QIIME 2 currently captures only Python packages data, but we plan to expand this
+   to include all relevant packages in the environment regardless of language.
+   See the `github issue <http://github.com/qiime2/qiime2/issues/587>`_ if you are interested in contributing.
 
 .. code-block:: YAML
 
