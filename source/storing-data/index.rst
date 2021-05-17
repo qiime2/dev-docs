@@ -65,7 +65,7 @@ Alternatively a new format could be invented with new rules
 (though this would make interoperability difficult).
 
 For these reasons, QIIME 2 stores data as a directory structure.
-In particular data such as FASTA or newick will be considered the :term:`Payload <payload>` which is to be delivered to a tool.
+In particular data such as FASTA or newick will be considered the :term:`Payload` which is to be delivered to a tool.
 
 There is a flaw to using directory structures as a way of storing data.
 Moving directory structures is inconvenient as they do not exist as a single file.
