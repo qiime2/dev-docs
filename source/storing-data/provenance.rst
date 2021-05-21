@@ -122,6 +122,8 @@ High-level information about this action and its run time.
    - The Action UUID, in ``action.yaml`` ``execution`` is unique to this Pipeline's current execution, and present in all pipeline Actions that occurred during this execution. (i.e. all Results from one run of ``core-metrics-phylogenetic`` share this ID)
    - The ``alias-of`` UUID, in ``action.yaml`` ``action`` is unique to the specific Action, run by this Pipeline, which generated this Result
 
+.. _`action-block`:
+
 The action block
 ````````````````
 Details about the action, including action and plugin names, inputs and parameters
