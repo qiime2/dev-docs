@@ -137,7 +137,57 @@ Version 4
 
 Released in QIIME 2 version `2018.4 <https://github.com/qiime2/qiime2/releases/tag/2018.4.0>`_ (`changelog <https://forum.qiime2.org/t/qiime-2-2018-4-release-is-now-live/3946>`_),
 `PR #387 <https://github.com/qiime2/qiime2/pull/387>`_,
-it
+this format adds citations to the directory format,
+adds a ``transformers`` section to ``action.yaml``,
+and aligns the structure of ``environment:framework`` (also in ``action.yaml``)
+to match the structure of ``environment::plugins::<some_plugin>``.
+
+Whenever an Action is run, its registered citations are captured.
+When saved, they are written to a ``citations.bib`` file
+inside the Archive's ``provenance`` directory.
+Citations for all of the current Result's ancestors are stored in their respective <UUID> directories
+(e.g. ``/<root_UUID>/provenance/artifacts/<ancestor_UUID>/citations.bib``).
+
+Result-specific citation tags are also written to
+the ``transformers`` and ``environment`` sections of the ``action.yaml`` files,
+for the current Result and for all ancestors with registered citations.
+A new custom ``!cite '<citation key>'`` tag is use to support this in YAML.
+
+A ``transformers`` section is added between the ``action`` and ``environment`` sections of ``action.yaml``.
+Because Pipelines do not use transformers,
+this will be recorded only for :term:`Methods <Method>` and :term:`Visualizers <Visualizer>`.
+It looks like this:
+
+.. code-block:: YAML
+
+   transformers:
+    inputs:
+        demultiplexed_seqs:
+        -   from: SingleLanePerSamplePairedEndFastqDirFmt
+            to: SingleLanePerSamplePairedEndFastqDirFmt
+    output:
+    -   from: q2_types.feature_data._transformer:DNAIterator
+        to: DNASequencesDirectoryFormat
+        plugin: !ref 'environment:plugins:types'
+
+``environment::framework`` was previously only a version string,
+and is now structured identically to each plugin action's ``software_entry``,
+with version, website, and citation sections:
+
+.. code-block:: YAML
+
+   framework:
+      version: 2019.10.0
+      website: https://qiime2.org
+      citations:
+      - !cite 'framework|qiime2:2019.10.0|0'
+   plugins:
+      fragment-insertion:
+          version: 2019.10.0
+          website: https://github.com/qiime2/q2-fragment-insertion
+          citations:
+          - !cite 'plugin|fragment-insertion:2019.10.0|0'
+          ...
 
 # TODO: MAKE THIS VIZ - should look like the simplified one in provenance.rst, but without checksums
 V4 Archives look like this:
@@ -150,9 +200,26 @@ Version 5
 
 Released in QIIME 2 version `2018.11 <https://github.com/qiime2/qiime2/releases/tag/2018.11.0>`_ (`changelog <https://forum.qiime2.org/t/qiime-2-2018-11-release-is-now-live/6879>`_),
 `PR #414 <https://github.com/qiime2/qiime2/pull/414>`_,
-it
+this format version adds archive checksums to the directory structure.
 
-# TODO: MAKE THIS VIZ - should look like the simplified one in provenance.rst, but without checksums
+A new, md5sum-formatted checksum file has been added at ``/<root_UUID>/checksums.md5``,
+with one md5sum and one filename on each line. For a more detailed specification, see the
+`PR <https://github.com/qiime2/qiime2/pull/414>`_.
+
+.. code-block:: YAML
+
+   5a7118c14fd1bacc957ddf01e61491b7  VERSION
+   333fd63a2b4a102e58e364f37cd98b74  metadata.yaml
+   4373b96f26689f78889caeb1fbb94090  data/faith_pd-cat1.jsonp
+
+   ...
+
+   7a40cff7855daffa28d4082194bdf60e  provenance/artifacts/f6105891-2c00-4886-b733-6dada99d0c81/metadata.yaml
+   ae0d0e26da5b84a6c0722148789c51e0  provenance/artifacts/f6105891-2c00-4886-b733-6dada99d0c81/action/action.yaml
+
+
+
+# TODO: MAKE THIS VIZ - should look like the simplified one in provenance.rst
 V5 Archives look like this:
 
 .. figure:: ../img/v5_archive_fmt.svg
