@@ -61,14 +61,20 @@ V0 Archives look like this:
 .. figure:: ../img/v0_archive_fmt.svg
    :alt: Box and Arrow diagram of a v0 archive, as described above.
 
-
 Version 1
 ---------
 
 Created in `PR #171 <https://github.com/qiime2/qiime2/pull/171>`_,
+and first released in QIIME 2 `version 2.0.6 <https://github.com/qiime2/qiime2/releases/tag/2.0.6>`_,
 Version 1 Archives introduce decentralized provenance tracking to QIIME 2.
-`ArchiveFormat V1 <https://github.com/qiime2/qiime2/blob/master/qiime2/core/archive/format/v0.py>`_ inherits all traits of v0,
+`ArchiveFormat V1 <https://github.com/qiime2/qiime2/blob/master/qiime2/core/archive/format/v1.py>`_ inherits all traits of v0,
 modifying its ``__init__()`` and ``write()`` methods only to add provenance capture.
+
+.. note::
+   All ArchiveFormat versions subclass their predecessor.
+
+   Put differently, the ArchiveFormat in ``v1.py`` inherits from the ArchiveFormat in ``v0.py``,
+   etc, simplifying interpretation of the version history.
 
 - A ``provenance`` folder is written in the top-level UUID directory
 - ``citations.bib``, ``metadata.yaml``, ``action.yaml`` and ``VERSION`` files are captured for the current Result and all ancestors.
@@ -95,7 +101,11 @@ V1 Archives look like this:
 
 Version 2
 ---------
-In terms of directory structure, this format is exactly the same as v1,
+Released across QIIME 2 versions `2017.9 <https://github.com/qiime2/qiime2/releases/tag/2017.9.0>`_
+(`changelog <https://forum.qiime2.org/t/qiime-2-2017-9-release-is-now-live/1160>`_)
+and `2017.10 <https://github.com/qiime2/qiime2/releases/tag/2017.10.0>`_
+(`changelog <https://forum.qiime2.org/t/qiime-2-2017-10-release-is-now-live/1626>`_),
+the directory structure of this format is identical to v1,
 but the ``action.yaml`` file has changed.
 
 In `PR #333 <https://github.com/qiime2/qiime2/pull/333>`_, 
@@ -106,7 +116,7 @@ Prior to this change, if one action returned multiple artifacts of the same :ter
 it was not possible to differentiate between them using provenance alone.
 
 In `PR #348 <https://github.com/qiime2/qiime2/pull/348>`_,
-it adds provenance support for :term:`Pipelines`,
+it adds provenance support for :term:`Pipelines <Pipeline>`,
 adding the ``alias-of`` key to the ``action`` section of ``action.yaml``.
 See description in :ref:`action-block` for details.
 
@@ -120,14 +130,38 @@ V2 Archives look like this:
 Version 3
 ---------
 
-This happened after 0
+Released in QIIME 2 version `2017.12 <https://github.com/qiime2/qiime2/releases/tag/2017.12.0>`_ (`changelog <https://forum.qiime2.org/t/qiime-2-2017-12-release-is-now-live/2308>`_),
+`PR #356 <https://github.com/qiime2/qiime2/pull/356>`_,
+it
+
+# TODO: MAKE THIS VIZ - should look like the simplified one in provenance.rst, but without checksums
+V3 Archives look like this:
+
+.. figure:: ../img/v3_archive_fmt.svg
+   :alt: Box and Arrow diagram of a v3 archive, as described above.
 
 Version 4
 ---------
 
-This happened after 0
+Released in QIIME 2 version `2017.9 <https://github.com/qiime2/qiime2/releases/tag/2018.4.0>`_ (`changelog <https://forum.qiime2.org/t/qiime-2-2018-4-release-is-now-live/3946>`_),
+`PR #387 <https://github.com/qiime2/qiime2/pull/387>`_,
+it
+
+# TODO: MAKE THIS VIZ - should look like the simplified one in provenance.rst, but without checksums
+V4 Archives look like this:
+
+.. figure:: ../img/v4_archive_fmt.svg
+   :alt: Box and Arrow diagram of a v4 archive, as described above.
 
 Version 5
 ---------
 
-This happened after 0
+Released in QIIME 2 version `2018.11 <https://github.com/qiime2/qiime2/releases/tag/2018.11.0>`_ (`changelog <https://forum.qiime2.org/t/qiime-2-2018-11-release-is-now-live/6879>`_),
+`PR #414 <https://github.com/qiime2/qiime2/pull/414>`_,
+it
+
+# TODO: MAKE THIS VIZ - should look like the simplified one in provenance.rst, but without checksums
+V5 Archives look like this:
+
+.. figure:: ../img/v5_archive_fmt.svg
+   :alt: Box and Arrow diagram of a v5 archive, as described above.
