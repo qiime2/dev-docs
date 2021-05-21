@@ -147,7 +147,7 @@ Details about the action, including action and plugin names, inputs and paramete
 - Inputs lists the registered names of all :term:`inputs<Input>` to the Action, as well as the UUIDs of the passed inputs. Note the distinction between inputs and parameters.
 - Parameters lists registered parameter names, and the user-passed (or selected default) values.
 - ``output-name`` is the user-passed name of the file written by this Action.
-- ``alias-of``: an optional field, present if the Action was run as part of a QIIME 2 :term:`Pipeline`, representing the _actual_ Action UUID rather than the Pipeline Alias. See maintainer note above for details.
+- ``alias-of``: an optional field, present if the Action was run as part of a QIIME 2 :term:`Pipeline`, representing the *actual* Action UUID rather than the Pipeline Alias. See maintainer note above for details.
 
 
 The environment block
