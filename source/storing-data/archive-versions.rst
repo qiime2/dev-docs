@@ -120,30 +120,22 @@ it adds provenance support for :term:`Pipelines <Pipeline>`,
 adding the ``alias-of`` key to the ``action`` section of ``action.yaml``.
 See description in :ref:`action-block` for details.
 
-# TODO: MAKE THIS VIZ - should look like the simplified one in provenance.rst, but without checksums
-
-V2 Archives look like this:
-
-.. figure:: ../img/v2_archive_fmt.svg
-   :alt: Box and Arrow diagram of a v2 archive, as described above.
-
 Version 3
 ---------
 
 Released in QIIME 2 version `2017.12 <https://github.com/qiime2/qiime2/releases/tag/2017.12.0>`_ (`changelog <https://forum.qiime2.org/t/qiime-2-2017-12-release-is-now-live/2308>`_),
 `PR #356 <https://github.com/qiime2/qiime2/pull/356>`_,
-it
+the directory structure of this format is identical to v1 and v2.
 
-# TODO: MAKE THIS VIZ - should look like the simplified one in provenance.rst, but without checksums
-V3 Archives look like this:
-
-.. figure:: ../img/v3_archive_fmt.svg
-   :alt: Box and Arrow diagram of a v3 archive, as described above.
+With this release, QIIME 2 Actions are able to take variadic arguments,
+allowing users to pass collections of Artifacts (``List``s and ``Set``s).
+A YAML representer has been added so that ``action.yaml`` can represent ``Set``s of Artifact inputs.
+These will show up in ``action.yaml`` as custom ``!set`` tags.
 
 Version 4
 ---------
 
-Released in QIIME 2 version `2017.9 <https://github.com/qiime2/qiime2/releases/tag/2018.4.0>`_ (`changelog <https://forum.qiime2.org/t/qiime-2-2018-4-release-is-now-live/3946>`_),
+Released in QIIME 2 version `2018.4 <https://github.com/qiime2/qiime2/releases/tag/2018.4.0>`_ (`changelog <https://forum.qiime2.org/t/qiime-2-2018-4-release-is-now-live/3946>`_),
 `PR #387 <https://github.com/qiime2/qiime2/pull/387>`_,
 it
 
