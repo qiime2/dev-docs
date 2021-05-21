@@ -65,9 +65,10 @@ V0 Archives look like this:
 Version 1
 ---------
 
-Created in PR #171, Version 1 Archives introduce decentralized provenance tracking
-to QIIME 2. `ArchiveFormat V1 <https://github.com/qiime2/qiime2/blob/master/qiime2/core/archive/format/v0.py>`_ 
-inherits all traits of v0, modifying its ``__init__()`` and ``write()`` methods only to add provenance capture.
+Created in `PR #171 <https://github.com/qiime2/qiime2/pull/171>`_,
+Version 1 Archives introduce decentralized provenance tracking to QIIME 2.
+`ArchiveFormat V1 <https://github.com/qiime2/qiime2/blob/master/qiime2/core/archive/format/v0.py>`_ inherits all traits of v0,
+modifying its ``__init__()`` and ``write()`` methods only to add provenance capture.
 
 - A ``provenance`` folder is written in the top-level UUID directory
 - ``citations.bib``, ``metadata.yaml``, ``action.yaml`` and ``VERSION`` files are captured for the current Result and all ancestors.
@@ -94,8 +95,27 @@ V1 Archives look like this:
 
 Version 2
 ---------
+In terms of directory structure, this format is exactly the same as v1,
+but the ``action.yaml`` file has changed.
 
-This happened after 0
+In `PR #333 <https://github.com/qiime2/qiime2/pull/333>`_, 
+the Version 2 ArchiveFormat adds an ``output-name`` key to the ``action`` section of ``action.yaml``
+(unless the action type is ``import``),
+assigning it the output name registered to the relevant action.
+Prior to this change, if one action returned multiple artifacts of the same :term:`Semantic Type`,
+it was not possible to differentiate between them using provenance alone.
+
+In `PR #348 <https://github.com/qiime2/qiime2/pull/348>`_,
+it adds provenance support for :term:`Pipelines`,
+adding the ``alias-of`` key to the ``action`` section of ``action.yaml``.
+See description in :ref:`action-block` for details.
+
+# TODO: MAKE THIS VIZ - should look like the simplified one in provenance.rst, but without checksums
+
+V2 Archives look like this:
+
+.. figure:: ../img/v2_archive_fmt.svg
+   :alt: Box and Arrow diagram of a v2 archive, as described above.
 
 Version 3
 ---------
