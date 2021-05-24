@@ -48,7 +48,7 @@ outer :term:`UUID` directory, this :term:`Artifact` holds the data it
 produced in a ``data`` directory (:ref:`data-goes-in-data`), and a few "clerical"
 files treated at greater length in :doc:`/storing-data/archive`.
 
-.. figure:: ../img/prov_whole_archive.svg
+.. figure:: ../img/provenance/whole_archive.svg
    :alt: Simplified representation of all files within one Archive, emphasizing how an Archive holds provenance for an arbitrary number of Actions
 
 All that's left to discuss is the ``provenance/`` directory. In the diagram
@@ -59,7 +59,7 @@ All remaining icons appear within the ``artifacts/`` subdirectory. These file
 collections describe all "parent" Results used in the creation of the current Result,
 and are housed in directories named with their respective UUIDs.
 
-.. figure:: ../img/prov_abbreviation.svg
+.. figure:: ../img/provenance/prov_files.svg
    :alt: A legend indicating how we abbreviate one action's provenance records with single "multiple-files" icon.
 
 With the exception of the current Result (whose provenance lives in ``provenance/``,
