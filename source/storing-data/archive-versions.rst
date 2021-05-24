@@ -30,7 +30,7 @@ All QIIME 2 Archives have:
 
 The Archive file system must look like this:
 
-.. figure:: ../img/format_agnostic_archive_structure.svg
+.. figure:: ../img/archive_versions/format_agnostic_archive_structure.svg
    :alt: Box and Arrow diagram of the guaranteed components of an archive, as described above.
 
 The VERSION file must look like this::
@@ -58,7 +58,7 @@ prior to version 2.0.6.
 
 V0 Archives look like this:
 
-.. figure:: ../img/v0_archive_fmt.svg
+.. figure:: ../img/archive_versions/v0_archive_fmt.svg
    :alt: Box and Arrow diagram of a v0 archive, as described above.
 
 Version 1
@@ -73,24 +73,25 @@ modifying its ``__init__()`` and ``write()`` methods only to add provenance capt
 .. note::
    All ArchiveFormat versions subclass their predecessor.
 
-   Put differently, the ArchiveFormat in ``v1.py`` inherits from the ArchiveFormat in ``v0.py``,
-   etc, simplifying interpretation of the version history.
+   E.g. the ArchiveFormat in ``v1.py`` inherits from the ArchiveFormat in ``v0.py``,
+   etc. This improves the interpretability of the version history.
 
 - A ``provenance`` folder is written in the top-level UUID directory
-- ``citations.bib``, ``metadata.yaml``, ``action.yaml`` and ``VERSION`` files are captured for the current Result and all ancestors.
+- ``metadata.yaml``, ``action.yaml`` and ``VERSION`` files are captured for the current Result and all ancestors.
 - The ``action.yaml`` file and associated data artifacts (e.g. sample metadata) are stored in an ``action`` directory.
 - For the current Result, all of this captured data lives directly inside ``provenance``
 - These files for all ancestor Results are placed in UUID-labeled subdirectories of an ``artifacts`` folder, inside ``provenance``
 
 .. note::
-   For simplicity, all provenance files are represented here as purple "multiple files" icons. 
-   For a more comprehensive description and images, see :doc:`provenance`.
+   For readability, the blue "multiple files" icon is used to represent all provenance files.
+   For a more detailed description, see :doc:`provenance`.
 
-# TODO: MAKE THIS VIZ - should look like the simplified one in provenance.rst, but without checksums
+.. figure:: ../img/archive_versions/v1_prov_files.svg
+   :alt: Box and Arrow diagram of the provenance files in a v1 archive, as described above.
 
 V1 Archives look like this:
 
-.. figure:: ../img/v1_archive_fmt.svg
+.. figure:: ../img/archive_versions/v1-4_archive_fmt.svg
    :alt: Box and Arrow diagram of a v1 archive, as described above.
 
 .. note::
@@ -102,9 +103,9 @@ V1 Archives look like this:
 Version 2
 ---------
 Released across QIIME 2 versions `2017.9 <https://github.com/qiime2/qiime2/releases/tag/2017.9.0>`_
-(`changelog <https://forum.qiime2.org/t/qiime-2-2017-9-release-is-now-live/1160>`_)
+(`changelog <https://forum.qiime2.org/t/qiime-2-2017-9-release-is-now-live/1160>`__)
 and `2017.10 <https://github.com/qiime2/qiime2/releases/tag/2017.10.0>`_
-(`changelog <https://forum.qiime2.org/t/qiime-2-2017-10-release-is-now-live/1626>`_),
+(`changelog <https://forum.qiime2.org/t/qiime-2-2017-10-release-is-now-live/1626>`__),
 the directory structure of this format is identical to v1,
 but the ``action.yaml`` file has changed.
 
@@ -123,7 +124,7 @@ See description in :ref:`action-block` for details.
 Version 3
 ---------
 
-Released in QIIME 2 version `2017.12 <https://github.com/qiime2/qiime2/releases/tag/2017.12.0>`_ (`changelog <https://forum.qiime2.org/t/qiime-2-2017-12-release-is-now-live/2308>`_),
+Released in QIIME 2 version `2017.12 <https://github.com/qiime2/qiime2/releases/tag/2017.12.0>`_ (`changelog <https://forum.qiime2.org/t/qiime-2-2017-12-release-is-now-live/2308>`__),
 `PR #356 <https://github.com/qiime2/qiime2/pull/356>`_,
 the directory structure of this format is identical to v1 and v2.
 
@@ -135,7 +136,7 @@ These will show up in ``action.yaml`` as custom ``!set`` tags.
 Version 4
 ---------
 
-Released in QIIME 2 version `2018.4 <https://github.com/qiime2/qiime2/releases/tag/2018.4.0>`_ (`changelog <https://forum.qiime2.org/t/qiime-2-2018-4-release-is-now-live/3946>`_),
+Released in QIIME 2 version `2018.4 <https://github.com/qiime2/qiime2/releases/tag/2018.4.0>`_ (`changelog <https://forum.qiime2.org/t/qiime-2-2018-4-release-is-now-live/3946>`__),
 `PR #387 <https://github.com/qiime2/qiime2/pull/387>`_,
 this format adds citations to the directory format,
 adds a ``transformers`` section to ``action.yaml``,
@@ -147,6 +148,11 @@ When saved, they are written to a ``citations.bib`` file
 inside the Archive's ``provenance`` directory.
 Citations for all of the current Result's ancestors are stored in their respective <UUID> directories
 (e.g. ``/<root_UUID>/provenance/artifacts/<ancestor_UUID>/citations.bib``).
+
+.. figure:: ../img/archive_versions/v4_prov_files.svg
+   :alt: Box and Arrow diagram of the provenance files in a v4 archive, as described above.
+
+**The overall directory structure remains identical to a v1 archive, above.**
 
 Result-specific citation tags are also written to
 the ``transformers`` and ``environment`` sections of the ``action.yaml`` files,
@@ -189,22 +195,18 @@ with version, website, and citation sections:
           - !cite 'plugin|fragment-insertion:2019.10.0|0'
           ...
 
-# TODO: MAKE THIS VIZ - should look like the simplified one in provenance.rst, but without checksums
-V4 Archives look like this:
-
-.. figure:: ../img/v4_archive_fmt.svg
-   :alt: Box and Arrow diagram of a v4 archive, as described above.
-
 Version 5
 ---------
 
-Released in QIIME 2 version `2018.11 <https://github.com/qiime2/qiime2/releases/tag/2018.11.0>`_ (`changelog <https://forum.qiime2.org/t/qiime-2-2018-11-release-is-now-live/6879>`_),
+Released in QIIME 2 version `2018.11 <https://github.com/qiime2/qiime2/releases/tag/2018.11.0>`_ (`changelog <https://forum.qiime2.org/t/qiime-2-2018-11-release-is-now-live/6879>`__),
 `PR #414 <https://github.com/qiime2/qiime2/pull/414>`_,
 this format version adds archive checksums to the directory structure.
 
 A new, md5sum-formatted checksum file has been added at ``/<root_UUID>/checksums.md5``,
 with one md5sum and one filename on each line. For a more detailed specification, see the
 `PR <https://github.com/qiime2/qiime2/pull/414>`_.
+
+Checksums.md looks like this:
 
 .. code-block:: YAML
 
@@ -217,10 +219,7 @@ with one md5sum and one filename on each line. For a more detailed specification
    7a40cff7855daffa28d4082194bdf60e  provenance/artifacts/f6105891-2c00-4886-b733-6dada99d0c81/metadata.yaml
    ae0d0e26da5b84a6c0722148789c51e0  provenance/artifacts/f6105891-2c00-4886-b733-6dada99d0c81/action/action.yaml
 
-
-
-# TODO: MAKE THIS VIZ - should look like the simplified one in provenance.rst
 V5 Archives look like this:
 
-.. figure:: ../img/v5_archive_fmt.svg
+.. figure:: ../img/archive_versions/v5_archive_fmt.svg
    :alt: Box and Arrow diagram of a v5 archive, as described above.
