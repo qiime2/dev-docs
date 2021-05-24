@@ -83,8 +83,9 @@ modifying its ``__init__()`` and ``write()`` methods only to add provenance capt
 - These files for all ancestor Results are placed in UUID-labeled subdirectories of an ``artifacts`` folder, inside ``provenance``
 
 .. note::
-   For readability, the blue "multiple files" icon is used to represent all provenance files.
-   For a more detailed description, see :doc:`provenance`.
+   The blue "multiple files" icon represents all provenance files associated with a single action
+   (e.g. the current action, or one of its ancestors).
+   For a detailed description, see :doc:`provenance`.
 
 .. figure:: ../img/archive_versions/v1_prov_files.svg
    :alt: Box and Arrow diagram of the provenance files in a v1 archive, as described above.
