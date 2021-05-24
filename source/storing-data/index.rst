@@ -164,8 +164,8 @@ directory formats in QIIME 2:
 Provenance Metadata
 -------------------
 
-Inside of each Artifact, QIIME 2 stores metadata about how that artifact was 
-generated. We call this "provenance". Notably, each Artifact contains
+Inside of each Archive, QIIME 2 stores metadata about how that archive was
+generated. We call this "provenance". Notably, each Archive contains
 provenance information about *every* prior QIIME 2 :term:`Action` involved
 in its creation, from `import` to the most recent step in the analysis.
 

@@ -13,10 +13,15 @@ The notion of a QIIME 2 :term:`Result` is central here. Whenever an
 :term:`Action` is performed on some data with QIIME 2, the framework
 captures relevant metadata about the action and environment and stores it in
 the Action's Result. When/if that Result is saved as an :term:`Archive`, the
-captured provenance data is stored within the Archive as well. (Saving as an archive 
-happens automatically with ``q2cli``, and manually with the Artifact API.) For
-reference, :ref:`provenance-structure` contains a detailed discussion of the
+captured provenance data is stored within the Archive as well.
+:ref:`provenance-structure` contains a detailed discussion of the
 file structure which holds provenance metadata.
+
+.. note::
+   *When* Results are saved as Archives is interface-defined.
+   Results are saved automatically by ``q2cli``, every time a user runs a command.
+   They must be saved manually by users of the `Artifact API <https://docs.qiime2.org/2021.4/interfaces/artifact-api/>`_.
+   This allows API uses to reduce I/O, and keeps things simpler for CLI users.
 
 Why Capture Provenance Data?
 ----------------------------
@@ -28,7 +33,7 @@ workflow pipelining, and software maintenance and repair.
 Among the benefits of this model are:
 
 - Analyses are *fully* reproducible.
-- Analyses self-document, reducing the need for investigator notetaking. For example, q2view produces directed provenance graphs. QIIME 2 Artifacts bring their citations with them. Methods-section text could theoretically be generated from a collection of QIIME 2 Artifacts.
+- Analyses self-document, reducing the need for investigator notetaking. For example, `q2view <https://view.qiime2.org/>`_ produces directed provenance graphs. QIIME 2 Artifacts bring their citations with them. Methods-section text could theoretically be generated from a collection of QIIME 2 Artifacts.
 - Analyses are replay-able. The QIIME 2 team is developing functionality to generate executable scripts from prior results, simplifying the repetition of analyses.
 - In the unlikely event of a data integrity bug, problematic combinations of hardware, environment, Action, and parameters can be investigated effectively. Impacted results can be programatically identified, and could be programatically correctable in some cases.
 
@@ -43,7 +48,7 @@ What Provenance Data is Captured?
 ---------------------------------
 
 In order to focus on provenance data, we will consider a relatively simple QIIME 2
-Archive (``.qza``) structure, with limited non-provenance content. Below the
+example Archive structure, with limited non-provenance content. Below the
 outer :term:`UUID` directory, this :term:`Artifact` holds the data it
 produced in a ``data`` directory (:ref:`data-goes-in-data`), and a few "clerical"
 files treated at greater length in :doc:`/storing-data/archive`.
@@ -52,7 +57,7 @@ files treated at greater length in :doc:`/storing-data/archive`.
    :alt: Simplified representation of all files within one Archive, emphasizing how an Archive holds provenance for an arbitrary number of Actions
 
 All that's left to discuss is the ``provenance/`` directory. In the diagram
-above, we use a wiggly blue "multiple-files" icon to represent the collection of
+above, we use a blue "multiple-files" icon to represent the collection of
 provenance data associated with one single QIIME 2 action. When this icon appears
 directly within ``provenance/`` the files describe the "current" :term:`Result`.
 All remaining icons appear within the ``artifacts/`` subdirectory. These file
@@ -68,8 +73,8 @@ That directory contains:
 
 - ``VERSION``: :ref:`identifying-an-archive`
 - ``metadata.yaml``: :ref:`metadata-yaml`
-- ``citations.bib``: all bibtex-formatted citations registered to the Action
-- ``action/action.yaml``: a YAML description of the Action and its environmnet. The good stuff!
+- ``citations.bib``: all citations related to the run Action, in `bibtex format <https://www.bibtex.com/g/bibtex-format/>`_. (This includes "passthrough" citations like those registered to transformers, regardless of the plugin where they are registered.)
+- ``action/action.yaml``: a YAML description of the Action and its environment. The good stuff!
 - [optional] ``action/metadata.tsv`` or other data files: data captured to provide additional Action context
 
 The ``action.yaml`` file
@@ -83,12 +88,12 @@ These files are broken into three top-level sections, in this order:
 - environment: a non-comprehensive description of the system and QIIME environment where this action was executed
 
 The specific example shown below is avaiable for your perusal at 
-`qiime2view <https://view.qiime2.org/provenance/?src=https%3A%2F%2Fdocs.qiime2.org%2F2021.4%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted_unifrac_emperor.qzv>`_.
+`q2view <https://view.qiime2.org/provenance/?src=https%3A%2F%2Fdocs.qiime2.org%2F2021.4%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted_unifrac_emperor.qzv>`__.
 Click on the bottom square in the provenance graph, 
 or download and open the archive to peruse the YAML file itself.
 
 The execution block
-```````````````````
+~~~~~~~~~~~~~~~~~~~
 High-level information about this action and its run time.
 
 .. code-block:: YAML
@@ -100,14 +105,17 @@ High-level information about this action and its run time.
           end: 2021-04-21T14:42:21.080381-07:00
           duration: 4 seconds, and 610383 microseconds
 
-- Datetimes are formatted <YYYY-MM-DD><'T'><24-hour time><time zone offset>
+- Datetimes are formatted as `ISO 8601 timestamps <https://docs.python.org/3/library/datetime.html#datetime.datetime.isoformat>`_.
 - The ``uuid`` field captured here is a UUID V4 *representing this Action*, and *not the Result it produced*.
 
 .. admonition:: Maintainer Note
    :class: maintainer-note
 
-   Maintaining separate Result and Action IDs (the ``uuid``s in ``metadata.yaml`` and ``action.yaml`` respectively) may seem unnecessarily complex,
-   but it allows us to manage the common case where one Action produces multiple Results.
+   There are many elements of provenance that require unique IDs
+   (to help us keep track of different aspects of an analysis).
+   Maintaining separate Result and Action IDs
+   (e.g. the ``uuid`` s in ``metadata.yaml`` and ``action.yaml``)
+   allows us to manage the common case where one Action produces multiple Results.
 
    An added layer of complexity:
    for Pipelines, the ``uuid`` in the execution block above is actually an alias UUID shared by all Pipeline Actions.
@@ -116,16 +124,20 @@ High-level information about this action and its run time.
 
    For example:
 
-   The ``unweighted_unifrac_emperor.qza`` described here will have have three different IDs:
+   The ``unweighted_unifrac_emperor.qza`` described below will have have three different IDs:
 
    - The Result UUID, in ``metadata.yaml`` is unique to this Result
    - The Action UUID, in ``action.yaml`` ``execution`` is unique to this Pipeline's current execution, and present in all pipeline Actions that occurred during this execution. (i.e. all Results from one run of ``core-metrics-phylogenetic`` share this ID)
    - The ``alias-of`` UUID, in ``action.yaml`` ``action`` is unique to the specific Action, run by this Pipeline, which generated this Result
 
+   We chose to use `v4 UUIDs <https://docs.python.org/3/library/uuid.html>`_ for our unique IDs,
+   but there is nothing special about them that couldn't be handled by a different unique identifier scheme.
+   They're just IDs.
+
 .. _`action-block`:
 
 The action block
-````````````````
+~~~~~~~~~~~~~~~~
 Details about the action, including action and plugin names, inputs and parameters
 
 .. code-block:: YAML
@@ -153,14 +165,14 @@ Details about the action, including action and plugin names, inputs and paramete
 
 
 The environment block
-`````````````````````
+~~~~~~~~~~~~~~~~~~~~~
 A non-comprehensive description of the computing environment in which this Action was run.
 It is not uncommon for QIIME 2 analyses to be run through multiple user interfaces, on multiple systems.
 For this reason, per-Action logging of system characteristics is useful.
 
 - ``platform``: the operating system and version used to run the Action. For VMs, this is the client OS.
 - ``python``: python version details, as captured by ``sys.version``
-- ``framework``: details about the QIIME 2 version used to performt this Action
+- ``framework``: details about the QIIME 2 version used to perform this Action
 - ``plugin``: the QIIME 2 plugin, its version, and registered source web site
 - ``python-packages``: package names and version numbers for all packages in the global ``working_set`` of the active Python distribution, as collected by `pkg_resources <https://setuptools.readthedocs.io/en/latest/pkg_resources.html#workingset-objects>`_.
 
