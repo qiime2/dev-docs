@@ -128,8 +128,8 @@ Released in QIIME 2 version `2017.12 <https://github.com/qiime2/qiime2/releases/
 the directory structure of this format is identical to v1 and v2.
 
 With this release, QIIME 2 Actions are able to take variadic arguments,
-allowing users to pass collections of Artifacts (``List``s and ``Set``s).
-A YAML representer has been added so that ``action.yaml`` can represent ``Set``s of Artifact inputs.
+allowing users to pass collections of Artifacts (``List`` s and ``Set`` s).
+A YAML representer has been added so that ``action.yaml`` can represent ``Set`` s of Artifact inputs.
 These will show up in ``action.yaml`` as custom ``!set`` tags.
 
 Version 4
