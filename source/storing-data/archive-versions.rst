@@ -26,7 +26,7 @@ and archives with different formats to be dispatched to the appropriate version-
 All QIIME 2 Archives have:
 
 - a directory named with the Archive UUID, directly under the archive root.
-- a file within that directory named VERSION, formatted as shown below
+- a file named "VERSION" within that directory, formatted as shown below
 
 The Archive file system must look like this:
 
