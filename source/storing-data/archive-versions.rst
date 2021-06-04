@@ -3,9 +3,9 @@ Archive Versions
 .. contents::
    :local:
 
-As QIIME 2 has developed, the structure of QIIME 2 :term:`archives<Archive>` has evolved.
+The structure of QIIME 2 :term:`archives<Archive>` has evolved as QIIME 2 has been developed.
 This page describes each historical version of the QIIME 2 Archive format,
-and may be useful to developers whose code depends on guarantees made by that format
+and may be useful to interface developers whose code depends on guarantees made by that format
 (`source code <https://github.com/qiime2/qiime2/blob/master/qiime2/core/archive/>`_).
 
 For general information about the structure of current QIIME 2 Archives, see :doc:`archive`.
@@ -14,47 +14,53 @@ For a detailed description of the part of an Archive which holds Provenance data
 Version-agnostic format "guarantees"
 ------------------------------------
 
-Though there is significant variability in the format of QIIME 2 Archives across versions,
-all versions share some common traits.
+Though there is significant variability in the format of QIIME 2 Archives across archive versions,
+all archive versions share some common traits.
 
-These shared characteristics, defined in the ``_Archive`` class
-in `qiime2/core/archive/archiver.py <https://github.com/qiime2/qiime2/blob/master/qiime2/core/archive/archiver.py>`_,
+These shared characteristics, defined in the ``_Archive`` class in
+`qiime2/core/archive/archiver.py <https://github.com/qiime2/qiime2/blob/master/qiime2/core/archive/archiver.py>`_,
 must be consistent across all formats over time, 
 as they allow archive versions to be checked,
 and archives with different formats to be dispatched to the appropriate version-specific tools.
 
 All QIIME 2 Archives have:
 
-- a directory named with the Archive UUID, directly under the archive root.
-- a file named "VERSION" within that directory, formatted as shown below
+- a directory named with the Archive UUID, directly under the archive root at ``/<UUID>/``
+- a file ``/<UUID>/VERSION`` within that directory, formatted as shown below
 
 The Archive file system must look like this:
 
 .. figure:: ../img/archive_versions/format_agnostic_archive_structure.svg
    :alt: Box and Arrow diagram of the guaranteed components of an archive, as described above.
 
-The VERSION file must look like this::
+The VERSION file must look like this:
+
+.. code-block::
 
     QIIME 2
     archive: <archive version>
     framework: <framework version>
 
 .. note::
-   This file is itentionally not YAML/INI/An actual format. This is to
-   discourage the situation where the format changes from something like YAML to
-   another format and VERSION is updated with it "for consistency".
+   This file is intentionally not in YAML, INI,
+   or any other common data serialization or configuration format.
+   This is to discourage the situation where important archive files are reformatted
+   from YAML to another format and VERSION is updated "for consistency",
+   breaking backwards compatibility.
 
 Version 0
 ---------
 
 The original QIIME 2 Archive format, there aren't many V0 Archives "in the wild".
-V0 Archives, in place through 10/24/16, were produced only during QIIME 2's Alpha release,
-prior to version 2.0.6.
+V0 Archives were produced by Alpha versions of the QIIME 2 framework,
+and were superseded in framework version 2.0.6 on 10/24/16.
 
-- Like all QIIME 2 Archives, there is a directory named with the Archive UUID under the archive root, containing a VERSION file. (This is *not* format-defined. See above.)
-- :term:`Result` data is written to a ``data`` directory, located within this UUID directory.
-- Result UUID, Semantic Type, and Format go in a ``metadata.yaml`` in the same place.
-- The ArchiveFormat class in `v0.py <https://github.com/qiime2/qiime2/blob/master/qiime2/core/archive/format/v0.py>`_ offers convenience methods for loading and parsing ``metadata.yaml`` files.
+- :term:`Result` data files are written in the directory ``/<UUID>/data``
+- | Result UUID, Semantic Type, and Format information are saved in
+  | ``/<UUID>/metadata.yaml``.
+- The ``ArchiveFormat`` class in
+  `v0.py <https://github.com/qiime2/qiime2/blob/master/qiime2/core/archive/format/v0.py>`_
+  offers convenience methods for loading and parsing ``metadata.yaml`` files.
 
 V0 Archives look like this:
 
@@ -67,33 +73,38 @@ Version 1
 Created in `PR #171 <https://github.com/qiime2/qiime2/pull/171>`_,
 and first released in QIIME 2 `version 2.0.6 <https://github.com/qiime2/qiime2/releases/tag/2.0.6>`_,
 Version 1 Archives introduce decentralized provenance tracking to QIIME 2.
-`ArchiveFormat V1 <https://github.com/qiime2/qiime2/blob/master/qiime2/core/archive/format/v1.py>`_ inherits all traits of v0,
+`ArchiveFormat V1 <https://github.com/qiime2/qiime2/blob/master/qiime2/core/archive/format/v1.py>`_
+inherits all traits of v0,
 modifying its ``__init__()`` and ``write()`` methods only to add provenance capture.
 
 .. note::
-   All ArchiveFormat versions subclass their predecessor.
+   All ``ArchiveFormat`` versions subclass their predecessor.
 
-   E.g. the ArchiveFormat in ``v1.py`` inherits from the ArchiveFormat in ``v0.py``,
-   etc. This improves the interpretability of the version history.
+   E.g. the ``ArchiveFormat`` in ``v1.py`` inherits from the ``ArchiveFormat`` in ``v0.py``,
+   etc. This makes it easier for humans to interpret the version history.
 
-- A ``provenance`` folder is written in the top-level UUID directory
-- ``metadata.yaml``, ``action.yaml`` and ``VERSION`` files are captured for the current Result and all ancestors.
-- The ``action.yaml`` file and associated data artifacts (e.g. sample metadata) are stored in an ``action`` directory.
-- For the current Result, all of this captured data lives directly inside ``provenance``
-- These files for all ancestor Results are placed in UUID-labeled subdirectories of an ``artifacts`` folder, inside ``provenance``
-
-.. note::
-   The blue "multiple files" icon represents all provenance files associated with a single action
-   (e.g. the current action, or one of its ancestors).
-   For a detailed description, see :doc:`provenance`.
+Provenance data is stored in the directory ``/<UUID>/provenance/``.
+Specifically, ``metadata.yaml``, ``action.yaml`` and ``VERSION`` files
+are captured for the current Result and each of its ancestors.
+Each Result's ``action.yaml`` file and associated data artifacts (e.g. sample metadata)
+are stored in an ``action`` directory alongside that Result's ``VERSION`` and ``metadata.yaml``.
+Considered together, we can describe these as "provenance files".
 
 .. figure:: ../img/archive_versions/v1_prov_files.svg
    :alt: Box and Arrow diagram of the provenance files in a v1 archive, as described above.
+
+   The blue "multiple files" icon represents all provenance files associated with a single action
+   (e.g. the current action, or one of its ancestors).
+   For a detailed description, see :doc:`provenance`.
 
 V1 Archives look like this:
 
 .. figure:: ../img/archive_versions/v1-4_archive_fmt.svg
    :alt: Box and Arrow diagram of a v1 archive, as described above.
+
+   Provenance files for the current Result are stored in ``/<UUID>/provenance/``.
+   Provenance files for each ancestor Result are stored in directory at
+   ``/<root_UUID>/provenance/artifacts/<ancestor_UUID>/``
 
 .. note::
 
@@ -111,7 +122,7 @@ the directory structure of this format is identical to v1,
 but the ``action.yaml`` file has changed.
 
 In `PR #333 <https://github.com/qiime2/qiime2/pull/333>`_, 
-the Version 2 ArchiveFormat adds an ``output-name`` key to the ``action`` section of ``action.yaml``
+the Version 2 ``ArchiveFormat`` adds an ``output-name`` key to the ``action`` section of ``action.yaml``
 (unless the action type is ``import``),
 assigning it the output name registered to the relevant action.
 Prior to this change, if one action returned multiple artifacts of the same :term:`Semantic Type`,
@@ -125,7 +136,8 @@ See description in :ref:`action-block` for details.
 Version 3
 ---------
 
-Released in QIIME 2 version `2017.12 <https://github.com/qiime2/qiime2/releases/tag/2017.12.0>`_ (`changelog <https://forum.qiime2.org/t/qiime-2-2017-12-release-is-now-live/2308>`__),
+Released in QIIME 2 version `2017.12 <https://github.com/qiime2/qiime2/releases/tag/2017.12.0>`_
+(`changelog <https://forum.qiime2.org/t/qiime-2-2017-12-release-is-now-live/2308>`__),
 `PR #356 <https://github.com/qiime2/qiime2/pull/356>`_,
 the directory structure of this format is identical to v1 and v2.
 
@@ -137,7 +149,8 @@ These will show up in ``action.yaml`` as custom ``!set`` tags.
 Version 4
 ---------
 
-Released in QIIME 2 version `2018.4 <https://github.com/qiime2/qiime2/releases/tag/2018.4.0>`_ (`changelog <https://forum.qiime2.org/t/qiime-2-2018-4-release-is-now-live/3946>`__),
+Released in QIIME 2 version `2018.4 <https://github.com/qiime2/qiime2/releases/tag/2018.4.0>`_
+(`changelog <https://forum.qiime2.org/t/qiime-2-2018-4-release-is-now-live/3946>`__),
 `PR #387 <https://github.com/qiime2/qiime2/pull/387>`_,
 this format adds citations to the directory format,
 adds a ``transformers`` section to ``action.yaml``,
@@ -162,7 +175,7 @@ A new custom ``!cite '<citation key>'`` tag is use to support this in YAML.
 
 A ``transformers`` section is added between the ``action`` and ``environment`` sections of ``action.yaml``.
 Because Pipelines do not use transformers,
-this will be recorded only for :term:`Methods <Method>` and :term:`Visualizers <Visualizer>`.
+transformers will be recorded only for :term:`Methods <Method>` and :term:`Visualizers <Visualizer>`.
 It looks like this:
 
 .. code-block:: YAML
@@ -199,7 +212,8 @@ with version, website, and citation sections:
 Version 5
 ---------
 
-Released in QIIME 2 version `2018.11 <https://github.com/qiime2/qiime2/releases/tag/2018.11.0>`_ (`changelog <https://forum.qiime2.org/t/qiime-2-2018-11-release-is-now-live/6879>`__),
+Released in QIIME 2 version `2018.11 <https://github.com/qiime2/qiime2/releases/tag/2018.11.0>`_
+(`changelog <https://forum.qiime2.org/t/qiime-2-2018-11-release-is-now-live/6879>`__),
 `PR #414 <https://github.com/qiime2/qiime2/pull/414>`_,
 this format version adds archive checksums to the directory structure.
 
