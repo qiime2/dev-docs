@@ -70,8 +70,8 @@ V0 Archives look like this:
 Version 1
 ---------
 
-Created in `PR #171 <https://github.com/qiime2/qiime2/pull/171>`_,
-and first released in QIIME 2 `version 2.0.6 <https://github.com/qiime2/qiime2/releases/tag/2.0.6>`_,
+Released in QIIME 2 `version 2.0.6 <https://github.com/qiime2/qiime2/releases/tag/2.0.6>`_,
+`commit bdc8aed <https://github.com/qiime2/qiime2/commit/bdc8aed08a7ce323a0f9901c6ff634680e58c7f3>`_,
 Version 1 Archives introduce decentralized provenance tracking to QIIME 2.
 `ArchiveFormat V1 <https://github.com/qiime2/qiime2/blob/master/qiime2/core/archive/format/v1.py>`_
 inherits all traits of v0,
@@ -121,14 +121,14 @@ and `2017.10 <https://github.com/qiime2/qiime2/releases/tag/2017.10.0>`_
 the directory structure of this format is identical to v1,
 but the ``action.yaml`` file has changed.
 
-In `PR #333 <https://github.com/qiime2/qiime2/pull/333>`_, 
+In `commit 4389a0b <https://github.com/qiime2/qiime2/commit/4389a0b4ec41151144188ea230c8c56c1940c368>`_,
 the Version 2 ``ArchiveFormat`` adds an ``output-name`` key to the ``action`` section of ``action.yaml``
 (unless the action type is ``import``),
 assigning it the output name registered to the relevant action.
 Prior to this change, if one action returned multiple artifacts of the same :term:`Semantic Type`,
 it was not possible to differentiate between them using provenance alone.
 
-In `PR #348 <https://github.com/qiime2/qiime2/pull/348>`_,
+In `commit e072706 <https://github.com/qiime2/qiime2/commit/e07270659bd4089afdeef744868f8b7ac9c698a9>`_,
 it adds provenance support for :term:`Pipelines <Pipeline>`,
 adding the ``alias-of`` key to the ``action`` section of ``action.yaml``.
 See description in :ref:`action-block` for details.
@@ -138,7 +138,7 @@ Version 3
 
 Released in QIIME 2 version `2017.12 <https://github.com/qiime2/qiime2/releases/tag/2017.12.0>`_
 (`changelog <https://forum.qiime2.org/t/qiime-2-2017-12-release-is-now-live/2308>`__),
-`PR #356 <https://github.com/qiime2/qiime2/pull/356>`_,
+`commit 684b8b7 <https://github.com/qiime2/qiime2/commit/684b8b77276bd8fc7228042c674a166669bb5bef>`_,
 the directory structure of this format is identical to v1 and v2.
 
 With this release, QIIME 2 Actions are able to take variadic arguments,
@@ -151,7 +151,7 @@ Version 4
 
 Released in QIIME 2 version `2018.4 <https://github.com/qiime2/qiime2/releases/tag/2018.4.0>`_
 (`changelog <https://forum.qiime2.org/t/qiime-2-2018-4-release-is-now-live/3946>`__),
-`PR #387 <https://github.com/qiime2/qiime2/pull/387>`_,
+`commit 00a294c <https://github.com/qiime2/qiime2/commit/00a294cbfc8737c1a2f57d695615098dc9beb4ad>`_,
 this format adds citations to the directory format,
 adds a ``transformers`` section to ``action.yaml``,
 and aligns the structure of ``environment:framework`` (also in ``action.yaml``)
@@ -214,7 +214,7 @@ Version 5
 
 Released in QIIME 2 version `2018.11 <https://github.com/qiime2/qiime2/releases/tag/2018.11.0>`_
 (`changelog <https://forum.qiime2.org/t/qiime-2-2018-11-release-is-now-live/6879>`__),
-`PR #414 <https://github.com/qiime2/qiime2/pull/414>`_,
+`f95f324 <https://github.com/qiime2/qiime2/commit/f95f3246517e8c79bdab6b000d23f801030485e2>`_,
 this format version adds archive checksums to the directory structure.
 
 A new, md5sum-formatted checksum file has been added at ``/<root_UUID>/checksums.md5``,
