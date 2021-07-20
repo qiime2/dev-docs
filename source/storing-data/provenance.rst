@@ -189,7 +189,9 @@ Details about the action, including action and plugin names, inputs and paramete
   as well as the UUIDs of the passed inputs.
   Note the distinction between inputs and parameters.
 - Parameters lists registered parameter names, and the user-passed (or selected default) values.
-- ``output-name`` is the user-passed name of the file written by this Action.
+- ``output-name`` is the name assigned to this Action's output *at registration*,
+  which can be useful when determining which of an Action's multiple outputs a file represents.
+  (This does not capture the user-passed filename.)
 - ``alias-of``: an optional field, present if the Action was run as part of a QIIME 2 :term:`Pipeline`,
   representing the *actual* Action UUID rather than the Pipeline Alias.
   See maintainer note above for details.
