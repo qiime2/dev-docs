@@ -33,9 +33,18 @@ workflow pipelining, and software maintenance and repair.
 Among the benefits of this model are:
 
 - Analyses are *fully* reproducible.
-- Analyses self-document, reducing the need for investigator notetaking. For example, `q2view <https://view.qiime2.org/>`_ produces directed provenance graphs. QIIME 2 Artifacts bring their citations with them. Methods-section text could theoretically be generated from a collection of QIIME 2 Artifacts.
-- Analyses are replay-able. The QIIME 2 team is developing functionality to generate executable scripts from prior results, simplifying the repetition of analyses.
-- In the unlikely event of a data integrity bug, problematic combinations of hardware, environment, Action, and parameters can be investigated effectively. Impacted results can be programatically identified, and could be programatically correctable in some cases.
+- Analyses self-document, reducing the need for investigator notetaking.
+  For example, `q2view <https://view.qiime2.org/>`_ produces directed provenance graphs.
+  QIIME 2 Artifacts bring their citations with them.
+  Methods-section text could theoretically be generated
+  from a collection of QIIME 2 Artifacts.
+- Analyses are replay-able.
+  The QIIME 2 team is developing functionality to generate executable scripts
+  from prior results, simplifying the repetition of analyses.
+- In the unlikely event of a data integrity bug, problematic combinations of hardware,
+  environment, Action, and parameters can be investigated effectively.
+  Impacted results can be programatically identified, and could be programatically
+  correctable in some cases.
 
 By capturing provenance metadata at the level of Actions/Results, QIIME 2
 provenance is both host- and interface-agnostic. In other words, a QIIME 2
@@ -54,7 +63,8 @@ produced in a ``data`` directory (:ref:`data-goes-in-data`), and a few "clerical
 files treated at greater length in :doc:`/storing-data/archive`.
 
 .. figure:: ../img/provenance/whole_archive.svg
-   :alt: Simplified representation of all files within one Archive, emphasizing how an Archive holds provenance for an arbitrary number of Actions
+   :alt: Simplified representation of all files within one Archive,
+         emphasizing how an Archive holds provenance for an arbitrary number of Actions
 
 All that's left to discuss is the ``provenance/`` directory. In the diagram
 above, we use a blue "multiple-files" icon to represent the collection of
@@ -65,7 +75,8 @@ collections describe all "parent" Results used in the creation of the current Re
 and are housed in directories named with their respective UUIDs.
 
 .. figure:: ../img/provenance/prov_files.svg
-   :alt: A legend indicating how we abbreviate one action's provenance records with single "multiple-files" icon.
+   :alt: A legend indicating how we abbreviate one action's provenance records
+         with a single "multiple-files" icon.
 
 With the exception of the current Result (whose provenance lives in ``provenance/``,
 every Action is captured in a directory titled with the Action's :term:`UUID`. 
@@ -73,9 +84,14 @@ That directory contains:
 
 - ``VERSION``: :ref:`identifying-an-archive`
 - ``metadata.yaml``: :ref:`metadata-yaml`
-- ``citations.bib``: all citations related to the run Action, in `bibtex format <https://www.bibtex.com/g/bibtex-format/>`_. (This includes "passthrough" citations like those registered to transformers, regardless of the plugin where they are registered.)
-- ``action/action.yaml``: a YAML description of the Action and its environment. The good stuff!
-- [optional] ``action/metadata.tsv`` or other data files: data captured to provide additional Action context
+- ``citations.bib``: all citations related to the run Action, in
+  `bibtex format <https://www.bibtex.com/g/bibtex-format/>`_.
+  (This includes "passthrough" citations like those registered to transformers,
+  regardless of the plugin where they are registered.)
+- ``action/action.yaml``: a YAML description of the Action and its environment.
+  The good stuff!
+- [optional] ``action/metadata.tsv`` or other data files:
+  data captured to provide additional Action context
 
 The ``action.yaml`` file
 ````````````````````````
@@ -85,7 +101,8 @@ These files are broken into three top-level sections, in this order:
 
 - execution: the Action ID and runtime of the Action that created this Result
 - action: Action type, plugin, action, inputs, parameters, etc.
-- environment: a non-comprehensive description of the system and QIIME environment where this action was executed
+- environment: a non-comprehensive description of the system and
+  the QIIME environment where this action was executed
 
 The specific example shown below is avaiable for your perusal at 
 `q2view <https://view.qiime2.org/provenance/?src=https%3A%2F%2Fdocs.qiime2.org%2F2021.4%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted_unifrac_emperor.qzv>`__.
@@ -105,8 +122,10 @@ High-level information about this action and its run time.
           end: 2021-04-21T14:42:21.080381-07:00
           duration: 4 seconds, and 610383 microseconds
 
-- Datetimes are formatted as `ISO 8601 timestamps <https://docs.python.org/3/library/datetime.html#datetime.datetime.isoformat>`_.
-- The ``uuid`` field captured here is a UUID V4 *representing this Action*, and *not the Result it produced*.
+- Datetimes are formatted as
+  `ISO 8601 timestamps <https://docs.python.org/3/library/datetime.html#datetime.datetime.isoformat>`_.
+- The ``uuid`` field captured here is a UUID V4 *representing this Action*,
+  and *not the Result it produced*.
 
 .. admonition:: Maintainer Note
    :class: maintainer-note
@@ -127,8 +146,11 @@ High-level information about this action and its run time.
    The ``unweighted_unifrac_emperor.qza`` described below will have have three different IDs:
 
    - The Result UUID, in ``metadata.yaml`` is unique to this Result
-   - The Action UUID, in ``action.yaml`` ``execution`` is unique to this Pipeline's current execution, and present in all pipeline Actions that occurred during this execution. (i.e. all Results from one run of ``core-metrics-phylogenetic`` share this ID)
-   - The ``alias-of`` UUID, in ``action.yaml`` ``action`` is unique to the specific Action, run by this Pipeline, which generated this Result
+   - The Action UUID, in ``action.yaml`` ``execution`` is unique to this Pipeline's current execution,
+     and present in all pipeline Actions that occurred during this execution.
+     (i.e. all Results from one run of ``core-metrics-phylogenetic`` share this ID)
+   - The ``alias-of`` UUID, in ``action.yaml`` ``action`` is unique to the specific Action
+     run by this Pipeline, which generated this Result
 
    We chose to use `v4 UUIDs <https://docs.python.org/3/library/uuid.html>`_ for our unique IDs,
    but there is nothing special about them that couldn't be handled by a different unique identifier scheme.
@@ -156,12 +178,21 @@ Details about the action, including action and plugin names, inputs and paramete
       output-name: unweighted_unifrac_emperor
       alias-of: 2adb9f00-a692-411d-8dd3-a6d07fc80a01
 
-- The type field describes the *type of the Action*: a :term:`Method`, :term:`Visualizer`, or :term:`Pipeline`.
-- The plugin field describes the plugin which registered the Action, details about which can be found in ``action.yaml``'s ``environment:plugins`` section. ``!ref`` is a custom YAML tag defined `here <https://github.com/qiime2/qiime2/blob/6d8932eda130d4a9356f977fece2e252c135d0b9/qiime2/core/archive/provenance.py#L84>`_, Generally, these custom tags provide a way to express a structure not easily described by basic YAML.
-- Inputs lists the registered names of all :term:`inputs<Input>` to the Action, as well as the UUIDs of the passed inputs. Note the distinction between inputs and parameters.
+- The type field describes the *type of the Action*:
+  a :term:`Method`, :term:`Visualizer`, or :term:`Pipeline`.
+- The plugin field describes the plugin which registered the Action,
+  details about which can be found in ``action.yaml``'s ``environment:plugins`` section.
+  ``!ref`` is a custom YAML tag defined
+  `here <https://github.com/qiime2/qiime2/blob/6d8932eda130d4a9356f977fece2e252c135d0b9/qiime2/core/archive/provenance.py#L84>`_,
+  Generally, these custom tags provide a way to express a structure not easily described by basic YAML.
+- Inputs lists the registered names of all :term:`inputs<Input>` to the Action,
+  as well as the UUIDs of the passed inputs.
+  Note the distinction between inputs and parameters.
 - Parameters lists registered parameter names, and the user-passed (or selected default) values.
 - ``output-name`` is the user-passed name of the file written by this Action.
-- ``alias-of``: an optional field, present if the Action was run as part of a QIIME 2 :term:`Pipeline`, representing the *actual* Action UUID rather than the Pipeline Alias. See maintainer note above for details.
+- ``alias-of``: an optional field, present if the Action was run as part of a QIIME 2 :term:`Pipeline`,
+  representing the *actual* Action UUID rather than the Pipeline Alias.
+  See maintainer note above for details.
 
 
 The environment block
@@ -174,7 +205,9 @@ For this reason, per-Action logging of system characteristics is useful.
 - ``python``: python version details, as captured by ``sys.version``
 - ``framework``: details about the QIIME 2 version used to perform this Action
 - ``plugin``: the QIIME 2 plugin, its version, and registered source web site
-- ``python-packages``: package names and version numbers for all packages in the global ``working_set`` of the active Python distribution, as collected by `pkg_resources <https://setuptools.readthedocs.io/en/latest/pkg_resources.html#workingset-objects>`_.
+- ``python-packages``: package names and version numbers for all packages in the global ``working_set``
+  of the active Python distribution, as collected by
+  `pkg_resources <https://setuptools.readthedocs.io/en/latest/pkg_resources.html#workingset-objects>`_.
 
 .. admonition:: Maintainer Note
    :class: maintainer-note
