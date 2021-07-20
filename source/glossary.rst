@@ -16,7 +16,7 @@ it without the accompanying context provided by the rest of this documentation.
      that directory.
 
    Artifact
-     A QIIME 2 :term:`Result` that countains data to operate on.
+     A QIIME 2 :term:`Result` that contains data to operate on.
 
    Deployment
      An installation of QIIME 2 as well as zero-or-more :term:`interfaces
