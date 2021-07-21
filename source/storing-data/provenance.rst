@@ -11,15 +11,15 @@ performed" as "provenance".
 
 The notion of a QIIME 2 :term:`Result` is central here. Whenever an
 :term:`Action` is performed on some data with QIIME 2, the framework
-captures relevant metadata about the action and environment and stores it in
-the Action's Result. When/if that Result is saved as an :term:`Archive`, the
-captured provenance data is stored within the Archive as well.
+captures relevant metadata about the action and environment as a :term:`Result`,
+backed by an :term:`Archive`. If that Result is saved as a ``.qza`` or ``.qzv``,
+the captured provenance data persists within that zip archive.
 :ref:`provenance-structure` contains a detailed discussion of the
 file structure which holds provenance metadata.
 
 .. note::
-   *When* Results are saved as Archives is interface-defined.
-   Results are saved automatically by ``q2cli``, every time a user runs a command.
+   *When and if* Results are saved as ``.qza`` or ``.qzv`` zip archives is interface-defined.
+   For example, results are saved automatically by ``q2cli`` every time a user runs a command.
    They must be saved manually by users of the `Artifact API <https://docs.qiime2.org/2021.4/interfaces/artifact-api/>`_.
    This allows API uses to reduce I/O, and keeps things simpler for CLI users.
 
@@ -56,8 +56,8 @@ unique history.
 What Provenance Data is Captured?
 ---------------------------------
 
-In order to focus on provenance data, we will consider a relatively simple QIIME 2
-example Archive structure, with limited non-provenance content. Below the
+In order to focus on provenance data, we will consider a relatively simple example
+QIIME 2 Archive structure, with limited non-provenance content. Below the
 outer :term:`UUID` directory, this :term:`Artifact` holds the data it
 produced in a ``data`` directory (:ref:`data-goes-in-data`), and a few "clerical"
 files treated at greater length in :doc:`/storing-data/archive`.
