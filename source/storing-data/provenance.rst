@@ -48,7 +48,7 @@ Among the benefits of this model are:
 
 - Analyses are *fully* reproducible.
 - Analyses self-document, reducing the need for investigator notetaking.
-  For example, `q2view <https://view.qiime2.org/>`_ produces directed provenance graphs.
+  For example, q2view produces `directed provenance graphs. <https://view.qiime2.org/provenance/?src=https%3A%2F%2Fdocs.qiime2.org%2F2021.4%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted_unifrac_emperor.qzv>`__
   QIIME 2 Artifacts bring their citations with them.
   Methods-section text could theoretically be generated
   from a collection of QIIME 2 Artifacts.
