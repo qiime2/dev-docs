@@ -113,10 +113,10 @@ The ``action.yaml`` file
 Here, we'll do a deep dive into the contents of a sample visualization's ``action.yaml``.
 These files are broken into three top-level sections, in this order:
 
-- execution: the Action ID and runtime of the Action that created this Result
+- execution: the Execution ID and runtime of the Action that created this Result
 - action: Action type, plugin, action, inputs, parameters, etc.
 - environment: a non-comprehensive description of the system and
-  the QIIME environment where this action was executed
+  the QIIME 2 environment where this action was executed
 
 The specific example shown below is avaiable for your perusal at 
 `q2view <https://view.qiime2.org/provenance/?src=https%3A%2F%2Fdocs.qiime2.org%2F2021.4%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted_unifrac_emperor.qzv>`__.
@@ -141,30 +141,28 @@ High-level information about this action and its run time.
 - The ``uuid`` field captured here is a UUID V4 *representing this Action*,
   and *not the Result it produced*.
 
-.. admonition:: Maintainer Note
-   :class: maintainer-note
+.. note:: **Unique IDs**
 
-   There are many elements of provenance that require unique IDs
-   (to help us keep track of different aspects of an analysis).
-   Maintaining separate Result and Action IDs
-   (e.g. the ``uuid`` s in ``metadata.yaml`` and ``action.yaml``)
-   allows us to manage the common case where one Action produces multiple Results.
+   There are many elements of provenance that require unique IDs,
+   to help us keep track of different aspects of an analysis.
+   All Archives with provenance have separate Result and Execution IDs
+   (the ``uuid`` s in ``metadata.yaml`` and ``action.yaml`` respectively).
+   This allows us to manage the common case where one Action produces multiple Results.
 
-   An added layer of complexity:
-   for Pipelines, the ``uuid`` in the execution block above is actually an alias UUID shared by all Pipeline Actions.
-   The ``alias-of`` UUID shown in the action block below describes the specific Action in that case.
-   This allows tools like ``q2view`` to nest all actions run by a single command within a single block.
+   Artifacts produced by QIIME 2 Pipelines have an additional ``alias-of`` uuid,
+   allowing interfaces to display provenance in terms of Pipelines
+   (rather than displaying all of the pipeline's "nested" inner Actions).
+   Terminal pipeline Results are redundant "aliases" of "real" Results nested within the pipeline.
+   The ``alias-of`` uuid in the terminal/"alias" Result points to this "real" inner result.
 
-   For example:
-
-   The ``unweighted_unifrac_emperor.qza`` described below will have have three different IDs:
+   The ``unweighted_unifrac_emperor.qzv`` described here has three different IDs:
 
    - The Result UUID, in ``metadata.yaml`` is unique to this Result
-   - The Action UUID, in ``action.yaml`` ``execution`` is unique to this Pipeline's current execution,
-     and present in all pipeline Actions that occurred during this execution.
-     (i.e. all Results from one run of ``core-metrics-phylogenetic`` share this ID)
-   - The ``alias-of`` UUID, in ``action.yaml`` ``action`` is unique to the specific Action
-     run by this Pipeline, which generated this Result
+   - The Execution UUID, in ``action.yaml`` ``execution`` is unique to this Pipeline's current execution,
+     and present in all pipeline Archives produced during this execution.
+     All Results from a given run of ``core-metrics-phylogenetic`` share this ID.
+   - The ``alias-of`` UUID, in ``action.yaml`` ``action`` is the Result UUID of the
+     "inner" Visualization created during pipeline execution that is aliased by this Result
 
    We chose to use `v4 UUIDs <https://docs.python.org/3/library/uuid.html>`_ for our unique IDs,
    but there is nothing special about them that couldn't be handled by a different unique identifier scheme.
@@ -206,8 +204,8 @@ Details about the action, including action and plugin names, inputs and paramete
 - ``output-name`` is the name assigned to this Action's output *at registration*,
   which can be useful when determining which of an Action's multiple outputs a file represents.
   (This does not capture the user-passed filename.)
-- ``alias-of``: an optional field, present if the Action was run as part of a QIIME 2 :term:`Pipeline`,
-  representing the *actual* Action UUID rather than the Pipeline Alias.
+- ``alias-of``: an optional field, present if the Action is the terminal result of a QIIME 2 :term:`Pipeline`,
+  this value is the UUID of the "inner" result which this pipeline result aliases.
   See maintainer note above for details.
 
 
