@@ -141,6 +141,8 @@ High-level information about this action and its run time.
 - The ``uuid`` field captured here is a UUID V4 *representing this Action*,
   and *not the Result it produced*.
 
+.. _`Unique IDs`:
+
 .. note:: **Unique IDs**
 
    There are many elements of provenance that require unique IDs,
@@ -152,8 +154,13 @@ High-level information about this action and its run time.
    Artifacts produced by QIIME 2 Pipelines have an additional ``alias-of`` uuid,
    allowing interfaces to display provenance in terms of Pipelines
    (rather than displaying all of the pipeline's "nested" inner Actions).
+   This enables a view of provenance that better reflects the user experience of pipelines,
+   displaying them as single blocks,
+   rather than as the full chain of inner Actions which the user generally does not specify directly.
+
    Terminal pipeline Results are redundant "aliases" of "real" Results nested within the pipeline.
    The ``alias-of`` uuid in the terminal/"alias" Result points to this "real" inner result.
+   Details in `Pipeline Provenance`_.
 
    The ``unweighted_unifrac_emperor.qzv`` described here has three different IDs:
 
@@ -259,3 +266,104 @@ For this reason, per-Action logging of system characteristics is useful.
           ...
 
           alabaster: 0.7.12
+
+
+Pipeline Provenance
+-------------------
+
+As discussed in :ref:`the note <Unique IDs>` above, :term:`Pipeline` provenance is more complex than
+the provenance of other Actions.
+Most Pipelines wrap one or more :term:`Methods<Method>` or :term:`Visualizers<Visualizer>`.
+Pipeline users are often concerned primarily with ease of use and interpretation,
+rather than the fine-grained details of the Actions "nested" within the Pipeline.
+With this in mind, interfaces may choose to abstract away nested Actions,
+displaying only the Pipeline used to run those Actions.
+
+q2view works in this way, and the simple graph shown in our `provenance example <https://view.qiime2.org/provenance/?src=https%3A%2F%2Fdocs.qiime2.org%2F2021.4%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted_unifrac_emperor.qzv>`__
+is the result of hiding ten nested Actions from view behind the two pipelines that use them.
+The user sees only five of the fifteen captured Results, each of which they ran themselves.
+Because the bottom two are pipelines, this view simply but completely represents the provenance
+of the Archive being viewed.
+
+This is possible because QIIME 2 captures redundant "terminal" pipeline outputs
+that alias the "real" pipeline outputs nested in provenance.
+These terminal outputs have the same :term:`Semantic Type` as the Results they alias,
+but capture provenance details at the scope of the Pipeline,
+rather than at the scope of the Method of Visualizer they alias.
+
+Pipeline provenance by example
+```````````````````````````````
+
+This Artifact's root-level ``metadata.yaml`` tells us it's a Visualization:
+
+.. code-block:: YAML
+
+   uuid: 87058ae3-e168-4e2f-a416-81b130d538c3
+   type: Visualization
+   format: null
+
+
+The root-level ``action.yaml`` file tells us that this is the (terminal) result of a Pipeline
+(and not of a Visualizer).
+The inputs are the UUIDs passed by the user to the Pipeline.
+The parameters, too, are linked to the Pipeline, and not to the nested Visualizer.
+Finally, we see the ``alias-of`` key,
+whose value is the UUID of the nested "real" Visualization aliased by this terminal output.
+
+.. code-block:: YAML
+
+   action:
+       type: pipeline
+       plugin: !ref 'environment:plugins:diversity'
+       action: core_metrics_phylogenetic
+       inputs:
+       -   table: 34b07e56-27a5-4f03-ae57-ff427b50aaa1
+       -   phylogeny: a10d5d44-62c7-4322-afbe-c9811bcaa3e6
+       parameters:
+       -   sampling_depth: 1103
+       -   metadata: !metadata 'metadata.tsv'
+       -   n_jobs_or_threads: 1
+       output-name: unweighted_unifrac_emperor
+       alias-of: 2adb9f00-a692-411d-8dd3-a6d07fc80a01
+
+We can use this alias-of URL to drill down into ``provenance/artifacts/2adb9.../``
+to find the ``action.yaml`` of the aliased Visualization. Here,
+The action type is a ``visualizer``, and the inputs and parameters are those
+passed to the *Visualizer* within the Pipeline.
+Notably, neither the Visualizer node shown below, nor its PCoA input,
+are visible in the q2view graph linked above,
+because they are neither inputs to nor terminal outputs from their pipeline.
+
+.. code-block:: YAML
+
+   action:
+       type: visualizer
+       plugin: !ref 'environment:plugins:emperor'
+       action: plot
+       inputs:
+       -   pcoa: 93224813-ed5d-42b5-a983-cd4015db31da
+       parameters:
+       -   metadata: !metadata 'metadata.tsv'
+       -   custom_axes: null
+       -   ignore_missing_samples: false
+       -   ignore_pcoa_features: false
+       output-name: visualization
+
+
+
+Pipeline Provenance Takeaways
+`````````````````````````````
+
+- All Results used in producing an Archive are captured in that Archive's provenance,
+  even "inner" pipeline results. Each Result has its own normal provenance directory.
+- "Terminal" pipeline outputs are redundant aliases, mirroring inner Actions.
+- Different terminal outputs from the same pipeline will (generally) have different alias-of's,
+  *because they are aliasing different inner nodes*.
+  E.g a Visualization aliases a Visualization, while the terminal PCoA results point to the inner PCoA results,
+  and these inner Results have different UUIDs.
+- Pipelines may wrap pipelines, so an arbitrary number of levels of nesting and aliasing are possible.
+  Tools that aim to work with nested provenance will likely have to traverse from the terminal node.
+  The traversal algorithm can be found on `github <https://github.com/qiime2/dev-docs/pull/44#discussion_r673329452>`__.
+- Inner "nested" pipeline Results are normal Results, and may be used as inputs to other nested Actions,
+  or may be aliased by terminal pipeline results.
+  The only "special" thing happening with pipelines is the aliasing of terminal pipeline Results.
