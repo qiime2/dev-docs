@@ -176,7 +176,7 @@ A new custom ``!cite '<citation key>'`` tag is use to support this in YAML.
 A ``transformers`` section is added between the ``action`` and ``environment`` sections of ``action.yaml``.
 Because Pipelines do not use transformers,
 transformers will be recorded only for :term:`Methods <Method>`, :term:`Visualizers <Visualizer>`,
-and when importing data with ``qiime tools import``.
+and when importing data (such as with ``qiime tools import``).
 It looks like this:
 
 .. code-block:: YAML
