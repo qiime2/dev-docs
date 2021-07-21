@@ -17,6 +17,20 @@ the captured provenance data persists within that zip archive.
 :ref:`provenance-structure` contains a detailed discussion of the
 file structure which holds provenance metadata.
 
+This decentralized approach to provenance capture,
+in which every QIIME 2 Result's provenance is packaged with the Result itself,
+prevents accidental mis-association of Results with inaccurate or outdated provenance records.
+It is natural for centralized approaches to provenance tracking,
+like scripts or lab notebooks to require changes and updates during investigation.
+In contrast, the provenance captured within a QIIME 2 Archive will always describe
+the way that Archive was actually created.
+
+This approach is a form of *retrospective* provenance capture.
+Unlike *prospective* provenance,
+in which a script, work plan, or notes are used to document "what will be done",
+retrospective provenance documents what *actually occurred*,
+supporting a more complete and accurate recording of an analysis.
+
 .. note::
    *When and if* Results are saved as ``.qza`` or ``.qzv`` zip archives is interface-defined.
    For example, results are saved automatically by ``q2cli`` every time a user runs a command.
