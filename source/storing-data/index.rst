@@ -66,7 +66,7 @@ Alternatively a new format could be invented with new rules
 (though this would make interoperability difficult).
 
 For these reasons, QIIME 2 stores data as a directory structure.
-In particular data such as FASTA or newick will be considered the :term:`Payload <payload>` which is to be delivered to a tool.
+In particular data such as FASTA or newick will be considered the :term:`Payload` which is to be delivered to a tool.
 
 There is a flaw to using directory structures as a way of storing data.
 Moving directory structures is inconvenient as they do not exist as a single file.
@@ -75,7 +75,7 @@ This is exactly what QIIME 2 does.
 ZIP files additionally have the advantage of being incredibly well supported
 by a *wide* array of software.
 Some software manipulates ZIP files directly
-(often built into an opertating system's graphical interface)
+(often built into an operating system's graphical interface)
 and others use ZIP files as a backing structure
 (such as ``.docx`` and ``.epub``).
 Because it is so widely used, maintaining the long-term accessibility of data is much more likely.
@@ -163,12 +163,24 @@ directory formats in QIIME 2:
    formats
 
 
-Provenance
-----------
-TODO:
+Provenance Metadata
+-------------------
 
+Inside of each Archive, QIIME 2 stores metadata about how that archive was
+generated. We call this "provenance". Notably, each Archive contains
+provenance information about *every* prior QIIME 2 :term:`Action` involved
+in its creation, from `import` to the most recent step in the analysis.
+
+This provenance information includes type and format information, system and
+environment details, the Actions performed and all parameters passed to them,
+and all registered citations.
+
+Learn More About Provenance
+```````````````````````````
 .. toctree::
    :maxdepth: 2
 
    provenance
 
+For a detailed discussion of the file structure which holds provenance metadata,
+see :ref:`provenance-structure`.

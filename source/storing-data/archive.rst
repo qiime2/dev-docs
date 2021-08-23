@@ -11,6 +11,8 @@ serves as the :term:`identity` of the archive. Additional files and directories
 present in the archive are described below.
 
 
+.. _`metadata-yaml`:
+
 The Most Important File
 -----------------------
 In the root of an :term:`archive` directory,
@@ -31,6 +33,8 @@ It is possible for ``format`` to be set as ``null`` in some cases;
 it means the ``/data/`` directory  (described below) does not have a schema.
 This occurs when the ``type`` is set as ``Visualization`` (representing a :term:`Visualization (Type)`).
 
+.. _data-goes-in-data:
+
 Data Goes In /data/
 -------------------
 Where data is stored, the :term:`payload` of an archive,
@@ -46,6 +50,7 @@ If the archive is an :term:`artifact`,
 then the payload is determined by the :term:`directory format`.
 Additional information about directory formats can be found here: :doc:`formats`.
 
+.. _provenance-structure:
 
 Provenance Goes In /provenance/
 -------------------------------
@@ -95,6 +100,8 @@ possible to read data without extracting the entire contents of the ZIP file
 
    ``qiime2.core.archive.archiver:_ZipArchive`` is the structure responsible for
    managing the contents of a ZIP file (using ``zipfile:ZipFile``).
+
+.. _`identifying-an-archive`:
 
 Rules for identifying an archive
 --------------------------------
