@@ -10,3 +10,4 @@ Plugin tutorials
    first-plugin-tutorial
    conda-tutorial
    updating-plugin
+   usage-examples
