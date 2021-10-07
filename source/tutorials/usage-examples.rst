@@ -3,34 +3,34 @@ Writing Usage Examples for your QIIME 2 plugin
 
 Congratulations! You built a plugin, and now you want people to use it.
 QIIME 2 provides a :doc:`/api-reference/usage/` you can use to give examples of
-how your plugin actions are run.
+how plugin actions should be run.
 It uses `dependency injection <https://en.wikipedia.org/wiki/Dependency_injection>`__
 to generate appropriate usage examples for any interface with a "usage driver".
 You define and register each usage example once,
 and it works with any arbitrary interface automagically.
 
-The driver API is defined by the `Usage class <https://github.com/qiime2/qiime2/blob/8d8d27bc2e0c8c37122eb973195ada70c4812453/qiime2/sdk/usage.py#L530>`__.
+The API is defined by the `Usage class <https://github.com/qiime2/qiime2/blob/8d8d27bc2e0c8c37122eb973195ada70c4812453/qiime2/sdk/usage.py#L530>`__.
 Individual usage drivers implement the underlying behavior of API functions according to their own needs.
-
 For example: all usage drivers have a ``comment`` function which calls ``_comment_`` under the hood.
 A user-facing driver may render the arguments to ``_comment_`` to ``stdout``,
-while a non-user-facing driver (e.g. one used for testing usage examples) may simply ``pass``.
+while a non-user-facing driver that doesn't care about comments
+(e.g. one used for testing usage examples) may simply ``pass``.
 
 The interface that is running your usage examples will inject one or more of its drivers
 into those examples, rendering interface-appropriate results.
 
-In this tutorial, we will:
+**In this tutorial, we will cover:**
 
-0. Write some data factories
-1. Define a usage example
-2. Register your usage example
-3. Test your usage examples
-4. TADA!!!
-5. Advanced features
+* `Data factories for usage examples`_
+* `Defining usage examples`_
+* `Registering usage examples`_
+* `Basking in the glow of success`_
+* `Testing usage examples`_
+* `Advanced features`_
 
 
-Write some data factories
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Data factories for usage examples
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Because some drivers (e.g. the QIIME 2 Library's driver) actually execute these usage examples,
 there is an expectation that we provide real data for them.
@@ -58,16 +58,14 @@ This wil be passed off
                   ['O1', 'O2'],
                   ['S1', 'S2', 'S3']))
 
-Define a basic usage example
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Defining usage examples
+~~~~~~~~~~~~~~~~~~~~~~~
 
-We've created some data. ``ft2_factory`` looks a lot like ``ft1_factory``,
-but you'll have to use your imagination.
-Now we'll define a usage example.
+We've created some data, now we'll define a usage example.
 
 This is a simple python function with a single parameter (``use`` by convention).
 Interfaces pass their drivers to the example through ``use``, as described in the introduction.
-The methods inside of the function are "public" (non-underscore-prefixed) methods
+The methods inside of the function are the "public" (non-underscore-prefixed) methods
 implemented by ``qiime2.sdk.usage.Usage``.
 Full details are available in the :doc:`/api-reference/usage/` reference.
 
@@ -77,6 +75,12 @@ Full details are available in the :doc:`/api-reference/usage/` reference.
     def feature_table_merge_example(use):
         feature_table1 = use.init_data('feature_table1', ft1_factory)
         feature_table2 = use.init_data('feature_table2', ft2_factory)
+
+        # TODO: is tables_list a better name for this?
+        # It seems confusing that we're calling a list of tables "merged",
+        # especially because we're actually merging tables here
+        # Maybe I'm mis-interpreting?
+        # This affects later blocks, and should be adjusted in the plugin
         merged_table = use.init_data_collection('merged_table', list,
                                                 feature_table1, feature_table2)
 
@@ -87,59 +91,145 @@ Full details are available in the :doc:`/api-reference/usage/` reference.
             use.UsageOutputNames(merged_table='merged_table'),
         )
 
-Here, we initialize two feature tables, and then group then in a ``List``,
+Here, we initialize two feature tables, and then group them in a ``List``,
 using ``use.init_data_collection``.
+(``ft2_factory`` looks a lot like the ``ft1_factory`` defined above.
+You'll have to use your imagination on the details.)
 
 We then use a proxy method for invoking an action.
 The action may or may not *actually* be invoked, depending on implementation details in the usage driver.
 You don't have to worry about this.
 ``use.action`` to your heart's content, and let the interfaces handle their own business.
 
-Note that ``UsageInputs`` include QIIME 2 :term:`Inputs<input>`, :term:`metadata`, _and_ parameters.
+Note that ``UsageInputs`` include both QIIME 2 :term:`Inputs<input>` *and* :term:`parameters<parameter>`.
+Metadata must be initialized, but parameters and collections of parameters may be passed directly.
 There are examples of this in the `variadic_input_simple <https://github.com/qiime2/qiime2/blob/8d8d27bc2e0c8c37122eb973195ada70c4812453/qiime2/core/testing/examples.py#L211>`__
 and `identity_with_metadata_column_get_mdc <https://github.com/qiime2/qiime2/blob/8d8d27bc2e0c8c37122eb973195ada70c4812453/qiime2/core/testing/examples.py#L193>`__
 examples in the framework.
 
-Register your usage example
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Registering usage examples
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Test your usage example
-~~~~~~~~~~~~~~~~~~~~~~~
+Like QIIME 2 :term:`Actions<action>`,
+the usage examples we have defined must be registered in order to be used.
 
-TADA!!! Results!
-~~~~~~~~~~~~~~~~
-
-Other details and advanced features
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This registration occurs in ``plugin_setup.py``,
+in the ``register_function`` block for the Action whose usage we are showing.
 
 .. code-block:: python
 
-    # adapted from qiime2.core.testing.examples
-    def variadic_input_simple(use):
-        ints_a = use.init_data('ints_a', ints1_factory)
-        ints_b = use.init_data('ints_b', ints2_factory)
-        ints = use.init_data_collection('ints', list, ints_a, ints_b)
+    # from q2-feature-table/plugin_setup.py
 
-        single_int1 = use.init_data('single_int1', single_int1_factory)
-        single_int2 = use.init_data('single_int2', single_int2_factory)
-        int_set = use.init_data_collection('int_set', set, single_int1,
-                                           single_int2)
+    # we need to import the examples to use them
+    from .examples import (feature_table_merge_example,
+                           feature_table_merge_three_tables_example)
 
-        use.action(
-            use.UsageAction(plugin_id='dummy_plugin',
-                            action_id='variadic_input_method'),
-            use.UsageInputs(ints=ints, int_set=int_set, nums={7, 8, 9}),
-            use.UsageOutputNames(output='out'),
-        )
+    plugin.methods.register_function(
+        function=q2_feature_table.merge,
+        inputs={'tables': List[i_table]},
 
-    def identity_with_metadata_column_get_mdc(use):
-        ints = use.init_data('ints', ints1_factory)
-        md = use.init_metadata('md', md1_factory)
-        mdc = use.get_metadata_column('a', md)
+        # Skipping ahead to the 'examples' keyword argument
+        # Everything else here should look familiar
+        ...
 
-    use.action(
-        use.UsageAction(plugin_id='dummy_plugin',
-                        action_id='identity_with_metadata_column'),
-        use.UsageInputs(ints=ints, metadata=mdc),
-        use.UsageOutputNames(out='out'),
+        examples={'basic': feature_table_merge_example,
+                  'three_tables': feature_table_merge_three_tables_example},
     )
+
+The keys in the ``examples`` dictionary serve as unique identifiers for the examples themselves.
+Some drivers (e.g. q2cli) use them to label rendered examples.
+
+Basking in the glow of success
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Now that you've created and registered a usage example,
+let's confirm that it works as expected.
+We'll pretend that we just wrote the ``q2-feature-table`` usage examples above.
+
+1. Make sure your changes are present in the conda environment.
+   ``q2-feature-table`` is already installed in my QIIME 2 environment,
+   but the version in the environment came from the latest release, not my code.
+   To include my current changes, I can reinstall by running ``pip install -e .``
+   from within the repository's root directory.
+2. Confirm my environment is using the right version.
+   Before re-installing, I called ``conda list | grep q2-feature-table``
+   to check what version of ``q2-feature-table`` was installed.
+   Re-running that command now, I see the version has changed from
+   ``2021.10.0.dev0`` to ``q2-feature-table-2018.8.0.dev0+86.g221cdd3.dirty``,
+   indicating that my conda environment knows about the uncommitted changes I made.
+3. I'll check things out first with ``q2cli``, so I need to refresh the cache with
+   ``qiime dev refresh-cache``.
+4. Finally, I run the specific version of ``qiime <plugin name> <action> --examples``.
+
+.. code-block:: bash
+
+    >>> qiime feature-table merge --examples
+    # ### example: basic ###
+    qiime feature-table merge \
+        --i-tables feature_table1.qza \
+        --i-tables feature_table2.qza \
+        --o-merged-table merged_table.qza
+    # ### example: three tables ###
+    qiime feature-table merge \
+        --i-tables feature_table1.qza \
+        --i-tables feature_table2.qza \
+        --i-tables feature_table3.qza \
+        --p-overlap-method sum \
+        --o-merged-table merged_table.qza
+
+Note that the unique identifiers we created during example definition and registration
+(e.g. 'feature_table1.qza', 'basic' and 'three tables', and 'merged_table')
+show up in our rendered example.
+Note also that ``q2cli``'s usage driver was clever enough to format the commands for ``q2cli``,
+including inferring that this action would produce a ``.qza`` file named ``merged_table``.
+Snazzy!
+
+If we wanted to see what the Artifact API does with our examples,
+we would confirm that our conda environment was pointed at our code (as above).
+The cache is a q2cli thing, so we don't need to refresh anything,
+and we would render the examples manually.
+
+.. code-block:: python
+
+    >>> from qiime2.plugins import feature_table, ArtifactAPIUsage
+
+    >>> # Get the examples
+    >>> examples = feature_table.methods.merge.examples
+
+    >>> for example in examples.values():
+    >>>     # Create a usage driver instance
+    >>>     use = ArtifactAPIUsage()
+    >>>     # Inject the usage driver into the example, returning None
+    >>>     example(use)
+    >>>     # display the rendered example
+    >>>     print(use.render())
+
+    from qiime2.plugins.feature_table.methods import merge
+
+    merged_table, = merge(
+        tables=[feature_table1, feature_table2],
+    )
+
+    from qiime2.plugins.feature_table.methods import merge
+
+    merged_table, = merge(
+        tables=[feature_table1, feature_table2, feature_table3],
+        overlap_method=sum,
+    )
+
+The outcome here shows how we might run the ``merge`` command in the Artifact API,
+even including the correct import statement. WOOHOOO it works! you did a thing!
+
+Testing usage examples
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. TODO: finish this section
+
+Coming soon, please stay tuned!
+
+
+Advanced features
+~~~~~~~~~~~~~~~~~
+
+.. TODO: finish this section
+
+Coming soon, please stay tuned!
