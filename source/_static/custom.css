@@ -72,3 +72,26 @@ ul > li li, ol > li li {
     top: 0px;
   }
 }
+
+.sig-name {
+  font-size: 1em;
+}
+
+dl.class > dd:not(:empty),
+dl.exception > dd:not(:empty),
+dl.function > dd:not(:empty),
+dl.data > dd:not(:empty) {
+  border-left: 1px solid rgb(177, 180, 182);
+  padding: 5px;
+  padding-left: 30px;
+  margin-left: 0px;
+  margin-bottom: 3em;
+}
+
+dl.field-list {
+  border-left: 1px solid rgb(177, 180, 182);
+}
+
+dl {
+  margin-bottom: 1.5em;
+}
