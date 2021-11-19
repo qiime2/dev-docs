@@ -6,9 +6,14 @@ Plugin Definition and Registration
 
 .. automodule:: qiime2.plugin
    :members:
-   :exclude-members: TextFileFormat, BinaryFileFormat, DirectoryFormat, UsageAction, UsageInputs, UsageOutputNames
+   :exclude-members: TextFileFormat, BinaryFileFormat, DirectoryFormat, UsageAction, UsageInputs, UsageOutputNames, Int, Bool, Float, Str, List, Set, Metadata, MetadataColumn, Categorical, Numeric, Properties, Range, Choices, Visualization, SemanticType, Start, End, TypeMap, TypeMatch, Citations, ValidationError
    :undoc-members:
    :inherited-members:
+
+   .. autoclass:: qiime2.plugin.Citations
+      :members:
+      :undoc-members:
+      :noindex:
 
 
 Semantic Types (and related objects)
@@ -26,9 +31,13 @@ Semantic Types (and related objects)
 .. autodata:: Numeric
 .. autodata:: Properties
 .. autodata:: Range
+.. autodata:: Start
+.. autodata:: End
 .. autodata:: Choices
 .. autodata:: Visualization
 .. autodata:: SemanticType
+.. autodata:: TypeMatch
+.. autodata:: TypeMap
 
 
 Record Containers
@@ -48,3 +57,4 @@ Formats
    :members:
    :undoc-members:
    :inherited-members:
+   :exclude-members: ValidationError

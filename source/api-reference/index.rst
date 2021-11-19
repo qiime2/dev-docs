@@ -2,10 +2,10 @@ API Reference
 =============
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    plugin
    metadata
+   usage/index
    sdk
    misc
-   usage
