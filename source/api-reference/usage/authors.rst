@@ -67,7 +67,7 @@ Results and Assertions
 ~~~~~~~~~~~~~~~~~~~~~~
 The outputs of :meth:`qiime2.sdk.usage.Usage.action` are stored in a vanity
 class :class:`qiime2.sdk.usage.UsageOutputs` which contain
-:class:`qiime2.sdk.usage.UsageVariable`'s. Assertions are preformed on these
+:class:`qiime2.sdk.usage.UsageVariable`'s. Assertions are performed on these
 output variables.
 
 .. autoclass:: UsageOutputs
