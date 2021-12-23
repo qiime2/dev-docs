@@ -32,6 +32,8 @@ These methods demonstrate how to manipulate metadata.
 .. automethod:: Usage.view_as_metadata
 .. automethod:: Usage.merge_metadata
 
+.. _usage-annotations:
+
 Annotations
 -----------
 These methods do not return anything, but may be displayed in other ways.
@@ -62,6 +64,7 @@ interface driver.
    :special-members: __init__
 
 
+.. _results-and-assertions:
 
 Results and Assertions
 ~~~~~~~~~~~~~~~~~~~~~~
