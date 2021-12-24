@@ -67,9 +67,10 @@ Defining usage examples
 We've created some data, now we'll define a usage example.
 This is a simple python function with a single parameter (``use`` by convention).
 Interfaces pass their drivers to the example through ``use`` as described in the introduction.
-# TODO: Still true?
-The methods inside of the function are the "public" (non-underscore-prefixed) methods
-implemented by ``qiime2.sdk.usage.Usage``.
+The methods called inside of the function are "public" (non-underscore-prefixed) methods
+defined in ``qiime2.sdk.usage.Usage``.
+This "Usage API" is common to all Usage drivers,
+which reimplement the methods to meet their own needs.
 Full details are available in the :doc:`/api-reference/usage/index` reference.
 
 .. code-block:: python
@@ -79,8 +80,6 @@ Full details are available in the :doc:`/api-reference/usage/index` reference.
         feature_table1 = use.init_artifact('feature_table1', ft1_factory)
         feature_table2 = use.init_artifact('feature_table2', ft2_factory)
 
-        # NOTE: we unpack ``merged_table`` from the UsageOutputs returned by ``use.action``
-        # TODO: WHY?
         merged_table, = use.action(
             use.UsageAction(plugin_id='feature_table',
                             action_id='merge'),
@@ -100,7 +99,7 @@ you don't have to worry about this.
 ``use.action`` to your heart's content, and let the interfaces handle their own business.
 
 Note that ``UsageInputs`` include both QIIME 2 :term:`Inputs<input>` *and* :term:`parameters<parameter>`.
-Metadata must be initialized, but parameters and collections of parameters may be passed directly.
+Metadata must be initialized, but primitive parameters (and collections of parameters) may be passed directly.
 There are examples of this in the `identity_with_metadata_column_get_mdc <https://github.com/qiime2/qiime2/blob/39ac17da01e22057ff38197eb23ad6cca48f4c2e/qiime2/core/testing/examples.py#L178>`__
 and `variadic_input_simple <https://github.com/qiime2/qiime2/blob/39ac17da01e22057ff38197eb23ad6cca48f4c2e/qiime2/core/testing/examples.py#L191>`__
 examples in the framework.
@@ -159,6 +158,7 @@ Here, we assert that our results are of the expected type.
     def observed_features_example(use):
         ft = use.init_artifact('feature_table', ft1_factory)
         # NOTE: we must unpack UsageVariables from the returned UsageOutputs
+        # if we wish to use their assertion methods.
         a_div_vector, = use.action(
             use.UsageAction(plugin_id='diversity_lib',
                             action_id='observed_features'),
