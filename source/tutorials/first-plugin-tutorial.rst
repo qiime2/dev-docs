@@ -1,5 +1,5 @@
-Developing a plug-in for dummies
-################################
+Developing a plugin for dummies
+###############################
 
 This tutorial is essentially a cleaned-up version of the notes I
 took as I was developing my first plugin, `q2-perc-norm <https://github.com/cduvallet/q2-perc-norm>`__.
