@@ -4,11 +4,6 @@ Testing Plugins
 .. contents::
    :local:
 
-.. toctree::
-   :maxdepth: 2
-
-   busywork
-
 Testing a QIIME 2 :term:`plugin <Plugin>` is a snap with :class:`TestPluginBase
 <qiime2.plugin.testing.TestPluginBase>`!
 
