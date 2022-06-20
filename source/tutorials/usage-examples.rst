@@ -35,7 +35,7 @@ and one which allows interface developers to write the usage drivers that make t
 Data factories for usage examples
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Because some drivers (e.g. the QIIME 2 Library's driver) actually execute these usage examples,
+Because some drivers actually execute these usage examples,
 there is an expectation that we provide real data for them.
 Simple assignment is not possible.
 Inputs and Metadata must be created by a factory function.
@@ -213,10 +213,9 @@ We'll pretend that we just wrote the ``q2-feature-table`` usage examples above.
    To include my current changes, I can reinstall by running ``pip install -e .``
    from within the repository's root directory.
 2. Confirm my environment is using the right version.
-   Before re-installing, I called ``conda list | grep q2-feature-table``
+   Before re-installing, I called ``conda list q2-feature-table``
    to check what version of ``q2-feature-table`` was installed.
-   Re-running that command now, I see the version has changed from
-   ``2021.10.0.dev0`` to ``q2-feature-table-2018.8.0.dev0+86.g221cdd3``,
+   Re-running that command now, I see the version has changed,
    indicating that my conda environment knows about the changes I made.
 3. I'll check things out first with ``q2cli``, so I need to refresh the cache with
    ``qiime dev refresh-cache``.
@@ -270,6 +269,10 @@ and we would render the examples manually.
     >>>     # display the rendered example
     >>>     print(use.render())
 
+Which renders the following:
+
+.. code-block:: python
+
     from qiime2.plugins.feature_table.methods import merge
 
     merged_table, = merge(
@@ -280,7 +283,7 @@ and we would render the examples manually.
 
     merged_table, = merge(
         tables=[feature_table1, feature_table2, feature_table3],
-        overlap_method=sum,
+        overlap_method='sum',
     )
 
 The outcome here shows how we might run the ``merge`` command in the Artifact API,
