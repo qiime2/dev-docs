@@ -32,6 +32,8 @@ These methods demonstrate how to manipulate metadata.
 .. automethod:: Usage.view_as_metadata
 .. automethod:: Usage.merge_metadata
 
+.. _usage-annotations:
+
 Annotations
 -----------
 These methods do not return anything, but may be displayed in other ways.
@@ -62,12 +64,13 @@ interface driver.
    :special-members: __init__
 
 
+.. _results-and-assertions:
 
 Results and Assertions
 ~~~~~~~~~~~~~~~~~~~~~~
 The outputs of :meth:`qiime2.sdk.usage.Usage.action` are stored in a vanity
 class :class:`qiime2.sdk.usage.UsageOutputs` which contain
-:class:`qiime2.sdk.usage.UsageVariable`'s. Assertions are preformed on these
+:class:`qiime2.sdk.usage.UsageVariable`'s. Assertions are performed on these
 output variables.
 
 .. autoclass:: UsageOutputs
