@@ -8,6 +8,7 @@ Publishing a Plugin on Library
    :maxdepth: 2
 
    tutorial
+   infrastructure
 
 The fastest and easiest way to publish a QIIME 2 plugin is by using `Library`_,
 which will handle building and deploying new versions of your QIIME 2 plugin.
