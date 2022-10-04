@@ -7,5 +7,6 @@ API Reference
    plugin
    metadata
    usage/index
+   cache/index
    sdk
    misc
