@@ -13,7 +13,11 @@ The Cache Class
    .. automethod:: __exit__
    .. automethod:: is_cache
    .. automethod:: create_pool
+   .. automethod:: garbage_collection
    .. automethod:: save
    .. automethod:: load
    .. automethod:: remove
-   .. automethod:: garbage_collection
+   .. automethod:: get_data
+   .. automethod:: get_keys
+   .. automethod:: get_pools
+   .. automethod:: get_processes

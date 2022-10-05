@@ -9,3 +9,4 @@ Pool
    .. automethod:: save
    .. automethod:: load
    .. automethod:: remove
+   .. automethod:: get_data
