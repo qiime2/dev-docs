@@ -25,12 +25,12 @@ Quickstart
     .. code-block:: bash
 
         conda-build recipe/
-           -c https://conda.anaconda.org/qiime2/label/r2019.1
+           -c https://conda.anaconda.org/qiime2/label/r2022.8
            -c https://conda.anaconda.org/conda-forge
            -c https://conda.anaconda.org/bioconda
            -c defaults
            --override-channels
-           --python 3.6
+           --python 3.8
 
 4. Install your package locally.
 
@@ -224,12 +224,12 @@ To build a qiime2 plugin, the command you have to run is actually:
 ::
 
     conda-build recipe/
-       -c https://conda.anaconda.org/qiime2/label/r2019.1
+       -c https://conda.anaconda.org/qiime2/label/r2022.8
        -c https://conda.anaconda.org/conda-forge
        -c https://conda.anaconda.org/bioconda
        -c defaults
        --override-channels
-       --python 3.6
+       --python 3.8
 
 Install your package
 ~~~~~~~~~~~~~~~~~~~~
@@ -356,7 +356,7 @@ documentation <https://conda.io/docs/user-guide/tutorials/build-pkgs-skeleton.ht
 
 .. code:: bash
 
-    anaconda upload /Users/claire/anaconda/envs/qiime2-2019.1/conda-bld/noarch/q2_perc_norm-v2-py36_0.tar.bz2
+    anaconda upload /Users/claire/anaconda/envs/qiime2-2022.8/conda-bld/noarch/q2_perc_norm-v2-py36_0.tar.bz2
 
 
 Install the package from conda
@@ -378,7 +378,7 @@ qiime2.
 
 .. code:: bash
 
-    conda activate qiime2-2019.1
+    conda activate qiime2-2022.8
     conda install -c cduvallet q2_perc_norm
 
 Another "gotcha!" that got me is that if you want to see which packages
