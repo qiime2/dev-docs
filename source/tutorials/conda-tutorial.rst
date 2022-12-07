@@ -356,7 +356,7 @@ documentation <https://conda.io/docs/user-guide/tutorials/build-pkgs-skeleton.ht
 
 .. code:: bash
 
-    anaconda upload /Users/claire/anaconda/envs/qiime2-2019.1/conda-bld/noarch/q2_perc_norm-v2-py36_0.tar.bz2
+    anaconda upload /Users/claire/anaconda/envs/qiime2-2022.8/conda-bld/noarch/q2_perc_norm-v2-py36_0.tar.bz2
 
 
 Install the package from conda
@@ -378,7 +378,7 @@ qiime2.
 
 .. code:: bash
 
-    conda activate qiime2-2019.1
+    conda activate qiime2-2022.8
     conda install -c cduvallet q2_perc_norm
 
 Another "gotcha!" that got me is that if you want to see which packages
