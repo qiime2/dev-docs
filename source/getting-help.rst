@@ -32,7 +32,7 @@ currently working on.
 .. _`QIIME 2 Forum`: https://forum.qiime2.org
 .. _`QIIME 2 repositories`: https://github.com/qiime2
 .. _`The QIIME 2 Framework`: https://github.com/qiime2/qiime2/
-.. _`Interfaces`: https://github.com/search?q=org%3Aqiime2+q2cli+OR+q2studio&type=Repositories
+.. _`Interfaces`: https://github.com/search?q=org%3Aqiime2+q2cli&type=Repositories
 .. _`Plugins`: https://github.com/qiime2?q=plugin+in%3Areadme
 .. _`@qiime2`: https://twitter.com/qiime2
 .. _`current release announcement`: https://forum.qiime2.org/tags/release
