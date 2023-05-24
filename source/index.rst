@@ -8,6 +8,8 @@ QIIME 2 Developer Documentation
    architecture
    plugin-object
    actions/index
+   parallel
+   pipeline_resumption
    storing-data/index
    metadata
    plugin-coordination
