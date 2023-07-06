@@ -238,7 +238,7 @@ Or, you can create it from a QIIME 2 config file.
     config, mapping = get_config('path to config')
 
     # Or if you have no mapping
-    config, = get_config('path to config')
+    config, _ = get_config('path to config')
 
     # Or if you only have a mapping and are getting the config from elsewhere
     _, mapping = get_config('path_to_config')
