@@ -233,11 +233,16 @@ Or, you can create it from a QIIME 2 config file.
 
 .. code-block:: Python
 
-    from qiime2.sdk.parallel_config import get_config, get_mapping
+    from qiime2.sdk.parallel_config import get_config
 
+    config, mapping = get_config('path to config')
 
-    config = get_config('path to config')
-    mapping = get_mapping(config)
+    # Or if you have no mapping
+    config, = get_config('path to config')
+
+    # Or if you only have a mapping and are getting the config from elsewhere
+    _, mapping = get_config('path_to_config')
+
 
 Once you have your config and/or your mapping, you do the following
 
