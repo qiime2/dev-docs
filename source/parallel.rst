@@ -252,7 +252,7 @@ Once you have your config and/or your mapping, you do the following
 
 
     # Note that the mapping can also be a dictionary literal
-    with ParallelConfig(parsl_config=config, action_executor_mapping=mapping):
+    with ParallelConfig(parallel_config=config, action_executor_mapping=mapping):
         future = # <your_qiime2_action>.parallel(args)
         # Make sure to call _result inside of the context manager
         result = future._result()
