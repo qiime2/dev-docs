@@ -233,11 +233,16 @@ Or, you can create it from a QIIME 2 config file.
 
 .. code-block:: Python
 
-    from qiime2.sdk.parallel_config import get_config, get_mapping
+    from qiime2.sdk.parallel_config import get_config_from_file
 
+    config, mapping = get_config_from_file('path to config')
 
-    config = get_config('path to config')
-    mapping = get_mapping(config)
+    # Or if you have no mapping
+    config, _ = get_config_from_file('path to config')
+
+    # Or if you only have a mapping and are getting the config from elsewhere
+    _, mapping = get_config_from_file('path_to_config')
+
 
 Once you have your config and/or your mapping, you do the following
 
@@ -247,7 +252,7 @@ Once you have your config and/or your mapping, you do the following
 
 
     # Note that the mapping can also be a dictionary literal
-    with ParallelConfig(parsl_config=config, action_executor_mapping=mapping):
+    with ParallelConfig(parallel_config=config, action_executor_mapping=mapping):
         future = # <your_qiime2_action>.parallel(args)
         # Make sure to call _result inside of the context manager
         result = future._result()
