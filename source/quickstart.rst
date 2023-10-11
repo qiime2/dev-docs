@@ -21,28 +21,72 @@ After installing Miniconda and opening a new terminal, make sure you're running 
 Install QIIME 2 within a ``conda`` environment
 ----------------------------------------------
 
-Once you have Miniconda installed, create a ``conda`` environment and install the latest QIIME 2 staging distribution within the environment. We **highly** recommend creating a *new* environment specifically for development purposes. You can choose whatever name you'd like for the environment. In this example, we'll name the environment ``qiime2-dev``.
+Once you have Miniconda installed, create a ``conda`` environment and install the latest passing QIIME 2 Distribution of your choice within the environment. We **highly** recommend creating a *new* environment specifically for the QIIME 2 Distribution you will be using for development purposes. You can choose whatever name you'd like for the environment. In this example, we'll name the environment ``qiime2-dev``.
 
-Please choose the installation instructions that are appropriate for your platform (macOS vs Linux).
+Please choose the installation instructions that are appropriate for your platform (macOS vs Linux) and desired QIIME 2 Distribution.
 
+Amplicon Distribution
+---------------------
 
 macOS
 .....
 
 .. code-block:: bash
 
-   wget https://raw.githubusercontent.com/qiime2/environment-files/master/latest/staging/qiime2-latest-py38-osx-conda.yml
-   conda env create -n qiime2-dev --file qiime2-latest-py38-osx-conda.yml
-   rm qiime2-latest-py38-osx-conda.yml
+   wget https://raw.githubusercontent.com/qiime2/distributions/dev/latest/passed/qiime2-amplicon-macos-latest-conda.yml
+   conda env create -n qiime2-dev --file qiime2-amplicon-macos-latest-conda.yml
+   rm qiime2-amplicon-macos-latest-conda.yml
 
 Linux
 .....
 
 .. code-block:: bash
 
-   wget https://raw.githubusercontent.com/qiime2/environment-files/master/latest/staging/qiime2-latest-py38-linux-conda.yml
-   conda env create -n qiime2-dev --file qiime2-latest-py38-linux-conda.yml
-   rm qiime2-latest-py38-linux-conda.yml
+   wget https://raw.githubusercontent.com/qiime2/distributions/dev/latest/passed/qiime2-amplicon-ubuntu-latest-conda.yml
+   conda env create -n qiime2-dev --file qiime2-amplicon-ubuntu-latest-conda.yml
+   rm qiime2-amplicon-ubuntu-latest-conda.yml
+
+Shotgun Distribution
+---------------------
+
+macOS
+.....
+
+.. code-block:: bash
+
+   wget https://raw.githubusercontent.com/qiime2/distributions/dev/latest/passed/qiime2-shotgun-macos-latest-conda.yml
+   conda env create -n qiime2-dev --file qiime2-shotgun-macos-latest-conda.yml
+   rm qiime2-shotgun-macos-latest-conda.yml
+
+Linux
+.....
+
+.. code-block:: bash
+
+   wget https://raw.githubusercontent.com/qiime2/distributions/dev/latest/passed/qiime2-shotgun-ubuntu-latest-conda.yml
+   conda env create -n qiime2-dev --file qiime2-shotgun-ubuntu-latest-conda.yml
+   rm qiime2-shotgun-ubuntu-latest-conda.yml
+
+Tiny Distribution
+---------------------
+
+macOS
+.....
+
+.. code-block:: bash
+
+   wget https://raw.githubusercontent.com/qiime2/distributions/dev/latest/passed/qiime2-tiny-macos-latest-conda.yml
+   conda env create -n qiime2-dev --file qiime2-tiny-macos-latest-conda.yml
+   rm qiime2-tiny-macos-latest-conda.yml
+
+Linux
+.....
+
+.. code-block:: bash
+
+   wget https://raw.githubusercontent.com/qiime2/distributions/dev/latest/passed/qiime2-tiny-ubuntu-latest-conda.yml
+   conda env create -n qiime2-dev --file qiime2-tiny-ubuntu-latest-conda.yml
+   rm qiime2-tiny-ubuntu-latest-conda.yml
 
 Activate the ``conda`` environment
 ----------------------------------
