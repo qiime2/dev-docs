@@ -5,7 +5,7 @@ There are many connected components in the QIIME 2 packaging infrastructure
 topology. The following diagram attempts to summarize the aspects of these
 elements that have been discussed elsewhere in this section of the dev-docs.
 
-.. figure:: ../img/packaging-infra.svg
+.. figure:: ../img/packaging_infra.svg
    :width: 350
 
 Detailed description of diagram elements
@@ -46,22 +46,19 @@ listens for new package builds from instances of ``action-library-packaging``,
 and when a new build is found, it triggers all of the downstream steps
 necessary for publishing the new package build.
 
-Every plugin is associated with one or more distributions - a collective of
+Every plugin is associated with one or more `Distributions`_ - a collective of
 related QIIME 2 packages - when a new plugin package build is found, Library
 will prepare new versions of the ``conda_build_config.yaml`` file. More on this
 below.
 
-node: packages.qiime2.org/qiime2/20XY.Z/tested
-----------------------------------------------
+node: packages.qiime2.org/qiime2/20XY.Z/<distribution>/staged
+-------------------------------------------------------------
 
 This node corresponds to a self-hosted conda server run by the QIIME 2 team,
-for example: https://packages.qiime2.org/qiime2/2022.2/tested/.
+for example: https://packages.qiime2.org/qiime2/2023.9/amplicon/staged.
 
 This is where the packages go after ``action-library-packaging`` informs
 Library of the package build's existence.
-
-Please note, the "tested" channel is for packages builds that haven't yet been
-integrated into a QIIME 2 distribution (see following node steps).
 
 node: package integration repo
 ------------------------------
@@ -83,15 +80,15 @@ dictionary that keeps track of individual package build versions, as well as
 version specifications for common external dependencies, such as ``pandas`` and
 ``scikit-bio``. An example ``conda_build_config.yaml`` can be `seen here`_.
 
-node: packages.qiime2.org/qiime2/20XY.Z/staged
+node: packages.qiime2.org/qiime2/20XY.Z/<distribution>/passed
 ----------------------------------------------
 
 This node corresponds to a self-hosted conda server run by the QIIME 2 team,
-for example: https://packages.qiime2.org/qiime2/2022.2/staged/core/.
+for example: https://packages.qiime2.org/qiime2/2023.9/amplicon/passed/.
 
 This is where the packages go after ``package-integration`` informs Library
 that the package build was able to successfully "integrate" with all the other
-packages in a given distribution. This is no small feat - QIIME 2 plugins have
+packages in a given `Distribution`_. This is no small feat - QIIME 2 plugins have
 all sorts of different dependencies that must be coordinated with each other,
 and it is easy for conflicts to occur.
 
@@ -101,7 +98,7 @@ Final publication
 There is one final step, not listed in the diagram above, because it occurs on
 a fixed schedule, as opposed to being triggered by new package builds - the
 "cron" workflows that run in ``package-integration`` will find the latest
-metapackage for all known distributions, and "destructure" the metapackage,
+metapackage for all known `Distributions`_, and "destructure" the metapackage,
 testing each individual packages that was bundled up inside the metapackage.
 
 This step is important because even though a package version might've
@@ -112,9 +109,11 @@ dependencies.
 
 Once this step is successful, ``package-integration`` alerts Library, which
 then publishes the final package build to
-``https://packages.qiime2.org/qiime2/20XY.Z/passed/core/`` - for example:
+``https://packages.qiime2.org/qiime2/20XY.Z/<distribution>/released/`` - for example:
 
-https://packages.qiime2.org/qiime2/2022.2/passed/core/
+https://packages.qiime2.org/qiime2/2022.2/amplicon/released/
 
+.. _`Distribution`: https://docs.qiime2.org/2023.9/install/#qiime-2-2023-9-distributions
+.. _`Distributions`: https://docs.qiime2.org/2023.9/install/#qiime-2-2023-9-distributions
 .. _`PEP 440`: https://peps.python.org/pep-0440/
 .. _`seen here`: https://github.com/qiime2/package-integration/blob/c521d68d9c66e9c309214d5b2aac7474192b324f/2022.2/tested/conda_build_config.yaml

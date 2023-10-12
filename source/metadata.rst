@@ -108,7 +108,7 @@ How can the Metadata API Help Me?
 ---------------------------------
 
 The :doc:`Metadata API <api-reference/metadata>` has many interesting features - here are some of the more
-commonly utlitized elements amongst the core plugins.
+commonly utlitized elements amongst the plugins within the `Amplicon Distribution`_.
 
 Merging Metadata
 ................
@@ -174,6 +174,7 @@ called |metadata_tabulate|_, which renders an interactive table of the metadata
 in question. Cool!
 
 
+.. _`Amplicon Distribution`: https://docs.qiime2.org/2023.9/install/#qiime-2-2023-9-amplicon-distribution
 .. _`Metadata in QIIME 2`: https://docs.qiime2.org/2018.4/tutorials/metadata/
 .. _`familiarizing yourself`: https://docs.qiime2.org/2018.4/tutorials/metadata/
 .. |pd.Dataframe| replace:: ``pd.Dataframe``

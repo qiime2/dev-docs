@@ -71,7 +71,7 @@ This particular recipe file is stored in a directory called ``ci/meta``.
      script: make install
 
 Next we actually tell conda what command to run in order to build this plugin.
-For the plugins in the core distribution, we like to use Makefiles for
+For the plugins in the `Amplicon Distribution`_, we like to use Makefiles for
 standardizing a lot of our commands, this particular make directive is short
 for ``python setup.py install``.
 
@@ -173,7 +173,7 @@ The full copy of the GitHub workflow that uses this actions
 
 This first section instructs GitHub when to run this workflow. At the very least
 it needs to run on pushes to whatever the default branch is in your repository.
-For core distribution plugins, we like to also run the workflow any time a
+For `Amplicon Distribution`_ plugins, we like to also run the workflow any time a
 pull request is opened - this has the benefit of ensuring the conda package can
 successfully build, but won't actually deploy the changes to Library.
 
@@ -205,7 +205,7 @@ ensure that GitHub checks out the latest copy of the source code.
        - name: set up git repo for versioneer
          run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
 
-For core distribution plugins, we use a tool called `versioneer`_ which allows
+For `Amplicon Distribution`_ plugins, we use a tool called `versioneer`_ which allows
 us to manage our version identifiers using git tags, but that is not a
 requirement for your plugin. Because of this, we have to tell this step how
 much of the repo to check out.
@@ -238,6 +238,7 @@ repo: https://github.com/qiime2/package-integration.
 
 Congratulations!
 
+.. _`Amplicon Distribution`: https://docs.qiime2.org/2023.9/install/#qiime-2-2023-9-amplicon-distribution
 .. _`GitHub Actions`: https://github.com/features/actions
 .. _`recipe file`: https://github.com/qiime2/q2-cutadapt/blob/a6c7b6a26c373791edbfc73d13688996550e8233/ci/recipe/meta.yaml
 .. _`GitHub Secret`: https://docs.github.com/en/actions/security-guides/encrypted-secrets
