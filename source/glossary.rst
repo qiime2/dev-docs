@@ -26,6 +26,13 @@ it without the accompanying context provided by the rest of this documentation.
      A string that represents a particular layout of files and or directories
      as well as how their contents will be structured.
 
+   Distribution
+     A collection of QIIME 2 plugins that are designed to be installed together.
+     These are generally grouped by a theme. For example, the `Amplicon Distribution`_
+     provides a collection of plugins for analysis of microbiome amplicon data,
+     while the `Shotgun Distribution`_ provides a collection of plugins
+     for analysis of microbiome shotgun metagenomics data.
+
    Format
      A string that represents a particular file format.
 
@@ -133,3 +140,7 @@ it without the accompanying context provided by the rest of this documentation.
      A visualizer accepts some combination of QIIME 2 :term:`artifacts
      <Artifact>` and :term:`parameters <Parameter>` as :term:`input`, and
      produces exactly one :term:`visualization` as :term:`output`.
+
+
+.. _`Amplicon Distribution`: https://docs.qiime2.org/2023.9/install/#qiime-2-2023-9-amplicon-distribution
+.. _`Shotgun Distribution`: https://docs.qiime2.org/2023.9/install/#qiime-2-2023-9-shotgun-distribution
