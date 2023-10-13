@@ -13,7 +13,7 @@ To contribute, follow these steps:
 
 This documentation is built by [sphinx](http://www.sphinx-doc.org/en/master/), which you can also use to make a local copy of the docs to preview on your computer.
 
-First, you need to have all the required packages installed. Start by going to packages.qiime2.org/qiime2/<20XX.Y>/amplicon/released (where <20XX.Y> is the current release epoch).
+First, you need to have all the required packages installed. Start by going to https://packages.qiime2.org/qiime2/<20XX.Y>/amplicon/released (where <20XX.Y> is the current release epoch).
 Check on the latest versions for qiime2 and q2cli (these are the two QIIME 2 packages you'll need in your conda environment).
 Create a new conda environment with the following packages/channels:
 
