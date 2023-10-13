@@ -81,7 +81,7 @@ version specifications for common external dependencies, such as ``pandas`` and
 ``scikit-bio``. An example ``conda_build_config.yaml`` can be `seen here`_.
 
 node: packages.qiime2.org/qiime2/20XY.Z/<distribution>/passed
-----------------------------------------------
+-------------------------------------------------------------
 
 This node corresponds to a self-hosted conda server run by the QIIME 2 team,
 for example: https://packages.qiime2.org/qiime2/2023.9/amplicon/passed/.
