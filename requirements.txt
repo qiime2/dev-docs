@@ -1,2 +1,3 @@
 Sphinx
 awscli
+sphinx_tabs
