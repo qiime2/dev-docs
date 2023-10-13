@@ -47,7 +47,6 @@ Record Containers
 .. autodata:: qiime2.plugin.plugin.SemanticTypeRecord
 .. autodata:: qiime2.plugin.plugin.FormatRecord
 .. autodata:: qiime2.plugin.plugin.ViewRecord
-.. autodata:: qiime2.plugin.plugin.TypeFormatRecord
 
 
 Formats
