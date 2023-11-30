@@ -1,11 +1,11 @@
 Publishing your plugin on conda
 ###############################
 
-Once you've `made your first qiime2
-plugin </posts/2018/03/qiime2-plugin>`__, you'll need to build it into a
+Once you've made your first qiime2
+plugin (:doc:`/tutorials/first-plugin-tutorial`), you'll need to build it into a
 conda package and upload it to anaconda.org so others can easily install
 it. This tutorial is intended for first-time python developers trying to
-put their QIIME 2 plugin into conda.
+put their QIIME 2 plugin into conda. (If you are updating a pre-existing plugin, you can also check out the :doc:`/tutorials/updating-plugin` tutorial.)
 
 In this tutorial, I'll be drawing on examples from my experience developing
 the `q2-perc-norm <https://github.com/cduvallet/q2-perc-norm>`__ and `q2-dbotu <https://github.com/cduvallet/q2-dbotu>`__ plugins.
@@ -25,12 +25,14 @@ Quickstart
     .. code-block:: bash
 
         conda-build recipe/
-           -c https://conda.anaconda.org/qiime2/label/r2022.8
+           -c https://conda.anaconda.org/qiime2/label/r2023.7
            -c https://conda.anaconda.org/conda-forge
            -c https://conda.anaconda.org/bioconda
            -c defaults
            --override-channels
            --python 3.8
+
+   Make sure to update the label and python versions with your current versions.
 
 4. Install your package locally.
 
@@ -54,7 +56,7 @@ Documentation
 Before you start, here is some useful documentation to be aware of.
 
 The conda tutorials are short and informative. You should read the
-`tutorial using ``skeleton`` <https://conda.io/docs/user-guide/tutorials/build-pkgs-skeleton.html>`__
+`tutorial using skeleton <https://conda.io/docs/user-guide/tutorials/build-pkgs-skeleton.html>`__
 first, then and then the tutorial on `building a package from scratch <https://conda.io/docs/user-guide/tutorials/build-pkgs.html>`__,
 regardless of which way you plan to build your package.
 
@@ -224,12 +226,14 @@ To build a qiime2 plugin, the command you have to run is actually:
 ::
 
     conda-build recipe/
-       -c https://conda.anaconda.org/qiime2/label/r2022.8
+       -c https://conda.anaconda.org/qiime2/label/r2023.7
        -c https://conda.anaconda.org/conda-forge
        -c https://conda.anaconda.org/bioconda
        -c defaults
        --override-channels
        --python 3.8
+
+You can/should update the qiime2 version and your python version, if applicable.
 
 Install your package
 ~~~~~~~~~~~~~~~~~~~~
@@ -253,13 +257,13 @@ Something like:
 
 ::
 
-    /Users/claire/anaconda/conda-bld/osx-64/q2_perc_norm-1.0-py35_0.tar.bz2
+    /Users/claire/anaconda/conda-bld/osx-64/q2_perc_norm-v2-py36_0.tar.bz2
 
 So you can try to install the package directly from this:
 
 ::
 
-    conda install --offline /Users/claire/anaconda/conda-bld/osx-64/q2_perc_norm-1.0-py35_0.tar.bz2
+    conda install --offline /Users/claire/anaconda/conda-bld/osx-64/q2_perc_norm-v2-py36_0.tar.bz2
 
 Ok, looks like that worked! Woooo!
 
@@ -278,8 +282,8 @@ https://dev.qiime2.org/latest/quickstart/)
 
 .. code:: bash
 
-    wget https://raw.githubusercontent.com/qiime2/environment-files/master/latest/staging/qiime2-latest-py35-osx-conda.yml
-    conda env create -n qiime2-dev-condatest --file qiime2-latest-py35-osx-conda.yml
+    wget https://raw.githubusercontent.com/qiime2/environment-files/master/latest/staging/qiime2-latest-py38-osx-conda.yml
+    conda env create -n qiime2-dev-condatest --file qiime2-latest-py38-osx-conda.yml
     conda activate qiime2-dev-condatest
 
 Then, you can just type in ``qiime`` to your command line and see if (1)
@@ -356,7 +360,7 @@ documentation <https://conda.io/docs/user-guide/tutorials/build-pkgs-skeleton.ht
 
 .. code:: bash
 
-    anaconda upload /Users/claire/anaconda/envs/qiime2-2022.8/conda-bld/noarch/q2_perc_norm-v2-py36_0.tar.bz2
+    anaconda upload /Users/claire/anaconda/envs/qiime2-2023.7/conda-bld/noarch/q2_perc_norm-v2-py36_0.tar.bz2
 
 
 Install the package from conda
@@ -378,7 +382,7 @@ qiime2.
 
 .. code:: bash
 
-    conda activate qiime2-2022.8
+    conda activate qiime2-2023.7
     conda install -c cduvallet q2_perc_norm
 
 Another "gotcha!" that got me is that if you want to see which packages
