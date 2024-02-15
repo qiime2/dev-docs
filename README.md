@@ -13,13 +13,15 @@ To contribute, follow these steps:
 
 This documentation is built by [sphinx](http://www.sphinx-doc.org/en/master/), which you can also use to make a local copy of the docs to preview on your computer.
 
-First, you need to have all the required packages installed. Start by going to packages.qiime2.org/qiime2/<20XX.Y>/amplicon/released (where <20XX.Y> is the current release epoch).
-Check on the latest versions for qiime2 and q2cli (these are the two QIIME 2 packages you'll need in your conda environment).
-Create a new conda environment with the following packages/channels:
+First, you need to have all the required packages installed. Start by going to https://packages.qiime2.org/qiime2/<20XX.Y>/amplicon/released (where <20XX.Y> is the current release epoch).
 
+Check on the latest versions for qiime2 and q2cli (these are the two QIIME 2 packages you'll need in your conda environment).
+
+Create a new conda environment with the following packages/channels:
 ```
-conda create -n dev-docs -c https://packages.qiime2.org/qiime2/<20XX.Y>/amplicon/released -c conda-forge -c bioconda -c defaults qiime2=<20XX.Y.ver> q2cli=<20XX.Y.ver> sphinx awscli
+conda create -n dev-docs -c https://packages.qiime2.org/qiime2/<20XX.Y>/amplicon/released -c conda-forge -c bioconda -c defaults qiime2=<20XX.Y.ver> q2cli=<20XX.Y.ver> sphinx
 ```
+
 Where 20XX.Y is the current release epoch, and 20XX.Y.ver is the version found on packages.qiime2.org for qiime2 and q2cli, respectively.
 
 Once the environment has been created, you'll activate it with:
@@ -28,19 +30,17 @@ conda activate dev-docs
 ```
 
 From the main dev-docs repo, run:
-
 ```
 pip install -r requirements.txt
 ```
 
-This will install any separate dependencies required outside of sphinx and awscli.
+This should download sphinx (plus a few other dependencies). Note that you might want to run this in a qiime2 dev environment, to keep installs separate from your main computer.
 
-To build the documentation and preview your changes, run
-
+To build the documentation and preview your changes, run the following command from the main repo:
 ```
 make dirhtml
 ```
 
-from the main repo. The output files will show up in the `build` folder. Open these html files to explore the documentation locally.
+The output files will show up in the `build` folder. Open these html files to explore the documentation locally.
 
 Once you're satisfied with your changes, commit your changes and push them to your repo, and then start a pull request from your repo's site. Don't commit any of the files in the `build` directory.
