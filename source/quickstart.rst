@@ -21,7 +21,7 @@ After installing Miniconda and opening a new terminal, make sure you're running 
 Install QIIME 2 within a ``conda`` environment
 ----------------------------------------------
 
-Once you have Miniconda installed, create a ``conda`` environment and install the latest passing QIIME 2 `Distribution`_ of your choice within the environment. We **highly** recommend creating a *new* environment specifically for the QIIME 2 Distribution you will be using for development purposes. You can choose whatever name you'd like for the environment. In this example, we'll name the environment ``qiime2-dev``.
+Once you have Miniconda installed, create a ``conda`` environment and install the latest passing QIIME 2 `Distribution`_ of your choice within the environment. We **highly** recommend creating a *new* environment specifically for the QIIME 2 Distribution you will be using for development purposes. You can choose whatever name you'd like for the environment. In this example, we'll name the environment ``q2dev-<distro>``, with <distro> being the particular QIIME 2 Distribution.
 
 Please choose the installation instructions that are appropriate for your platform (macOS vs Linux) and desired QIIME 2 Distribution.
 
@@ -35,7 +35,7 @@ Please choose the installation instructions that are appropriate for your platfo
       .. code-block:: bash
 
          wget https://raw.githubusercontent.com/qiime2/distributions/dev/latest/passed/qiime2-amplicon-macos-latest-conda.yml
-         conda env create -n qiime2-dev --file qiime2-amplicon-macos-latest-conda.yml
+         conda env create -n q2dev-amplicon --file qiime2-amplicon-macos-latest-conda.yml
          rm qiime2-amplicon-macos-latest-conda.yml
 
       Linux
@@ -43,8 +43,17 @@ Please choose the installation instructions that are appropriate for your platfo
       .. code-block:: bash
 
          wget https://raw.githubusercontent.com/qiime2/distributions/dev/latest/passed/qiime2-amplicon-ubuntu-latest-conda.yml
-         conda env create -n qiime2-dev --file qiime2-amplicon-ubuntu-latest-conda.yml
+         conda env create -n q2dev-amplicon --file qiime2-amplicon-ubuntu-latest-conda.yml
          rm qiime2-amplicon-ubuntu-latest-conda.yml
+
+      Activate the ``conda`` environment
+
+      .. code-block:: bash
+
+         conda activate q2dev-amplicon
+         # to deactivate:
+         # conda deactivate
+         qiime info
 
    .. tab:: Shotgun Distribution
 
@@ -53,7 +62,7 @@ Please choose the installation instructions that are appropriate for your platfo
       .. code-block:: bash
 
          wget https://raw.githubusercontent.com/qiime2/distributions/dev/latest/passed/qiime2-shotgun-macos-latest-conda.yml
-         conda env create -n qiime2-dev --file qiime2-shotgun-macos-latest-conda.yml
+         conda env create -n q2dev-shotgun --file qiime2-shotgun-macos-latest-conda.yml
          rm qiime2-shotgun-macos-latest-conda.yml
 
       Linux
@@ -61,8 +70,17 @@ Please choose the installation instructions that are appropriate for your platfo
       .. code-block:: bash
 
          wget https://raw.githubusercontent.com/qiime2/distributions/dev/latest/passed/qiime2-shotgun-ubuntu-latest-conda.yml
-         conda env create -n qiime2-dev --file qiime2-shotgun-ubuntu-latest-conda.yml
+         conda env create -n q2dev-shotgun --file qiime2-shotgun-ubuntu-latest-conda.yml
          rm qiime2-shotgun-ubuntu-latest-conda.yml
+
+      Activate the ``conda`` environment
+
+      .. code-block:: bash
+
+         conda activate q2dev-shotgun
+         # to deactivate:
+         # conda deactivate
+         qiime info
 
    .. tab:: Tiny Distribution
 
@@ -71,7 +89,7 @@ Please choose the installation instructions that are appropriate for your platfo
       .. code-block:: bash
 
          wget https://raw.githubusercontent.com/qiime2/distributions/dev/latest/passed/qiime2-tiny-macos-latest-conda.yml
-         conda env create -n qiime2-dev --file qiime2-tiny-macos-latest-conda.yml
+         conda env create -n q2dev-tiny --file qiime2-tiny-macos-latest-conda.yml
          rm qiime2-tiny-macos-latest-conda.yml
 
       Linux
@@ -79,35 +97,19 @@ Please choose the installation instructions that are appropriate for your platfo
       .. code-block:: bash
 
          wget https://raw.githubusercontent.com/qiime2/distributions/dev/latest/passed/qiime2-tiny-ubuntu-latest-conda.yml
-         conda env create -n qiime2-dev --file qiime2-tiny-ubuntu-latest-conda.yml
+         conda env create -n q2dev-tiny --file qiime2-tiny-ubuntu-latest-conda.yml
          rm qiime2-tiny-ubuntu-latest-conda.yml
 
-Activate the ``conda`` environment
-----------------------------------
+      Activate the ``conda`` environment
 
-.. code-block:: bash
+      .. code-block:: bash
 
-    conda activate qiime2-dev
-    # to deactivate:
-    # conda deactivate
-    qiime info
+         conda activate q2dev-tiny
+         # to deactivate:
+         # conda deactivate
+         qiime info
 
-The output from ``qiime info`` should indicate that you have development versions of the QIIME 2 packages installed (the displayed versions will differ):
-
-.. code-block::bash
-
-   System versions
-   Python version: 3.5.4
-   QIIME 2 release: 2018.2
-   QIIME 2 version: 2018.2.0.dev0+2.g8e8a3f5
-   q2cli version: 2018.2.0.dev0+2.gcca3a74
-
-   Installed plugins
-   alignment 2018.2.0.dev0+1.g2ae38a2
-   composition 2018.2.0.dev0+2.g40587cd
-   cutadapt 0+untagged.14.g5361ee2.dirty
-   dada2 2018.2.0.dev0+1.g94c5f7d
-   ...
+The output from ``qiime info`` should indicate that you have development versions of the QIIME 2 packages installed (the displayed packages and versions will differ, depending on the distribution you've installed).
 
 Next steps
 ----------

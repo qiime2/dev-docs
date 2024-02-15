@@ -34,7 +34,7 @@ From the main dev-docs repo, run:
 pip install -r requirements.txt
 ```
 
-This will install any separate dependencies required outside of sphinx.
+This should download sphinx (plus a few other dependencies). Note that you might want to run this in a qiime2 dev environment, to keep installs separate from your main computer.
 
 To build the documentation and preview your changes, run the following command from the main repo:
 ```
