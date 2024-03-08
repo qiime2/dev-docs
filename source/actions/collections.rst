@@ -13,7 +13,7 @@ An example of registering collection inputs and parameters is shown below. For a
 .. code-block:: Python
 
     dummy_plugin.methods.register_function(
-        function=example,
+        function=example_function,
         inputs={
             'int_list': List[SingleInt],
             'int_dict': Collection[SingleInt],
@@ -33,7 +33,8 @@ In the actual function definition, the type annotation is the view type of the A
 
 .. code-block:: Python
 
-    def list_of_ints(int_list: int, int_dict: int, bool_list: bool, bool_dict: bool) -> int:
+    # Note argument annotations are currently just int, not list[int] or dict[int] as you might expect
+    def example_function(int_list: int, int_dict: int, bool_list: bool, bool_dict: bool) -> int:
         return int_list.extend(list(int_dict.value()))
 
 Registering an Action that Returns an Output Collection
@@ -44,7 +45,7 @@ Returning an output collection works much the same as returning anything else in
 .. code-block:: Python
 
     dummy_plugin.methods.register_function(
-        function=example,
+        function=example_function,
         inputs={
             'int_list': List[SingleInt],
             'int_dict': Collection[SingleInt],
@@ -64,7 +65,8 @@ The return type annotation on the action itself is still the view type of the Ar
 
 .. code-block:: Python
 
-    def list_of_ints(int_list: int, int_dict: int, bool_list: bool, bool_dict: bool) -> int:
+    # Note return annotation is currently just int, not dict[int] or list[int] as you might expect:
+    def example_function(int_list: int, int_dict: int, bool_list: bool, bool_dict: bool) -> int:
         return int_list.extend(list(int_dict.value()))
 
 In this instance, the value "ints" that is returned is a list, but it could also have been a dict. The actual QIIME 2 Result you get is a ResultCollection object which is essentially a wrapper around a dictionary. If the original return is a list, the ResultCollection uses the list indices as keys.
