@@ -89,8 +89,8 @@ the scripts is discoverable.
 For example, it looks like the common practice is to have a file for
 each method in the same directory as ``plugin_setup.py``. In the plugins
 I used as examples, these files are typically named
-``._method_name.py``, and are imported at the top of ``plugin_setup.py``
-(e.g. ``from._method_name import method_name``). This import statement
+``_method_name.py``, and are imported at the top of ``plugin_setup.py``
+(e.g. ``from ._method_name import method_name``). This import statement
 only works if the folder is in your ``PYTHONPATH``.
 
 As an alternative to messing with your ``PYTHONPATH``, which is easy to
