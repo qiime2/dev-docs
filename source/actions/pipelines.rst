@@ -56,7 +56,7 @@ Registering ``Pipelines`` is the same as registering :doc:`Methods <methods>`, w
 
 First, we register a `Pipeline` by calling ``plugin.pipelines.register_function``.
 
-Second,``visualizations`` produced as an output are listed in ``outputs`` as a ``tuple`` with ``Visualization`` as the second value. E.g., ``('jaccard_emperor', Visualization)``. A description of this output should be included in ``output_descriptions``
+Second, ``visualizations`` produced as an output are listed in ``outputs`` as a ``tuple`` with ``Visualization`` as the second value. E.g., ``('jaccard_emperor', Visualization)``. A description of this output should be included in ``output_descriptions``
 
 Citations do not need to be added for the pipeline unless unique citations are required for the pipeline that are not appropriate for the underlying ``methods`` and ``visualizers`` that it calls. Citations for these underlying actions are automatically logged in citation provenance for this pipeline.
 
