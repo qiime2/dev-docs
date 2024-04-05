@@ -55,7 +55,7 @@ node: packages.qiime2.org/qiime2/20XY.Z/<distribution>/staged
 -------------------------------------------------------------
 
 This node corresponds to a self-hosted conda server run by the QIIME 2 team,
-for example: https://packages.qiime2.org/qiime2/2023.9/amplicon/staged.
+for example: https://packages.qiime2.org/qiime2/2024.2/amplicon/staged.
 
 This is where the packages go after ``action-library-packaging`` informs
 Library of the package build's existence.
@@ -84,7 +84,7 @@ node: packages.qiime2.org/qiime2/20XY.Z/<distribution>/passed
 -------------------------------------------------------------
 
 This node corresponds to a self-hosted conda server run by the QIIME 2 team,
-for example: https://packages.qiime2.org/qiime2/2023.9/amplicon/passed/.
+for example: https://packages.qiime2.org/qiime2/2024.2/amplicon/passed/.
 
 This is where the packages go after ``package-integration`` informs Library
 that the package build was able to successfully "integrate" with all the other
@@ -113,7 +113,7 @@ then publishes the final package build to
 
 https://packages.qiime2.org/qiime2/2022.2/amplicon/released/
 
-.. _`Distribution`: https://docs.qiime2.org/2023.9/install/#qiime-2-2023-9-distributions
-.. _`Distributions`: https://docs.qiime2.org/2023.9/install/#qiime-2-2023-9-distributions
+.. _`Distribution`: https://docs.qiime2.org/2024.2/install/#qiime-2-2024-2-distributions
+.. _`Distributions`: https://docs.qiime2.org/2024.2/install/#qiime-2-2024-2-distributions
 .. _`PEP 440`: https://peps.python.org/pep-0440/
 .. _`seen here`: https://github.com/qiime2/package-integration/blob/c521d68d9c66e9c309214d5b2aac7474192b324f/2022.2/tested/conda_build_config.yaml

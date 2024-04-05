@@ -142,5 +142,5 @@ it without the accompanying context provided by the rest of this documentation.
      produces exactly one :term:`visualization` as :term:`output`.
 
 
-.. _`Amplicon Distribution`: https://docs.qiime2.org/2023.9/install/#qiime-2-2023-9-amplicon-distribution
-.. _`Shotgun Distribution`: https://docs.qiime2.org/2023.9/install/#qiime-2-2023-9-shotgun-distribution
+.. _`Amplicon Distribution`: https://docs.qiime2.org/2024.2/install/#qiime-2-2024-2-amplicon-distribution
+.. _`Shotgun Distribution`: https://docs.qiime2.org/2024.2/install/#qiime-2-2024-2-shotgun-distribution

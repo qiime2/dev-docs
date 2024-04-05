@@ -174,7 +174,7 @@ called |metadata_tabulate|_, which renders an interactive table of the metadata
 in question. Cool!
 
 
-.. _`Amplicon Distribution`: https://docs.qiime2.org/2023.9/install/#qiime-2-2023-9-amplicon-distribution
+.. _`Amplicon Distribution`: https://docs.qiime2.org/2024.2/install/#qiime-2-2024-2-amplicon-distribution
 .. _`Metadata in QIIME 2`: https://docs.qiime2.org/2018.4/tutorials/metadata/
 .. _`familiarizing yourself`: https://docs.qiime2.org/2018.4/tutorials/metadata/
 .. |pd.Dataframe| replace:: ``pd.Dataframe``
