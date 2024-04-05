@@ -135,7 +135,7 @@ If you want to make changes to the `framework`_, `q2cli`_, or any of the `offici
 Congratulations! You should now have a working development environment - time to start hacking!
 
 .. _`Miniconda`: https://conda.io/miniconda.html
-.. _`Distribution`: https://docs.qiime2.org/2023.9/install/#qiime-2-2023-9-distributions
+.. _`Distribution`: https://docs.qiime2.org/2024.2/install/#qiime-2-2024-2-distributions
 .. _`framework`: https://github.com/qiime2/qiime2
 .. _`q2cli`: https://github.com/qiime2/q2cli
 .. _`official plugins`: https://github.com/qiime2?q=plugin+in%3Areadme

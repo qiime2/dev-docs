@@ -238,7 +238,7 @@ repo: https://github.com/qiime2/package-integration.
 
 Congratulations!
 
-.. _`Amplicon Distribution`: https://docs.qiime2.org/2023.9/install/#qiime-2-2023-9-amplicon-distribution
+.. _`Amplicon Distribution`: https://docs.qiime2.org/2024.2/install/#qiime-2-2024-2-amplicon-distribution
 .. _`GitHub Actions`: https://github.com/features/actions
 .. _`recipe file`: https://github.com/qiime2/q2-cutadapt/blob/a6c7b6a26c373791edbfc73d13688996550e8233/ci/recipe/meta.yaml
 .. _`GitHub Secret`: https://docs.github.com/en/actions/security-guides/encrypted-secrets
