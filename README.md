@@ -1,4 +1,13 @@
-# Welcome to the QIIME 2 developer docs! 👋
+# This repository is no longer relevant
+
+**You should no longer refer to these docs as they have been succeeded by *[Developing with QIIME 2](https://develop.qiime2.org)*.**
+
+This repository contains the "old QIIME 2 developer documentation" for archival purposes.
+
+
+---
+
+## Welcome to the QIIME 2 developer docs!
 
 To contribute, follow these steps:
 
@@ -9,7 +18,7 @@ To contribute, follow these steps:
 4. Make and preview your edits.
 5. Commit and push your edits, and start a pull request.
 
-# Previewing edits
+### Previewing edits
 
 This documentation is built by [sphinx](http://www.sphinx-doc.org/en/master/), which you can also use to make a local copy of the docs to preview on your computer.
 
@@ -45,7 +54,7 @@ The output files will show up in the `build` folder. Open these html files to ex
 
 Once you're satisfied with your changes, commit your changes and push them to your repo, and then start a pull request from your repo's site. Don't commit any of the files in the `build` directory.
 
-# Uploading a new release version to S3 (QIIME 2 Core Development Team)
+### Uploading a new release version to S3 (QIIME 2 Core Development Team)
 
 Start by making a copy of the `build/dirhtml` directory & its contents (while in the `build` folder):
 ```
